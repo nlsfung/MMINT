@@ -63,7 +63,7 @@ public interface DecomposableCoreElement extends CoreElement {
 	 * @return the value of the '<em>Supported By</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getDecomposableCoreElement_SupportedBy()
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion
-	 * @model opposite="conclusion" containment="true"
+	 * @model opposite="conclusion" containment="true" required="true"
 	 * @generated
 	 */
 	EList<SupportedBy> getSupportedBy();

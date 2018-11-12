@@ -42,8 +42,8 @@
       eSuperTypes="#//CoreElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1"
         eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" upperBound="-1"
-        eType="#//SupportedBy" containment="true" eOpposite="#//SupportedBy/conclusion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="1"
+        upperBound="-1" eType="#//SupportedBy" containment="true" eOpposite="#//SupportedBy/conclusion"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextualElement" abstract="true" eSuperTypes="#//ArgumentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextOf" lowerBound="1"

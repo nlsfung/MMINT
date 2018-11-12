@@ -52,6 +52,17 @@
             <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </endLabelStyleDescription>
         </computedStyleDescriptions>
+        <computedStyleDescriptions xmi:type="style:EdgeStyleDescription" xmi:id="_a-ybgObOEeiAjKk7Lb5-dg" sourceArrow="FillDiamond" routingStyle="manhattan">
+          <strokeColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <beginLabelStyleDescription xmi:type="style:BeginLabelStyleDescription" xmi:id="_a-ybgebOEeiAjKk7Lb5-dg" showIcon="false" labelExpression="service:renderEOpposite">
+            <labelFormat>bold</labelFormat>
+            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </beginLabelStyleDescription>
+          <endLabelStyleDescription xmi:type="style:EndLabelStyleDescription" xmi:id="_a-ybgubOEeiAjKk7Lb5-dg" showIcon="false" labelExpression="service:render">
+            <labelFormat>bold</labelFormat>
+            <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          </endLabelStyleDescription>
+        </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_lOOFMOFCEeivS9pdSv_RYA" source="GMF_DIAGRAMS">
@@ -1535,13 +1546,17 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_mogR7OFCEeivS9pdSv_RYA" sourceNode="_mmHsR-FCEeivS9pdSv_RYA" targetNode="_mmHsS-FCEeivS9pdSv_RYA" beginLabel="[1..1] conclusion" endLabel="[0..*] supportedBy">
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_mogR7OFCEeivS9pdSv_RYA" sourceNode="_mmHsR-FCEeivS9pdSv_RYA" targetNode="_mmHsS-FCEeivS9pdSv_RYA" beginLabel="[1..1] conclusion" endLabel="[1..*] supportedBy">
       <target xmi:type="ecore:EReference" href="model/safetycase.ecore#//DecomposableCoreElement/supportedBy"/>
       <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/conclusion"/>
       <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//DecomposableCoreElement/supportedBy"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_mogR8OFCEeivS9pdSv_RYA" description="_mogR7eFCEeivS9pdSv_RYA" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_mogR8eFCEeivS9pdSv_RYA" showIcon="false"/>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_mogR8uFCEeivS9pdSv_RYA" showIcon="false"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_a-zCkObOEeiAjKk7Lb5-dg" description="_a-ybgObOEeiAjKk7Lb5-dg" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_a-zCkebOEeiAjKk7Lb5-dg" showIcon="false">
+          <labelFormat>bold</labelFormat>
+        </beginLabelStyle>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_a-zCkubOEeiAjKk7Lb5-dg" showIcon="false">
+          <labelFormat>bold</labelFormat>
+        </endLabelStyle>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
     </ownedDiagramElements>
