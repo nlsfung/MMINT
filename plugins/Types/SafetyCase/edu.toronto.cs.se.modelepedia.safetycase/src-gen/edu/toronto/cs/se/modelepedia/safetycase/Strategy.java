@@ -21,6 +21,8 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getStrategy()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='StrategySupporter StrategyContext'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot StrategySupporter='self.supportedBy -&gt; forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Solution))' StrategyContext='self.inContextOf.context -&gt; forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))'"
  * @generated
  */
 public interface Strategy extends DecomposableCoreElement {

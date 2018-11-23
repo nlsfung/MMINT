@@ -34,7 +34,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SingleRoot'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SingleRoot='CoreElement.allInstances() -&gt; \n\t\t\tselect(d | d.supports.conclusion -&gt; isEmpty()) -&gt; size() = 1'"
  * @generated
  */
 public interface SafetyCase extends EObject {

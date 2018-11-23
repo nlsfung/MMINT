@@ -20,7 +20,8 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  *
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getASILDecompositionStrategy()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ASILDecompositionIndependence ASILDecompositionComponents ASILDescendants'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ASILDecompositionIndependence='self.supportedBy.premise -&gt; selectByType(IndependenceGoal) -&gt; size() = 1' ASILDecompositionComponents='self.supportedBy.premise -&gt; selectByType(BasicGoal) -&gt; size() = 2' ASILDescendants='let goalSeq: Sequence(CoreElement) = self.supportedBy.premise -&gt; select(p | p.oclIsTypeOf(BasicGoal)), \n\t\t\tg1Descendants : Set(CoreElement) = goalSeq -&gt; at(1) -&gt; closure(c | \n\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif),\n\t\t\tg2Descendants : Set(CoreElement) = goalSeq -&gt; at(2) -&gt; closure(c | \n\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif) \n\t\t\tin g1Descendants -&gt; intersection(g2Descendants) = Set{}'"
  * @generated
  */
 public interface ASILDecompositionStrategy extends Strategy {

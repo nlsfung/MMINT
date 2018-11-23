@@ -38,12 +38,14 @@ import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
+import edu.toronto.cs.se.modelepedia.safetycase.util.SafetyCaseValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -273,6 +275,15 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		// Initialize created meta-data
 		theSafetyCasePackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theSafetyCasePackage,
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return SafetyCaseValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theSafetyCasePackage.freeze();
@@ -960,8 +971,78 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		createResource(eNS_URI);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+		createPivotAnnotations();
 		// gmf.label
 		createGmfAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation
+		  (this,
+		   source,
+		   new String[] {
+			   "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			   "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+		   });
+		addAnnotation
+		  (safetyCaseEClass,
+		   source,
+		   new String[] {
+			   "constraints", "SingleRoot"
+		   });
+		addAnnotation
+		  (coreElementEClass,
+		   source,
+		   new String[] {
+			   "constraints", "GoalRoot"
+		   });
+		addAnnotation
+		  (decomposableCoreElementEClass,
+		   source,
+		   new String[] {
+			   "constraints", "SupportCycle NonDecomposableLeaves"
+		   });
+		addAnnotation
+		  (contextualElementEClass,
+		   source,
+		   new String[] {
+			   "constraints", "ContextualElementSupporter ContextualElementContext"
+		   });
+		addAnnotation
+		  (goalEClass,
+		   source,
+		   new String[] {
+			   "constraints", "GoalSupporter GoalContext ASILInheritance StateValidityInheritance"
+		   });
+		addAnnotation
+		  (strategyEClass,
+		   source,
+		   new String[] {
+			   "constraints", "StrategySupporter StrategyContext"
+		   });
+		addAnnotation
+		  (asilDecompositionStrategyEClass,
+		   source,
+		   new String[] {
+			   "constraints", "ASILDecompositionIndependence ASILDecompositionComponents ASILDescendants"
+		   });
+		addAnnotation
+		  (solutionEClass,
+		   source,
+		   new String[] {
+			   "constraints", "SolutionSupporter SolutionContext"
+		   });
 	}
 
 	/**
@@ -977,6 +1058,73 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		   source,
 		   new String[] {
 			   "label", "description"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createPivotAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
+		addAnnotation
+		  (safetyCaseEClass,
+		   source,
+		   new String[] {
+			   "SingleRoot", "CoreElement.allInstances() -> \n\t\t\tselect(d | d.supports.conclusion -> isEmpty()) -> size() = 1"
+		   });
+		addAnnotation
+		  (coreElementEClass,
+		   source,
+		   new String[] {
+			   "GoalRoot", "self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)"
+		   });
+		addAnnotation
+		  (decomposableCoreElementEClass,
+		   source,
+		   new String[] {
+			   "SupportCycle", "self.supportedBy.premise -> closure(p | if p.oclIsKindOf(DecomposableCoreElement) then \n\t\t\tp.oclAsType(DecomposableCoreElement).supportedBy.premise else \n\t\t\tp.oclAsSet() endif) -> excludes(self)",
+			   "NonDecomposableLeaves", "self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)"
+		   });
+		addAnnotation
+		  (contextualElementEClass,
+		   source,
+		   new String[] {
+			   "ContextualElementSupporter", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()",
+			   "ContextualElementContext", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()"
+		   });
+		addAnnotation
+		  (goalEClass,
+		   source,
+		   new String[] {
+			   "GoalSupporter", "self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Strategy) or s.premise.oclIsKindOf(Solution))",
+			   "GoalContext", "self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))",
+			   "ASILInheritance", "let directParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet(), \n\t\t\tindirectParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsTypeOf(BasicStrategy)).supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet() \n\t\t\tin indirectParents -> union(directParents) -> forAll(g | if g.asil = null then true else g.asil.value = self.asil.value endif)",
+			   "StateValidityInheritance", "self.stateValidity = ValidityValue::Valid implies \n\t\t\tlet directChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(StatefulElement)).oclAsType(StatefulElement) -> asSet(), \n\t\t\t\tindirectChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(Strategy)).oclAsType(Strategy).supportedBy.premise.oclAsType(StatefulElement) -> asSet() \n\t\t\tin indirectChildren -> union(directChildren) -> forAll(g | g.stateValidity = ValidityValue::Valid)"
+		   });
+		addAnnotation
+		  (strategyEClass,
+		   source,
+		   new String[] {
+			   "StrategySupporter", "self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Solution))",
+			   "StrategyContext", "self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))"
+		   });
+		addAnnotation
+		  (asilDecompositionStrategyEClass,
+		   source,
+		   new String[] {
+			   "ASILDecompositionIndependence", "self.supportedBy.premise -> selectByType(IndependenceGoal) -> size() = 1",
+			   "ASILDecompositionComponents", "self.supportedBy.premise -> selectByType(BasicGoal) -> size() = 2",
+			   "ASILDescendants", "let goalSeq: Sequence(CoreElement) = self.supportedBy.premise -> select(p | p.oclIsTypeOf(BasicGoal)), \n\t\t\tg1Descendants : Set(CoreElement) = goalSeq -> at(1) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif),\n\t\t\tg2Descendants : Set(CoreElement) = goalSeq -> at(2) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif) \n\t\t\tin g1Descendants -> intersection(g2Descendants) = Set{}"
+		   });
+		addAnnotation
+		  (solutionEClass,
+		   source,
+		   new String[] {
+			   "SolutionSupporter", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()",
+			   "SolutionContext", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()"
 		   });
 	}
 
