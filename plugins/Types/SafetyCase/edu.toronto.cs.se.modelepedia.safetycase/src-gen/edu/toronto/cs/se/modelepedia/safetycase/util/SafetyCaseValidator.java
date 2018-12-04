@@ -541,7 +541,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 */
 	protected static final String GOAL__ASIL_INHERITANCE__EEXPRESSION = "let directParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet(), \n" +
 		"\t\t\tindirectParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsTypeOf(BasicStrategy)).supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet() \n" +
-		"\t\t\tin indirectParents -> union(directParents) -> forAll(g | if g.asil = null then true else g.asil.value = self.asil.value endif)";
+		"\t\t\tin indirectParents -> union(directParents) -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)";
 
 	/**
 	 * Validates the ASILInheritance constraint of '<em>Goal</em>'.
