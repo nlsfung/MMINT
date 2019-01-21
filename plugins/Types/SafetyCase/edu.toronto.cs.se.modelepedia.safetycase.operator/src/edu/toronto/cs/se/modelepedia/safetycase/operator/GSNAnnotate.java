@@ -256,11 +256,6 @@ public class GSNAnnotate extends OperatorImpl {
         while (scIter.hasNext()) {
             EObject scObj = scIter.next();
 
-            if (!(scObj instanceof CoreElement)) {
-            	continue;
-            }
-
-
             if (scObj instanceof ArgumentElement) {
             	ImpactAnnotation annotation = SafetyCaseFactory.eINSTANCE.createImpactAnnotation();
 
