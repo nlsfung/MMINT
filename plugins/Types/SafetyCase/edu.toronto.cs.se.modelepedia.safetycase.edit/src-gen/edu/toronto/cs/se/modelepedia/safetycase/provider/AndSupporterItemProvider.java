@@ -13,32 +13,28 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.CoreElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.AndSupporter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CoreElementItemProvider extends ArgumentElementItemProvider {
+public class AndSupporterItemProvider extends SupportConnectorItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CoreElementItemProvider(AdapterFactory adapterFactory) {
+	public AndSupporterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,31 +49,19 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSupportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Supports feature.
+	 * This returns AndSupporter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSupportsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Supporter_supports_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Supporter_supports_feature", "_UI_Supporter_type"),
-				 SafetyCasePackage.Literals.SUPPORTER__SUPPORTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AndSupporter"));
 	}
 
 	/**
@@ -88,12 +72,9 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CoreElement)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_CoreElement_type") :
-			getString("_UI_CoreElement_type") + " " + label;
+		return getString("_UI_AndSupporter_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

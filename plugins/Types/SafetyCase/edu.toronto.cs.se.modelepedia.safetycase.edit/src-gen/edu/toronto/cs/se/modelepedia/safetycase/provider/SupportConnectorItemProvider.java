@@ -13,9 +13,9 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 
 import java.util.Collection;
 import java.util.List;
@@ -30,19 +30,19 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SupportConnector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DecomposableCoreElementItemProvider extends CoreElementItemProvider {
+public class SupportConnectorItemProvider extends SupporterItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DecomposableCoreElementItemProvider(AdapterFactory adapterFactory) {
+	public SupportConnectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -97,7 +97,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY);
-			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
 		}
 		return childrenFeatures;
 	}
@@ -116,6 +115,17 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	}
 
 	/**
+	 * This returns SupportConnector.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SupportConnector"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,12 +133,9 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DecomposableCoreElement)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DecomposableCoreElement_type") :
-			getString("_UI_DecomposableCoreElement_type") + " " + label;
+		return getString("_UI_SupportConnector_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -141,9 +148,8 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DecomposableCoreElement.class)) {
-			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
-			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
+		switch (notification.getFeatureID(SupportConnector.class)) {
+			case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -165,11 +171,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
 				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF,
-				 SafetyCaseFactory.eINSTANCE.createInContextOf()));
 	}
 
 }

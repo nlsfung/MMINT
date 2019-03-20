@@ -20,6 +20,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 
 import java.util.Collection;
 
@@ -49,6 +50,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getContexts <em>Contexts</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getJustifications <em>Justifications</em>}</li>
  *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getAssumptions <em>Assumptions</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCaseImpl#getConnectors <em>Connectors</em>}</li>
  * </ul>
  *
  * @generated
@@ -113,6 +115,16 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * @ordered
 	 */
 	protected EList<Assumption> assumptions;
+
+	/**
+	 * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SupportConnector> connectors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -210,6 +222,18 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<SupportConnector> getConnectors() {
+		if (connectors == null) {
+			connectors = new EObjectContainmentEList<SupportConnector>(SupportConnector.class, this, SafetyCasePackage.SAFETY_CASE__CONNECTORS);
+		}
+		return connectors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -225,6 +249,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return ((InternalEList<?>)getJustifications()).basicRemove(otherEnd, msgs);
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				return ((InternalEList<?>)getAssumptions()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				return ((InternalEList<?>)getConnectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -249,6 +275,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return getJustifications();
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				return getAssumptions();
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				return getConnectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,6 +314,10 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				getAssumptions().clear();
 				getAssumptions().addAll((Collection<? extends Assumption>)newValue);
 				return;
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				getConnectors().clear();
+				getConnectors().addAll((Collection<? extends SupportConnector>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -316,6 +348,9 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				getAssumptions().clear();
 				return;
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				getConnectors().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -340,6 +375,8 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 				return justifications != null && !justifications.isEmpty();
 			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
 				return assumptions != null && !assumptions.isEmpty();
+			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+				return connectors != null && !connectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

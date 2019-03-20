@@ -12,10 +12,10 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
+import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
-import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
 import java.util.Collection;
 
@@ -26,39 +26,39 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Core Element</b></em>'.
+ * An implementation of the model object '<em><b>Support Connector</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.CoreElementImpl#getSupports <em>Supports</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportConnectorImpl#getSupportedBy <em>Supported By</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class CoreElementImpl extends ArgumentElementImpl implements CoreElement {
+public abstract class SupportConnectorImpl extends SupporterImpl implements SupportConnector {
 	/**
-	 * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
+	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSupports()
+	 * @see #getSupportedBy()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SupportedBy> supports;
+	protected EList<SupportedBy> supportedBy;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CoreElementImpl() {
+	protected SupportConnectorImpl() {
 		super();
 	}
 
@@ -69,7 +69,7 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.CORE_ELEMENT;
+		return SafetyCasePackage.Literals.SUPPORT_CONNECTOR;
 	}
 
 	/**
@@ -77,11 +77,11 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SupportedBy> getSupports() {
-		if (supports == null) {
-			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, SafetyCasePackage.SUPPORTED_BY__PREMISE);
+	public EList<SupportedBy> getSupportedBy() {
+		if (supportedBy == null) {
+			supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY, SafetyCasePackage.SUPPORTED_BY__CONCLUSION);
 		}
-		return supports;
+		return supportedBy;
 	}
 
 	/**
@@ -93,8 +93,8 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
+			case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupportedBy()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -107,8 +107,8 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
-				return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
+			case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY:
+				return ((InternalEList<?>)getSupportedBy()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -121,8 +121,8 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
-				return getSupports();
+			case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY:
+				return getSupportedBy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -136,9 +136,9 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
-				getSupports().clear();
-				getSupports().addAll((Collection<? extends SupportedBy>)newValue);
+			case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY:
+				getSupportedBy().clear();
+				getSupportedBy().addAll((Collection<? extends SupportedBy>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,8 +152,8 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
-				getSupports().clear();
+			case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY:
+				getSupportedBy().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -167,8 +167,8 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.CORE_ELEMENT__SUPPORTS:
-				return supports != null && !supports.isEmpty();
+			case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY:
+				return supportedBy != null && !supportedBy.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -180,9 +180,9 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Supporter.class) {
+		if (baseClass == Supportable.class) {
 			switch (derivedFeatureID) {
-				case SafetyCasePackage.CORE_ELEMENT__SUPPORTS: return SafetyCasePackage.SUPPORTER__SUPPORTS;
+				case SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY: return SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY;
 				default: return -1;
 			}
 		}
@@ -196,13 +196,13 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Supporter.class) {
+		if (baseClass == Supportable.class) {
 			switch (baseFeatureID) {
-				case SafetyCasePackage.SUPPORTER__SUPPORTS: return SafetyCasePackage.CORE_ELEMENT__SUPPORTS;
+				case SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY: return SafetyCasePackage.SUPPORT_CONNECTOR__SUPPORTED_BY;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-} //CoreElementImpl
+} //SupportConnectorImpl

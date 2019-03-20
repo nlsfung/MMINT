@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface SupportedBy extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Conclusion</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement#getSupportedBy <em>Supported By</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.Supportable#getSupportedBy <em>Supported By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Conclusion</em>' container reference isn't clear,
@@ -42,13 +42,13 @@ public interface SupportedBy extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Conclusion</em>' container reference.
-	 * @see #setConclusion(DecomposableCoreElement)
+	 * @see #setConclusion(Supportable)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupportedBy_Conclusion()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement#getSupportedBy
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Supportable#getSupportedBy
 	 * @model opposite="supportedBy" required="true" transient="false"
 	 * @generated
 	 */
-	DecomposableCoreElement getConclusion();
+	Supportable getConclusion();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion <em>Conclusion</em>}' container reference.
@@ -58,11 +58,11 @@ public interface SupportedBy extends EObject {
 	 * @see #getConclusion()
 	 * @generated
 	 */
-	void setConclusion(DecomposableCoreElement value);
+	void setConclusion(Supportable value);
 
 	/**
 	 * Returns the value of the '<em><b>Premise</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.CoreElement#getSupports <em>Supports</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.Supporter#getSupports <em>Supports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Premise</em>' reference isn't clear,
@@ -70,13 +70,13 @@ public interface SupportedBy extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Premise</em>' reference.
-	 * @see #setPremise(CoreElement)
+	 * @see #setPremise(Supporter)
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupportedBy_Premise()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.CoreElement#getSupports
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.Supporter#getSupports
 	 * @model opposite="supports" required="true"
 	 * @generated
 	 */
-	CoreElement getPremise();
+	Supporter getPremise();
 
 	/**
 	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise <em>Premise</em>}' reference.
@@ -86,6 +86,6 @@ public interface SupportedBy extends EObject {
 	 * @see #getPremise()
 	 * @generated
 	 */
-	void setPremise(CoreElement value);
+	void setPremise(Supporter value);
 
 } // SupportedBy

@@ -861,7 +861,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2jyXV0qUEemv6e_U6_yxgA" x="-3" y="19"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_2jyXWEqUEemv6e_U6_yxgA" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2jyXWUqUEemv6e_U6_yxgA" x="21" y="-55"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2jyXWUqUEemv6e_U6_yxgA" x="21" y="-50"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_2jyXUUqUEemv6e_U6_yxgA" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_2jyXUkqUEemv6e_U6_yxgA" fontName="Segoe UI" fontHeight="8"/>
@@ -1177,7 +1177,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_mmtiIOFCEeivS9pdSv_RYA" name="ASILDecompositionStrategy" tooltipText="&#xA;WARNING : The «invariant» 'safetycase::ASILDecompositionStrategy' is invalid: '&quot;let goalSeq: Sequence(CoreElement) = self.supportedBy.premise -> select(p | p.oclIsTypeOf(BasicGoal)), &#xA;&#x9;&#x9;&#x9;g1Descendants : Set(CoreElement) = goalSeq -> at(1) -> closure(c | &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif),&#xA;&#x9;&#x9;&#x9;g2Descendants : Set(CoreElement) = goalSeq -> at(2) -> closure(c | &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif) &#xA;&#x9;&#x9;&#x9;in g1Descendants -> intersection(g2Descendants) = Set{}&quot;&#xA;&#x9;The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'org.eclipse.ocl.pivot.internal.LetVariableImpl@78c2f4f{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#zEqj7}'&#xA;&#x9;The 'IteratorExp::ClosureBodyElementTypeIsIteratorType' constraint is violated for 'org.eclipse.ocl.pivot.internal.IteratorExpImpl@7abc51a2{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#//@ownedPackages.0/@ownedClasses.14/@ownedInvariants.2/@ownedSpecification/@ownedBody/@ownedIn/@ownedIn/@ownedVariable/@ownedInit}'&#xA;&#x9;The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'org.eclipse.ocl.pivot.internal.LetVariableImpl@2c0723c8{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#5fl1X}'&#xA;&#x9;The 'IteratorExp::ClosureBodyElementTypeIsIteratorType' constraint is violated for 'org.eclipse.ocl.pivot.internal.IteratorExpImpl@2355719c{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#//@ownedPackages.0/@ownedClasses.14/@ownedInvariants.2/@ownedSpecification/@ownedBody/@ownedIn/@ownedVariable/@ownedInit}'&#xA;&#x9;The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'org.eclipse.ocl.pivot.internal.LetVariableImpl@24eb0517{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#3222,}''&#xA;WARNING : The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'LetVariable{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#zEqj7}'&#xA;WARNING : The 'IteratorExp::ClosureBodyElementTypeIsIteratorType' constraint is violated for 'IteratorExp{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#//@ownedPackages.0/@ownedClasses.14/@ownedInvariants.2/@ownedSpecification/@ownedBody/@ownedIn/@ownedIn/@ownedVariable/@ownedInit}'&#xA;WARNING : The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'LetVariable{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#5fl1X}'&#xA;WARNING : The 'IteratorExp::ClosureBodyElementTypeIsIteratorType' constraint is violated for 'IteratorExp{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#//@ownedPackages.0/@ownedClasses.14/@ownedInvariants.2/@ownedSpecification/@ownedBody/@ownedIn/@ownedVariable/@ownedInit}'&#xA;WARNING : The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'LetVariable{platform:/resource/edu.toronto.cs.se.modelepedia.safetycase/model/safetycase.ecore.oclas#3222,}'" outgoingEdges="_moWg--FCEeivS9pdSv_RYA" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_mmtiIOFCEeivS9pdSv_RYA" name="ASILDecompositionStrategy" tooltipText="" outgoingEdges="_moWg--FCEeivS9pdSv_RYA" width="12" height="10">
       <target xmi:type="ecore:EClass" href="model/safetycase.ecore#//ASILDecompositionStrategy"/>
       <semanticElements xmi:type="ecore:EClass" href="model/safetycase.ecore#//ASILDecompositionStrategy"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1774,9 +1774,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_2jfcYEqUEemv6e_U6_yxgA" sourceNode="_mmHsS-FCEeivS9pdSv_RYA" targetNode="_6heKUEqTEemv6e_U6_yxgA" beginLabel="[1..*] supportedBy" endLabel="[1..1] source">
-      <target xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/source"/>
-      <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/source"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_2jfcYEqUEemv6e_U6_yxgA" sourceNode="_mmHsS-FCEeivS9pdSv_RYA" targetNode="_6heKUEqTEemv6e_U6_yxgA" beginLabel="[1..*] supportedBy" endLabel="[1..1] conclusion">
+      <target xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/conclusion"/>
+      <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/conclusion"/>
       <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//Supportable/supportedBy"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="__6PwY0qUEemv6e_U6_yxgA" description="__6PwYEqUEemv6e_U6_yxgA" sourceArrow="InputArrow" targetArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="__6PwZEqUEemv6e_U6_yxgA" showIcon="false">
@@ -1788,10 +1788,10 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='Bi-directional%20EC_EReference%20']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_JkxU8EqVEemv6e_U6_yxgA" sourceNode="_mmHsS-FCEeivS9pdSv_RYA" targetNode="_8PDGcEqTEemv6e_U6_yxgA" beginLabel="[0..*] supports" endLabel="[1..1] target">
-      <target xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/target"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_JkxU8EqVEemv6e_U6_yxgA" sourceNode="_mmHsS-FCEeivS9pdSv_RYA" targetNode="_8PDGcEqTEemv6e_U6_yxgA" beginLabel="[0..*] supports" endLabel="[1..1] premise">
+      <target xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/premise"/>
+      <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/premise"/>
       <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//Supporter/supports"/>
-      <semanticElements xmi:type="ecore:EReference" href="model/safetycase.ecore#//SupportedBy/target"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_L7DP0EqVEemv6e_U6_yxgA" description="_mogR9OFCEeivS9pdSv_RYA" sourceArrow="InputArrow" routingStyle="manhattan" strokeColor="0,0,0">
         <beginLabelStyle xmi:type="diagram:BeginLabelStyle" xmi:id="_L7DP0UqVEemv6e_U6_yxgA" showIcon="false">
           <labelFormat>bold</labelFormat>

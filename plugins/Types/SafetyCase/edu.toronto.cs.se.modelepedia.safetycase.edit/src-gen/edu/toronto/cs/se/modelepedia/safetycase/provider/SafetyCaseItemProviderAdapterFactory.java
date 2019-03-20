@@ -381,6 +381,52 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.AndSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AndSupporterItemProvider andSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.AndSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAndSupporterAdapter() {
+		if (andSupporterItemProvider == null) {
+			andSupporterItemProvider = new AndSupporterItemProvider(this);
+		}
+
+		return andSupporterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.OrSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrSupporterItemProvider orSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.OrSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOrSupporterAdapter() {
+		if (orSupporterItemProvider == null) {
+			orSupporterItemProvider = new OrSupporterItemProvider(this);
+		}
+
+		return orSupporterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -492,6 +538,8 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (assumptionItemProvider != null) assumptionItemProvider.dispose();
 		if (asilItemProvider != null) asilItemProvider.dispose();
 		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
+		if (andSupporterItemProvider != null) andSupporterItemProvider.dispose();
+		if (orSupporterItemProvider != null) orSupporterItemProvider.dispose();
 	}
 
 }

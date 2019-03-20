@@ -15,13 +15,13 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Basic Strategy</b></em>'.
+ * A representation of the model object '<em><b>Support Connector</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getBasicStrategy()
- * @model
+ * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupportConnector()
+ * @model abstract="true"
  * @generated
  */
-public interface BasicStrategy extends Strategy {
-} // BasicStrategy
+public interface SupportConnector extends Supporter, Supportable {
+} // SupportConnector

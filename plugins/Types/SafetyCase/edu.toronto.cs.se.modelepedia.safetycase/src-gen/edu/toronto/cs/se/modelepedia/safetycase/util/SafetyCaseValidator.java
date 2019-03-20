@@ -138,6 +138,16 @@ public class SafetyCaseValidator extends EObjectValidator {
 				return validateASIL((ASIL)value, diagnostics, context);
 			case SafetyCasePackage.IMPACT_ANNOTATION:
 				return validateImpactAnnotation((ImpactAnnotation)value, diagnostics, context);
+			case SafetyCasePackage.SUPPORTABLE:
+				return validateSupportable((Supportable)value, diagnostics, context);
+			case SafetyCasePackage.SUPPORTER:
+				return validateSupporter((Supporter)value, diagnostics, context);
+			case SafetyCasePackage.SUPPORT_CONNECTOR:
+				return validateSupportConnector((SupportConnector)value, diagnostics, context);
+			case SafetyCasePackage.AND_SUPPORTER:
+				return validateAndSupporter((AndSupporter)value, diagnostics, context);
+			case SafetyCasePackage.OR_SUPPORTER:
+				return validateOrSupporter((OrSupporter)value, diagnostics, context);
 			case SafetyCasePackage.ASIL_LEVEL:
 				return validateASILLevel((ASILLevel)value, diagnostics, context);
 			case SafetyCasePackage.VALIDITY_VALUE:
@@ -540,7 +550,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String GOAL__ASIL_INHERITANCE__EEXPRESSION = "let directParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet(), \n" +
-		"\t\t\tindirectParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsTypeOf(BasicStrategy)).supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet() \n" +
+		"\t\t\tindirectParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsTypeOf(BasicStrategy)).oclAsType(BasicStrategy).supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet() \n" +
 		"\t\t\tin indirectParents -> union(directParents) -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)";
 
 	/**
@@ -840,10 +850,10 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DESCENDANTS__EEXPRESSION = "let goalSeq: Sequence(CoreElement) = self.supportedBy.premise -> select(p | p.oclIsTypeOf(BasicGoal)), \n" +
-		"\t\t\tg1Descendants : Set(CoreElement) = goalSeq -> at(1) -> closure(c | \n" +
+	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DESCENDANTS__EEXPRESSION = "let goalSeq: Sequence(Supporter) = self.supportedBy.premise -> select(p | p.oclIsTypeOf(BasicGoal)), \n" +
+		"\t\t\tg1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | \n" +
 		"\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif),\n" +
-		"\t\t\tg2Descendants : Set(CoreElement) = goalSeq -> at(2) -> closure(c | \n" +
+		"\t\t\tg2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | \n" +
 		"\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif) \n" +
 		"\t\t\tin g1Descendants -> intersection(g2Descendants) = Set{}";
 
@@ -1023,6 +1033,51 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 */
 	public boolean validateImpactAnnotation(ImpactAnnotation impactAnnotation, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(impactAnnotation, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSupportable(Supportable supportable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(supportable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSupporter(Supporter supporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(supporter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSupportConnector(SupportConnector supportConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(supportConnector, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAndSupporter(AndSupporter andSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(andSupporter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOrSupporter(OrSupporter orSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(orSupporter, diagnostics, context);
 	}
 
 	/**

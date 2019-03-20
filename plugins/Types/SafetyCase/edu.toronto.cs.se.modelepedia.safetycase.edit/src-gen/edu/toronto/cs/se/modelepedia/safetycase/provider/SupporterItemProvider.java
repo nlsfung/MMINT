@@ -13,8 +13,6 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import java.util.Collection;
@@ -23,26 +21,38 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Supporter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DecomposableCoreElementItemProvider extends CoreElementItemProvider {
+public class SupporterItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DecomposableCoreElementItemProvider(AdapterFactory adapterFactory) {
+	public SupporterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,25 +67,25 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSupportedByPropertyDescriptor(object);
+			addSupportsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Supported By feature.
+	 * This adds a property descriptor for the Supports feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSupportedByPropertyDescriptor(Object object) {
+	protected void addSupportsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Supportable_supportedBy_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Supportable_supportedBy_feature", "_UI_Supportable_type"),
-				 SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
+				 getString("_UI_Supporter_supports_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Supporter_supports_feature", "_UI_Supporter_type"),
+				 SafetyCasePackage.Literals.SUPPORTER__SUPPORTS,
 				 true,
 				 false,
 				 true,
@@ -85,34 +95,14 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This returns Supporter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY);
-			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Supporter"));
 	}
 
 	/**
@@ -123,12 +113,9 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DecomposableCoreElement)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_DecomposableCoreElement_type") :
-			getString("_UI_DecomposableCoreElement_type") + " " + label;
+		return getString("_UI_Supporter_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -140,13 +127,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(DecomposableCoreElement.class)) {
-			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
-			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -160,16 +140,17 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
-				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF,
-				 SafetyCaseFactory.eINSTANCE.createInContextOf()));
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }

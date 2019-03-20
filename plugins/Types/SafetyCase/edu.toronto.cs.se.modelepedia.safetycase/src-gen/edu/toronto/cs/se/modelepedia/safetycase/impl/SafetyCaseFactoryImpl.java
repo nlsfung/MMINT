@@ -80,6 +80,8 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 			case SafetyCasePackage.ASSUMPTION: return createAssumption();
 			case SafetyCasePackage.ASIL: return createASIL();
 			case SafetyCasePackage.IMPACT_ANNOTATION: return createImpactAnnotation();
+			case SafetyCasePackage.AND_SUPPORTER: return createAndSupporter();
+			case SafetyCasePackage.OR_SUPPORTER: return createOrSupporter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -251,6 +253,26 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	public ImpactAnnotation createImpactAnnotation() {
 		ImpactAnnotationImpl impactAnnotation = new ImpactAnnotationImpl();
 		return impactAnnotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AndSupporter createAndSupporter() {
+		AndSupporterImpl andSupporter = new AndSupporterImpl();
+		return andSupporter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrSupporter createOrSupporter() {
+		OrSupporterImpl orSupporter = new OrSupporterImpl();
+		return orSupporter;
 	}
 
 	/**

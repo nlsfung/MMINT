@@ -12,25 +12,25 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.Justification;
+import edu.toronto.cs.se.modelepedia.safetycase.AndSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Justification</b></em>'.
+ * An implementation of the model object '<em><b>And Supporter</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class JustificationImpl extends ContextualElementImpl implements Justification {
+public class AndSupporterImpl extends SupportConnectorImpl implements AndSupporter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected JustificationImpl() {
+	protected AndSupporterImpl() {
 		super();
 	}
 
@@ -41,7 +41,7 @@ public class JustificationImpl extends ContextualElementImpl implements Justific
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.JUSTIFICATION;
+		return SafetyCasePackage.Literals.AND_SUPPORTER;
 	}
 
-} //JustificationImpl
+} //AndSupporterImpl

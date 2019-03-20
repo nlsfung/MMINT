@@ -13,9 +13,9 @@
 package edu.toronto.cs.se.modelepedia.safetycase.provider;
 
 
-import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -37,12 +38,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.SafetyCase} object.
+ * This is the item provider adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.Supportable} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SafetyCaseItemProvider 
+public class SupportableItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -56,7 +57,7 @@ public class SafetyCaseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SafetyCaseItemProvider(AdapterFactory adapterFactory) {
+	public SupportableItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,8 +72,31 @@ public class SafetyCaseItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addSupportedByPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Supported By feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSupportedByPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Supportable_supportedBy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Supportable_supportedBy_feature", "_UI_Supportable_type"),
+				 SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -87,13 +111,7 @@ public class SafetyCaseItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__GOALS);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__SOLUTIONS);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__JUSTIFICATIONS);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__ASSUMPTIONS);
-			childrenFeatures.add(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS);
+			childrenFeatures.add(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY);
 		}
 		return childrenFeatures;
 	}
@@ -112,14 +130,14 @@ public class SafetyCaseItemProvider
 	}
 
 	/**
-	 * This returns SafetyCase.gif.
+	 * This returns Supportable.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SafetyCase"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Supportable"));
 	}
 
 	/**
@@ -130,9 +148,9 @@ public class SafetyCaseItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SafetyCase_type");
+		return getString("_UI_Supportable_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -145,14 +163,8 @@ public class SafetyCaseItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SafetyCase.class)) {
-			case SafetyCasePackage.SAFETY_CASE__GOALS:
-			case SafetyCasePackage.SAFETY_CASE__STRATEGIES:
-			case SafetyCasePackage.SAFETY_CASE__SOLUTIONS:
-			case SafetyCasePackage.SAFETY_CASE__CONTEXTS:
-			case SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS:
-			case SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS:
-			case SafetyCasePackage.SAFETY_CASE__CONNECTORS:
+		switch (notification.getFeatureID(Supportable.class)) {
+			case SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -172,53 +184,8 @@ public class SafetyCaseItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__GOALS,
-				 SafetyCaseFactory.eINSTANCE.createBasicGoal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__GOALS,
-				 SafetyCaseFactory.eINSTANCE.createIndependenceGoal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES,
-				 SafetyCaseFactory.eINSTANCE.createBasicStrategy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__STRATEGIES,
-				 SafetyCaseFactory.eINSTANCE.createASILDecompositionStrategy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__SOLUTIONS,
-				 SafetyCaseFactory.eINSTANCE.createSolution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__CONTEXTS,
-				 SafetyCaseFactory.eINSTANCE.createContext()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__JUSTIFICATIONS,
-				 SafetyCaseFactory.eINSTANCE.createJustification()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__ASSUMPTIONS,
-				 SafetyCaseFactory.eINSTANCE.createAssumption()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
-				 SafetyCaseFactory.eINSTANCE.createAndSupporter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
-				 SafetyCaseFactory.eINSTANCE.createOrSupporter()));
+				(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
+				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
 	}
 
 	/**

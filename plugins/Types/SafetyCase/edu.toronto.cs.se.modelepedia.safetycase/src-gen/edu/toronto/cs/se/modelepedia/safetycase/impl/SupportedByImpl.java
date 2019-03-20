@@ -12,10 +12,10 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
-import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -51,7 +51,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * @generated
 	 * @ordered
 	 */
-	protected CoreElement premise;
+	protected Supporter premise;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,9 +77,9 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DecomposableCoreElement getConclusion() {
+	public Supportable getConclusion() {
 		if (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__CONCLUSION) return null;
-		return (DecomposableCoreElement)eInternalContainer();
+		return (Supportable)eInternalContainer();
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConclusion(DecomposableCoreElement newConclusion, NotificationChain msgs) {
+	public NotificationChain basicSetConclusion(Supportable newConclusion, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newConclusion, SafetyCasePackage.SUPPORTED_BY__CONCLUSION, msgs);
 		return msgs;
 	}
@@ -97,7 +97,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConclusion(DecomposableCoreElement newConclusion) {
+	public void setConclusion(Supportable newConclusion) {
 		if (newConclusion != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__CONCLUSION && newConclusion != null)) {
 			if (EcoreUtil.isAncestor(this, newConclusion))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -105,7 +105,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newConclusion != null)
-				msgs = ((InternalEObject)newConclusion).eInverseAdd(this, SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY, DecomposableCoreElement.class, msgs);
+				msgs = ((InternalEObject)newConclusion).eInverseAdd(this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, Supportable.class, msgs);
 			msgs = basicSetConclusion(newConclusion, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -118,10 +118,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CoreElement getPremise() {
+	public Supporter getPremise() {
 		if (premise != null && premise.eIsProxy()) {
 			InternalEObject oldPremise = (InternalEObject)premise;
-			premise = (CoreElement)eResolveProxy(oldPremise);
+			premise = (Supporter)eResolveProxy(oldPremise);
 			if (premise != oldPremise) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SafetyCasePackage.SUPPORTED_BY__PREMISE, oldPremise, premise));
@@ -135,7 +135,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CoreElement basicGetPremise() {
+	public Supporter basicGetPremise() {
 		return premise;
 	}
 
@@ -144,8 +144,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPremise(CoreElement newPremise, NotificationChain msgs) {
-		CoreElement oldPremise = premise;
+	public NotificationChain basicSetPremise(Supporter newPremise, NotificationChain msgs) {
+		Supporter oldPremise = premise;
 		premise = newPremise;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY__PREMISE, oldPremise, newPremise);
@@ -159,13 +159,13 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPremise(CoreElement newPremise) {
+	public void setPremise(Supporter newPremise) {
 		if (newPremise != premise) {
 			NotificationChain msgs = null;
 			if (premise != null)
-				msgs = ((InternalEObject)premise).eInverseRemove(this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, CoreElement.class, msgs);
+				msgs = ((InternalEObject)premise).eInverseRemove(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
 			if (newPremise != null)
-				msgs = ((InternalEObject)newPremise).eInverseAdd(this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, CoreElement.class, msgs);
+				msgs = ((InternalEObject)newPremise).eInverseAdd(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
 			msgs = basicSetPremise(newPremise, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -184,11 +184,11 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetConclusion((DecomposableCoreElement)otherEnd, msgs);
+				return basicSetConclusion((Supportable)otherEnd, msgs);
 			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
 				if (premise != null)
-					msgs = ((InternalEObject)premise).eInverseRemove(this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, CoreElement.class, msgs);
-				return basicSetPremise((CoreElement)otherEnd, msgs);
+					msgs = ((InternalEObject)premise).eInverseRemove(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+				return basicSetPremise((Supporter)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -218,7 +218,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				return eInternalContainer().eInverseRemove(this, SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY, DecomposableCoreElement.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, Supportable.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -249,10 +249,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				setConclusion((DecomposableCoreElement)newValue);
+				setConclusion((Supportable)newValue);
 				return;
 			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				setPremise((CoreElement)newValue);
+				setPremise((Supporter)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,10 +267,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				setConclusion((DecomposableCoreElement)null);
+				setConclusion((Supportable)null);
 				return;
 			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				setPremise((CoreElement)null);
+				setPremise((Supporter)null);
 				return;
 		}
 		super.eUnset(featureID);

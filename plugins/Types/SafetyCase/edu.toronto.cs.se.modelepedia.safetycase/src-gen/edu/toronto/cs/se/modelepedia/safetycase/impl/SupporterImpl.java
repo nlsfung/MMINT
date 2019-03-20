@@ -12,49 +12,54 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.impl;
 
-import edu.toronto.cs.se.modelepedia.safetycase.ASIL;
-import edu.toronto.cs.se.modelepedia.safetycase.ASILfulElement;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
+import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>ASI Lful Element</b></em>'.
+ * An implementation of the model object '<em><b>Supporter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.ASILfulElementImpl#getAsil <em>Asil</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupporterImpl#getSupports <em>Supports</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container implements ASILfulElement {
+public abstract class SupporterImpl extends MinimalEObjectImpl.Container implements Supporter {
 	/**
-	 * The cached value of the '{@link #getAsil() <em>Asil</em>}' containment reference.
+	 * The cached value of the '{@link #getSupports() <em>Supports</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAsil()
+	 * @see #getSupports()
 	 * @generated
 	 * @ordered
 	 */
-	protected ASIL asil;
+	protected EList<SupportedBy> supports;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ASILfulElementImpl() {
+	protected SupporterImpl() {
 		super();
 	}
 
@@ -65,7 +70,7 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SafetyCasePackage.Literals.ASI_LFUL_ELEMENT;
+		return SafetyCasePackage.Literals.SUPPORTER;
 	}
 
 	/**
@@ -73,23 +78,11 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ASIL getAsil() {
-		return asil;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAsil(ASIL newAsil, NotificationChain msgs) {
-		ASIL oldAsil = asil;
-		asil = newAsil;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL, oldAsil, newAsil);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<SupportedBy> getSupports() {
+		if (supports == null) {
+			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.SUPPORTER__SUPPORTS, SafetyCasePackage.SUPPORTED_BY__PREMISE);
 		}
-		return msgs;
+		return supports;
 	}
 
 	/**
@@ -97,32 +90,12 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAsil(ASIL newAsil) {
-		if (newAsil != asil) {
-			NotificationChain msgs = null;
-			if (asil != null)
-				msgs = ((InternalEObject)asil).eInverseRemove(this, SafetyCasePackage.ASIL__TARGET, ASIL.class, msgs);
-			if (newAsil != null)
-				msgs = ((InternalEObject)newAsil).eInverseAdd(this, SafetyCasePackage.ASIL__TARGET, ASIL.class, msgs);
-			msgs = basicSetAsil(newAsil, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL, newAsil, newAsil));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
-				if (asil != null)
-					msgs = ((InternalEObject)asil).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL, null, msgs);
-				return basicSetAsil((ASIL)otherEnd, msgs);
+			case SafetyCasePackage.SUPPORTER__SUPPORTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupports()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -135,8 +108,8 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
-				return basicSetAsil(null, msgs);
+			case SafetyCasePackage.SUPPORTER__SUPPORTS:
+				return ((InternalEList<?>)getSupports()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -149,8 +122,8 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
-				return getAsil();
+			case SafetyCasePackage.SUPPORTER__SUPPORTS:
+				return getSupports();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,11 +133,13 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
-				setAsil((ASIL)newValue);
+			case SafetyCasePackage.SUPPORTER__SUPPORTS:
+				getSupports().clear();
+				getSupports().addAll((Collection<? extends SupportedBy>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -178,8 +153,8 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
-				setAsil((ASIL)null);
+			case SafetyCasePackage.SUPPORTER__SUPPORTS:
+				getSupports().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -193,10 +168,10 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.ASI_LFUL_ELEMENT__ASIL:
-				return asil != null;
+			case SafetyCasePackage.SUPPORTER__SUPPORTS:
+				return supports != null && !supports.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ASILfulElementImpl
+} //SupporterImpl
