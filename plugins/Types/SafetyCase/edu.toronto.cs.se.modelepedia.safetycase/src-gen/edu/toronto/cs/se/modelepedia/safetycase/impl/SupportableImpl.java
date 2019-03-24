@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public abstract class SupportableImpl extends MinimalEObjectImpl.Container implements Supportable {
+public abstract class SupportableImpl extends SupporterImpl implements Supportable {
 	/**
 	 * The cached value of the '{@link #getSupportedBy() <em>Supported By</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

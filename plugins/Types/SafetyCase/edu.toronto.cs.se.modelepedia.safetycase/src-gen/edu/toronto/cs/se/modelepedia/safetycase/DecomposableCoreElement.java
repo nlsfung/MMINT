@@ -28,11 +28,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getDecomposableCoreElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SupportCycle NonDecomposableLeaves'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SupportCycle='self.supportedBy.premise -&gt; closure(p | if p.oclIsKindOf(DecomposableCoreElement) then \n\t\t\tp.oclAsType(DecomposableCoreElement).supportedBy.premise else \n\t\t\tp.oclAsSet() endif) -&gt; excludes(self)' NonDecomposableLeaves='self.supportedBy.premise -&gt; size() &gt; 0 and self.supportedBy.premise -&gt; excludes(null)'"
  * @generated
  */
-public interface DecomposableCoreElement extends CoreElement, Supportable {
+public interface DecomposableCoreElement extends Supportable, CoreElement {
 	/**
 	 * Returns the value of the '<em><b>In Context Of</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf}.

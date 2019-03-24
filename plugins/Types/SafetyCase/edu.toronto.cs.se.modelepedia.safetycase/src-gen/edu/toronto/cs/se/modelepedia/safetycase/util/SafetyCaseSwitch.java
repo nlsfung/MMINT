@@ -111,10 +111,10 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT: {
 				DecomposableCoreElement decomposableCoreElement = (DecomposableCoreElement)theEObject;
 				T result = caseDecomposableCoreElement(decomposableCoreElement);
-				if (result == null) result = caseCoreElement(decomposableCoreElement);
 				if (result == null) result = caseSupportable(decomposableCoreElement);
-				if (result == null) result = caseArgumentElement(decomposableCoreElement);
+				if (result == null) result = caseCoreElement(decomposableCoreElement);
 				if (result == null) result = caseSupporter(decomposableCoreElement);
+				if (result == null) result = caseArgumentElement(decomposableCoreElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,10 +143,10 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDecomposableCoreElement(goal);
 				if (result == null) result = caseStatefulElement(goal);
 				if (result == null) result = caseASILfulElement(goal);
-				if (result == null) result = caseCoreElement(goal);
 				if (result == null) result = caseSupportable(goal);
-				if (result == null) result = caseArgumentElement(goal);
+				if (result == null) result = caseCoreElement(goal);
 				if (result == null) result = caseSupporter(goal);
+				if (result == null) result = caseArgumentElement(goal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,10 +157,10 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDecomposableCoreElement(basicGoal);
 				if (result == null) result = caseStatefulElement(basicGoal);
 				if (result == null) result = caseASILfulElement(basicGoal);
-				if (result == null) result = caseCoreElement(basicGoal);
 				if (result == null) result = caseSupportable(basicGoal);
-				if (result == null) result = caseArgumentElement(basicGoal);
+				if (result == null) result = caseCoreElement(basicGoal);
 				if (result == null) result = caseSupporter(basicGoal);
+				if (result == null) result = caseArgumentElement(basicGoal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -171,10 +171,10 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDecomposableCoreElement(independenceGoal);
 				if (result == null) result = caseStatefulElement(independenceGoal);
 				if (result == null) result = caseASILfulElement(independenceGoal);
-				if (result == null) result = caseCoreElement(independenceGoal);
 				if (result == null) result = caseSupportable(independenceGoal);
-				if (result == null) result = caseArgumentElement(independenceGoal);
+				if (result == null) result = caseCoreElement(independenceGoal);
 				if (result == null) result = caseSupporter(independenceGoal);
+				if (result == null) result = caseArgumentElement(independenceGoal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,10 +182,10 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				Strategy strategy = (Strategy)theEObject;
 				T result = caseStrategy(strategy);
 				if (result == null) result = caseDecomposableCoreElement(strategy);
-				if (result == null) result = caseCoreElement(strategy);
 				if (result == null) result = caseSupportable(strategy);
-				if (result == null) result = caseArgumentElement(strategy);
+				if (result == null) result = caseCoreElement(strategy);
 				if (result == null) result = caseSupporter(strategy);
+				if (result == null) result = caseArgumentElement(strategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -194,10 +194,10 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				T result = caseBasicStrategy(basicStrategy);
 				if (result == null) result = caseStrategy(basicStrategy);
 				if (result == null) result = caseDecomposableCoreElement(basicStrategy);
-				if (result == null) result = caseCoreElement(basicStrategy);
 				if (result == null) result = caseSupportable(basicStrategy);
-				if (result == null) result = caseArgumentElement(basicStrategy);
+				if (result == null) result = caseCoreElement(basicStrategy);
 				if (result == null) result = caseSupporter(basicStrategy);
+				if (result == null) result = caseArgumentElement(basicStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -206,10 +206,10 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				T result = caseASILDecompositionStrategy(asilDecompositionStrategy);
 				if (result == null) result = caseStrategy(asilDecompositionStrategy);
 				if (result == null) result = caseDecomposableCoreElement(asilDecompositionStrategy);
-				if (result == null) result = caseCoreElement(asilDecompositionStrategy);
 				if (result == null) result = caseSupportable(asilDecompositionStrategy);
-				if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
+				if (result == null) result = caseCoreElement(asilDecompositionStrategy);
 				if (result == null) result = caseSupporter(asilDecompositionStrategy);
+				if (result == null) result = caseArgumentElement(asilDecompositionStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -262,6 +262,7 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 			case SafetyCasePackage.SUPPORTABLE: {
 				Supportable supportable = (Supportable)theEObject;
 				T result = caseSupportable(supportable);
+				if (result == null) result = caseSupporter(supportable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -274,8 +275,8 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 			case SafetyCasePackage.SUPPORT_CONNECTOR: {
 				SupportConnector supportConnector = (SupportConnector)theEObject;
 				T result = caseSupportConnector(supportConnector);
-				if (result == null) result = caseSupporter(supportConnector);
 				if (result == null) result = caseSupportable(supportConnector);
+				if (result == null) result = caseSupporter(supportConnector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -283,8 +284,8 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				AndSupporter andSupporter = (AndSupporter)theEObject;
 				T result = caseAndSupporter(andSupporter);
 				if (result == null) result = caseSupportConnector(andSupporter);
-				if (result == null) result = caseSupporter(andSupporter);
 				if (result == null) result = caseSupportable(andSupporter);
+				if (result == null) result = caseSupporter(andSupporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -292,8 +293,8 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				OrSupporter orSupporter = (OrSupporter)theEObject;
 				T result = caseOrSupporter(orSupporter);
 				if (result == null) result = caseSupportConnector(orSupporter);
-				if (result == null) result = caseSupporter(orSupporter);
 				if (result == null) result = caseSupportable(orSupporter);
+				if (result == null) result = caseSupporter(orSupporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -184,7 +184,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SAFETY_CASE__SINGLE_ROOT__EEXPRESSION = "CoreElement.allInstances() -> \n" +
+	protected static final String SAFETY_CASE__SINGLE_ROOT__EEXPRESSION = "Supporter.allInstances() -> \n" +
 		"\t\t\tselect(d | d.supports.conclusion -> isEmpty()) -> size() = 1";
 
 	/**
@@ -250,37 +250,8 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(coreElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(coreElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(coreElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(coreElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(coreElement, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the GoalRoot constraint of '<em>Core Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String CORE_ELEMENT__GOAL_ROOT__EEXPRESSION = "self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)";
-
-	/**
-	 * Validates the GoalRoot constraint of '<em>Core Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCoreElement_GoalRoot(CoreElement coreElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(SafetyCasePackage.Literals.CORE_ELEMENT,
-				 coreElement,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "GoalRoot",
-				 CORE_ELEMENT__GOAL_ROOT__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**
@@ -298,70 +269,10 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(decomposableCoreElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(decomposableCoreElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(decomposableCoreElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(decomposableCoreElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_SupportCycle(decomposableCoreElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_NonDecomposableLeaves(decomposableCoreElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(decomposableCoreElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(decomposableCoreElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(decomposableCoreElement, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * The cached validation expression for the SupportCycle constraint of '<em>Decomposable Core Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String DECOMPOSABLE_CORE_ELEMENT__SUPPORT_CYCLE__EEXPRESSION = "self.supportedBy.premise -> closure(p | if p.oclIsKindOf(DecomposableCoreElement) then \n" +
-		"\t\t\tp.oclAsType(DecomposableCoreElement).supportedBy.premise else \n" +
-		"\t\t\tp.oclAsSet() endif) -> excludes(self)";
-
-	/**
-	 * Validates the SupportCycle constraint of '<em>Decomposable Core Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateDecomposableCoreElement_SupportCycle(DecomposableCoreElement decomposableCoreElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT,
-				 decomposableCoreElement,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "SupportCycle",
-				 DECOMPOSABLE_CORE_ELEMENT__SUPPORT_CYCLE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * The cached validation expression for the NonDecomposableLeaves constraint of '<em>Decomposable Core Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String DECOMPOSABLE_CORE_ELEMENT__NON_DECOMPOSABLE_LEAVES__EEXPRESSION = "self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)";
-
-	/**
-	 * Validates the NonDecomposableLeaves constraint of '<em>Decomposable Core Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateDecomposableCoreElement_NonDecomposableLeaves(DecomposableCoreElement decomposableCoreElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT,
-				 decomposableCoreElement,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "NonDecomposableLeaves",
-				 DECOMPOSABLE_CORE_ELEMENT__NON_DECOMPOSABLE_LEAVES__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
 	}
 
 	/**
@@ -475,13 +386,12 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(goal, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(goal, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(goal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(goal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_SupportCycle(goal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_NonDecomposableLeaves(goal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(goal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(goal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(goal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_GoalSupporter(goal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_GoalContext(goal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_ASILInheritance(goal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateGoal_StateValidityInheritance(goal, diagnostics, context);
 		return result;
 	}
 
@@ -491,7 +401,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String GOAL__GOAL_SUPPORTER__EEXPRESSION = "self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Strategy) or s.premise.oclIsKindOf(Solution))";
+	protected static final String GOAL__GOAL_SUPPORTER__EEXPRESSION = "\n" +
+		"\t\t\tlet children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet()\n" +
+		"\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Strategy) or s.oclIsKindOf(Solution))";
 
 	/**
 	 * Validates the GoalSupporter constraint of '<em>Goal</em>'.
@@ -549,9 +461,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String GOAL__ASIL_INHERITANCE__EEXPRESSION = "let directParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet(), \n" +
-		"\t\t\tindirectParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsTypeOf(BasicStrategy)).oclAsType(BasicStrategy).supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet() \n" +
-		"\t\t\tin indirectParents -> union(directParents) -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)";
+	protected static final String GOAL__ASIL_INHERITANCE__EEXPRESSION = "\n" +
+		"\t\t\tlet parents : Set(Goal) = self.supports.conclusion -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.supports.conclusion endif) -> selectByKind(Goal) -> asSet()\n" +
+		"\t\t\tin parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)";
 
 	/**
 	 * Validates the ASILInheritance constraint of '<em>Goal</em>'.
@@ -575,38 +487,6 @@ public class SafetyCaseValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the StateValidityInheritance constraint of '<em>Goal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String GOAL__STATE_VALIDITY_INHERITANCE__EEXPRESSION = "self.stateValidity = ValidityValue::Valid implies \n" +
-		"\t\t\tlet directChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(StatefulElement)).oclAsType(StatefulElement) -> asSet(), \n" +
-		"\t\t\t\tindirectChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(Strategy)).oclAsType(Strategy).supportedBy.premise.oclAsType(StatefulElement) -> asSet() \n" +
-		"\t\t\tin indirectChildren -> union(directChildren) -> forAll(g | g.stateValidity = ValidityValue::Valid)";
-
-	/**
-	 * Validates the StateValidityInheritance constraint of '<em>Goal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateGoal_StateValidityInheritance(Goal goal, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(SafetyCasePackage.Literals.GOAL,
-				 goal,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "StateValidityInheritance",
-				 GOAL__STATE_VALIDITY_INHERITANCE__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -621,13 +501,12 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(basicGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(basicGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(basicGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(basicGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_SupportCycle(basicGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_NonDecomposableLeaves(basicGoal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(basicGoal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(basicGoal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(basicGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_GoalSupporter(basicGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_GoalContext(basicGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_ASILInheritance(basicGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateGoal_StateValidityInheritance(basicGoal, diagnostics, context);
 		return result;
 	}
 
@@ -646,13 +525,12 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(independenceGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(independenceGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(independenceGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(independenceGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_SupportCycle(independenceGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_NonDecomposableLeaves(independenceGoal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(independenceGoal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(independenceGoal, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(independenceGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_GoalSupporter(independenceGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_GoalContext(independenceGoal, diagnostics, context);
 		if (result || diagnostics != null) result &= validateGoal_ASILInheritance(independenceGoal, diagnostics, context);
-		if (result || diagnostics != null) result &= validateGoal_StateValidityInheritance(independenceGoal, diagnostics, context);
 		return result;
 	}
 
@@ -671,9 +549,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(strategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(strategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(strategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(strategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_SupportCycle(strategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_NonDecomposableLeaves(strategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(strategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(strategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(strategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(strategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validateStrategy_StrategyContext(strategy, diagnostics, context);
 		return result;
@@ -685,7 +563,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String STRATEGY__STRATEGY_SUPPORTER__EEXPRESSION = "self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Solution))";
+	protected static final String STRATEGY__STRATEGY_SUPPORTER__EEXPRESSION = "\n" +
+		"\t\t\tlet children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet() \n" +
+		"\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Solution))";
 
 	/**
 	 * Validates the StrategySupporter constraint of '<em>Strategy</em>'.
@@ -752,9 +632,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(basicStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(basicStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(basicStrategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(basicStrategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_SupportCycle(basicStrategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_NonDecomposableLeaves(basicStrategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(basicStrategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(basicStrategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(basicStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(basicStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validateStrategy_StrategyContext(basicStrategy, diagnostics, context);
 		return result;
@@ -775,9 +655,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(asilDecompositionStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(asilDecompositionStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(asilDecompositionStrategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(asilDecompositionStrategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_SupportCycle(asilDecompositionStrategy, diagnostics, context);
-		if (result || diagnostics != null) result &= validateDecomposableCoreElement_NonDecomposableLeaves(asilDecompositionStrategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(asilDecompositionStrategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(asilDecompositionStrategy, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(asilDecompositionStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validateStrategy_StrategySupporter(asilDecompositionStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validateStrategy_StrategyContext(asilDecompositionStrategy, diagnostics, context);
 		if (result || diagnostics != null) result &= validateASILDecompositionStrategy_ASILDecompositionIndependence(asilDecompositionStrategy, diagnostics, context);
@@ -792,7 +672,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_INDEPENDENCE__EEXPRESSION = "self.supportedBy.premise -> selectByType(IndependenceGoal) -> size() = 1";
+	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_INDEPENDENCE__EEXPRESSION = "\n" +
+		"\t\t\tlet children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)\n" +
+		"\t\t\tin children -> selectByType(IndependenceGoal) -> size() = 1";
 
 	/**
 	 * Validates the ASILDecompositionIndependence constraint of '<em>ASIL Decomposition Strategy</em>'.
@@ -821,7 +703,9 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_COMPONENTS__EEXPRESSION = "self.supportedBy.premise -> selectByType(BasicGoal) -> size() = 2";
+	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_COMPONENTS__EEXPRESSION = " \n" +
+		"\t\t\tlet children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)\n" +
+		"\t\t\tin children -> selectByType(BasicGoal) -> size() = 2";
 
 	/**
 	 * Validates the ASILDecompositionComponents constraint of '<em>ASIL Decomposition Strategy</em>'.
@@ -850,11 +734,12 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DESCENDANTS__EEXPRESSION = "let goalSeq: Sequence(Supporter) = self.supportedBy.premise -> select(p | p.oclIsTypeOf(BasicGoal)), \n" +
+	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DESCENDANTS__EEXPRESSION = "\n" +
+		"\t\t\tlet goalSeq = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif) -> select(p | p.oclIsTypeOf(BasicGoal)), \n" +
 		"\t\t\tg1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | \n" +
-		"\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif),\n" +
+		"\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif),\n" +
 		"\t\t\tg2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | \n" +
-		"\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif) \n" +
+		"\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif) \n" +
 		"\t\t\tin g1Descendants -> intersection(g2Descendants) = Set{}";
 
 	/**
@@ -893,7 +778,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(solution, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(solution, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(solution, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCoreElement_GoalRoot(solution, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(solution, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSolution_SolutionSupporter(solution, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSolution_SolutionContext(solution, diagnostics, context);
 		return result;
@@ -1041,7 +926,79 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSupportable(Supportable supportable, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(supportable, diagnostics, context);
+		if (!validate_NoCircularContainment(supportable, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(supportable, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(supportable, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the SupportCycle constraint of '<em>Supportable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SUPPORTABLE__SUPPORT_CYCLE__EEXPRESSION = "self.supportedBy.premise -> closure(p | if p.oclIsKindOf(Supportable) then \n" +
+		"\t\t\tp.oclAsType(Supportable).supportedBy.premise else \n" +
+		"\t\t\tp.oclAsSet() endif) -> excludes(self)";
+
+	/**
+	 * Validates the SupportCycle constraint of '<em>Supportable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSupportable_SupportCycle(Supportable supportable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(SafetyCasePackage.Literals.SUPPORTABLE,
+				 supportable,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "SupportCycle",
+				 SUPPORTABLE__SUPPORT_CYCLE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the NonSupportableLeaves constraint of '<em>Supportable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SUPPORTABLE__NON_SUPPORTABLE_LEAVES__EEXPRESSION = "self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)";
+
+	/**
+	 * Validates the NonSupportableLeaves constraint of '<em>Supportable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSupportable_NonSupportableLeaves(Supportable supportable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(SafetyCasePackage.Literals.SUPPORTABLE,
+				 supportable,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "NonSupportableLeaves",
+				 SUPPORTABLE__NON_SUPPORTABLE_LEAVES__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -1050,7 +1007,46 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSupporter(Supporter supporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(supporter, diagnostics, context);
+		if (!validate_NoCircularContainment(supporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(supporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(supporter, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * The cached validation expression for the GoalRoot constraint of '<em>Supporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SUPPORTER__GOAL_ROOT__EEXPRESSION = "self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)";
+
+	/**
+	 * Validates the GoalRoot constraint of '<em>Supporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSupporter_GoalRoot(Supporter supporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(SafetyCasePackage.Literals.SUPPORTER,
+				 supporter,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 "GoalRoot",
+				 SUPPORTER__GOAL_ROOT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -1059,7 +1055,19 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSupportConnector(SupportConnector supportConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(supportConnector, diagnostics, context);
+		if (!validate_NoCircularContainment(supportConnector, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(supportConnector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(supportConnector, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1068,7 +1076,19 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAndSupporter(AndSupporter andSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(andSupporter, diagnostics, context);
+		if (!validate_NoCircularContainment(andSupporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(andSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(andSupporter, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1077,7 +1097,19 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOrSupporter(OrSupporter orSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(orSupporter, diagnostics, context);
+		if (!validate_NoCircularContainment(orSupporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(orSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(orSupporter, diagnostics, context);
+		return result;
 	}
 
 	/**

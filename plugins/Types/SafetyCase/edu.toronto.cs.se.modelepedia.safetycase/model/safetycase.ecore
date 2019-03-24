@@ -11,7 +11,7 @@
       <details key="constraints" value="SingleRoot"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="SingleRoot" value="CoreElement.allInstances() -> &#xA;&#x9;&#x9;&#x9;select(d | d.supports.conclusion -> isEmpty()) -> size() = 1"/>
+      <details key="SingleRoot" value="Supporter.allInstances() -> &#xA;&#x9;&#x9;&#x9;select(d | d.supports.conclusion -> isEmpty()) -> size() = 1"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="goals" upperBound="-1" eType="#//Goal" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="strategies" upperBound="-1" eType="#//Strategy" containment="true"/>
@@ -37,22 +37,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ASILfulElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="asil" eType="#//ASIL" containment="true" eOpposite="#//ASIL/target"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement #//Supporter">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="GoalRoot"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="GoalRoot" value="self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true" eSuperTypes="#//CoreElement #//Supportable">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="SupportCycle NonDecomposableLeaves"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="SupportCycle" value="self.supportedBy.premise -> closure(p | if p.oclIsKindOf(DecomposableCoreElement) then &#xA;&#x9;&#x9;&#x9;p.oclAsType(DecomposableCoreElement).supportedBy.premise else &#xA;&#x9;&#x9;&#x9;p.oclAsSet() endif) -> excludes(self)"/>
-      <details key="NonDecomposableLeaves" value="self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)"/>
-    </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="CoreElement" abstract="true" eSuperTypes="#//ArgumentElement #//Supporter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DecomposableCoreElement" abstract="true" eSuperTypes="#//Supportable #//CoreElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inContextOf" upperBound="-1" eType="#//InContextOf" containment="true" eOpposite="#//InContextOf/contextOf"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextualElement" abstract="true" eSuperTypes="#//ArgumentElement">
@@ -75,13 +61,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Goal" abstract="true" eSuperTypes="#//DecomposableCoreElement #//StatefulElement #//ASILfulElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="GoalSupporter GoalContext ASILInheritance StateValidityInheritance"/>
+      <details key="constraints" value="GoalSupporter GoalContext ASILInheritance"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="GoalSupporter" value="self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Strategy) or s.premise.oclIsKindOf(Solution))"/>
+      <details key="GoalSupporter" value="&#xA;&#x9;&#x9;&#x9;let children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet()&#xA;&#x9;&#x9;&#x9;in children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Strategy) or s.oclIsKindOf(Solution))"/>
       <details key="GoalContext" value="self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))"/>
-      <details key="ASILInheritance" value="let directParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet(), &#xA;&#x9;&#x9;&#x9;indirectParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsTypeOf(BasicStrategy)).oclAsType(BasicStrategy).supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet() &#xA;&#x9;&#x9;&#x9;in indirectParents -> union(directParents) -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() &lt;= self.asil.value.toString() and self.asil.value &lt;> ASILLevel::QM) endif endif)"/>
-      <details key="StateValidityInheritance" value="self.stateValidity = ValidityValue::Valid implies &#xA;&#x9;&#x9;&#x9;let directChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(StatefulElement)).oclAsType(StatefulElement) -> asSet(), &#xA;&#x9;&#x9;&#x9;&#x9;indirectChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(Strategy)).oclAsType(Strategy).supportedBy.premise.oclAsType(StatefulElement) -> asSet() &#xA;&#x9;&#x9;&#x9;in indirectChildren -> union(directChildren) -> forAll(g | g.stateValidity = ValidityValue::Valid)"/>
+      <details key="ASILInheritance" value="&#xA;&#x9;&#x9;&#x9;let parents : Set(Goal) = self.supports.conclusion -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.supports.conclusion endif) -> selectByKind(Goal) -> asSet()&#xA;&#x9;&#x9;&#x9;in parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() &lt;= self.asil.value.toString() and self.asil.value &lt;> ASILLevel::QM) endif endif)"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BasicGoal" eSuperTypes="#//Goal"/>
@@ -91,7 +76,7 @@
       <details key="constraints" value="StrategySupporter StrategyContext"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="StrategySupporter" value="self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Solution))"/>
+      <details key="StrategySupporter" value="&#xA;&#x9;&#x9;&#x9;let children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet() &#xA;&#x9;&#x9;&#x9;in children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Solution))"/>
       <details key="StrategyContext" value="self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))"/>
     </eAnnotations>
   </eClassifiers>
@@ -101,9 +86,9 @@
       <details key="constraints" value="ASILDecompositionIndependence ASILDecompositionComponents ASILDescendants"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ASILDecompositionIndependence" value="self.supportedBy.premise -> selectByType(IndependenceGoal) -> size() = 1"/>
-      <details key="ASILDecompositionComponents" value="self.supportedBy.premise -> selectByType(BasicGoal) -> size() = 2"/>
-      <details key="ASILDescendants" value="let goalSeq: Sequence(Supporter) = self.supportedBy.premise -> select(p | p.oclIsTypeOf(BasicGoal)), &#xA;&#x9;&#x9;&#x9;g1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif),&#xA;&#x9;&#x9;&#x9;g2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif) &#xA;&#x9;&#x9;&#x9;in g1Descendants -> intersection(g2Descendants) = Set{}"/>
+      <details key="ASILDecompositionIndependence" value="&#xA;&#x9;&#x9;&#x9;let children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)&#xA;&#x9;&#x9;&#x9;in children -> selectByType(IndependenceGoal) -> size() = 1"/>
+      <details key="ASILDecompositionComponents" value=" &#xA;&#x9;&#x9;&#x9;let children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)&#xA;&#x9;&#x9;&#x9;in children -> selectByType(BasicGoal) -> size() = 2"/>
+      <details key="ASILDescendants" value="&#xA;&#x9;&#x9;&#x9;let goalSeq = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif) -> select(p | p.oclIsTypeOf(BasicGoal)), &#xA;&#x9;&#x9;&#x9;g1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif),&#xA;&#x9;&#x9;&#x9;g2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif) &#xA;&#x9;&#x9;&#x9;in g1Descendants -> intersection(g2Descendants) = Set{}"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Solution" eSuperTypes="#//CoreElement #//StatefulElement">
@@ -145,14 +130,27 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ImpactType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Supportable" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Supportable" abstract="true" eSuperTypes="#//Supporter">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="SupportCycle NonSupportableLeaves"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="SupportCycle" value="self.supportedBy.premise -> closure(p | if p.oclIsKindOf(Supportable) then &#xA;&#x9;&#x9;&#x9;p.oclAsType(Supportable).supportedBy.premise else &#xA;&#x9;&#x9;&#x9;p.oclAsSet() endif) -> excludes(self)"/>
+      <details key="NonSupportableLeaves" value="self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedBy" lowerBound="1" upperBound="-1" eType="#//SupportedBy" containment="true"
         eOpposite="#//SupportedBy/conclusion"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Supporter" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="GoalRoot"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="GoalRoot" value="self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supports" upperBound="-1" eType="#//SupportedBy" eOpposite="#//SupportedBy/premise"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SupportConnector" abstract="true" eSuperTypes="#//Supporter #//Supportable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SupportConnector" abstract="true" eSuperTypes="#//Supportable"/>
   <eClassifiers xsi:type="ecore:EClass" name="AndSupporter" eSuperTypes="#//SupportConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrSupporter" eSuperTypes="#//SupportConnector"/>
 </ecore:EPackage>

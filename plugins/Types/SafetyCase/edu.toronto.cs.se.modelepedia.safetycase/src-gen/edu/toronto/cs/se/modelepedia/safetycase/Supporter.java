@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupporter()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='GoalRoot'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot GoalRoot='self.supports.conclusion -&gt; isEmpty() implies self.oclIsTypeOf(BasicGoal)'"
  * @generated
  */
 public interface Supporter extends EObject {

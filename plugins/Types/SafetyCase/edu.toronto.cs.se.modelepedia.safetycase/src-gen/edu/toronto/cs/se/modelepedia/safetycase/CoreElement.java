@@ -21,8 +21,6 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getCoreElement()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='GoalRoot'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot GoalRoot='self.supports.conclusion -&gt; isEmpty() implies self.oclIsTypeOf(BasicGoal)'"
  * @generated
  */
 public interface CoreElement extends ArgumentElement, Supporter {

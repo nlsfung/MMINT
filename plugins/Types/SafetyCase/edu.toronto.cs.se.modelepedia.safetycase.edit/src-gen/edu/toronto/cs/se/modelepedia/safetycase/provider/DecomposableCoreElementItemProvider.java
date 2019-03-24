@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -35,7 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DecomposableCoreElementItemProvider extends CoreElementItemProvider {
+public class DecomposableCoreElementItemProvider extends SupportableItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -57,28 +58,97 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSupportedByPropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addContentValidityPropertyDescriptor(object);
+			addStatusPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Supported By feature.
+	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSupportedByPropertyDescriptor(Object object) {
+	protected void addIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Supportable_supportedBy_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Supportable_supportedBy_feature", "_UI_Supportable_type"),
-				 SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
+				 getString("_UI_ArgumentElement_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_id_feature", "_UI_ArgumentElement_type"),
+				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__ID,
 				 true,
 				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ArgumentElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_description_feature", "_UI_ArgumentElement_type"),
+				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__DESCRIPTION,
 				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Content Validity feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addContentValidityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ArgumentElement_contentValidity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_contentValidity_feature", "_UI_ArgumentElement_type"),
+				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__CONTENT_VALIDITY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Status feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStatusPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ArgumentElement_status_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ArgumentElement_status_feature", "_UI_ArgumentElement_type"),
+				 SafetyCasePackage.Literals.ARGUMENT_ELEMENT__STATUS,
+				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -96,7 +166,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY);
 			childrenFeatures.add(SafetyCasePackage.Literals.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF);
 		}
 		return childrenFeatures;
@@ -142,7 +211,12 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DecomposableCoreElement.class)) {
-			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__SUPPORTED_BY:
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__ID:
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__DESCRIPTION:
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__CONTENT_VALIDITY:
+			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__STATUS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -160,11 +234,6 @@ public class DecomposableCoreElementItemProvider extends CoreElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
-				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
 
 		newChildDescriptors.add
 			(createChildParameter

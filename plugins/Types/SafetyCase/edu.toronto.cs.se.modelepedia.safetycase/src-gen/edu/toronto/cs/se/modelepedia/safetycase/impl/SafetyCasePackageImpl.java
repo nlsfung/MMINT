@@ -971,8 +971,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		// Add supertypes to classes
 		coreElementEClass.getESuperTypes().add(this.getArgumentElement());
 		coreElementEClass.getESuperTypes().add(this.getSupporter());
-		decomposableCoreElementEClass.getESuperTypes().add(this.getCoreElement());
 		decomposableCoreElementEClass.getESuperTypes().add(this.getSupportable());
+		decomposableCoreElementEClass.getESuperTypes().add(this.getCoreElement());
 		contextualElementEClass.getESuperTypes().add(this.getArgumentElement());
 		goalEClass.getESuperTypes().add(this.getDecomposableCoreElement());
 		goalEClass.getESuperTypes().add(this.getStatefulElement());
@@ -987,7 +987,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		contextEClass.getESuperTypes().add(this.getContextualElement());
 		justificationEClass.getESuperTypes().add(this.getContextualElement());
 		assumptionEClass.getESuperTypes().add(this.getContextualElement());
-		supportConnectorEClass.getESuperTypes().add(this.getSupporter());
+		supportableEClass.getESuperTypes().add(this.getSupporter());
 		supportConnectorEClass.getESuperTypes().add(this.getSupportable());
 		andSupporterEClass.getESuperTypes().add(this.getSupportConnector());
 		orSupporterEClass.getESuperTypes().add(this.getSupportConnector());
@@ -1125,18 +1125,6 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 			   "constraints", "SingleRoot"
 		   });
 		addAnnotation
-		  (coreElementEClass,
-		   source,
-		   new String[] {
-			   "constraints", "GoalRoot"
-		   });
-		addAnnotation
-		  (decomposableCoreElementEClass,
-		   source,
-		   new String[] {
-			   "constraints", "SupportCycle NonDecomposableLeaves"
-		   });
-		addAnnotation
 		  (contextualElementEClass,
 		   source,
 		   new String[] {
@@ -1146,7 +1134,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		  (goalEClass,
 		   source,
 		   new String[] {
-			   "constraints", "GoalSupporter GoalContext ASILInheritance StateValidityInheritance"
+			   "constraints", "GoalSupporter GoalContext ASILInheritance"
 		   });
 		addAnnotation
 		  (strategyEClass,
@@ -1166,6 +1154,18 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		   new String[] {
 			   "constraints", "SolutionSupporter SolutionContext"
 		   });
+		addAnnotation
+		  (supportableEClass,
+		   source,
+		   new String[] {
+			   "constraints", "SupportCycle NonSupportableLeaves"
+		   });
+		addAnnotation
+		  (supporterEClass,
+		   source,
+		   new String[] {
+			   "constraints", "GoalRoot"
+		   });
 	}
 
 	/**
@@ -1180,20 +1180,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		  (safetyCaseEClass,
 		   source,
 		   new String[] {
-			   "SingleRoot", "CoreElement.allInstances() -> \n\t\t\tselect(d | d.supports.conclusion -> isEmpty()) -> size() = 1"
-		   });
-		addAnnotation
-		  (coreElementEClass,
-		   source,
-		   new String[] {
-			   "GoalRoot", "self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)"
-		   });
-		addAnnotation
-		  (decomposableCoreElementEClass,
-		   source,
-		   new String[] {
-			   "SupportCycle", "self.supportedBy.premise -> closure(p | if p.oclIsKindOf(DecomposableCoreElement) then \n\t\t\tp.oclAsType(DecomposableCoreElement).supportedBy.premise else \n\t\t\tp.oclAsSet() endif) -> excludes(self)",
-			   "NonDecomposableLeaves", "self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)"
+			   "SingleRoot", "Supporter.allInstances() -> \n\t\t\tselect(d | d.supports.conclusion -> isEmpty()) -> size() = 1"
 		   });
 		addAnnotation
 		  (contextualElementEClass,
@@ -1206,25 +1193,24 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		  (goalEClass,
 		   source,
 		   new String[] {
-			   "GoalSupporter", "self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Strategy) or s.premise.oclIsKindOf(Solution))",
+			   "GoalSupporter", "\n\t\t\tlet children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet()\n\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Strategy) or s.oclIsKindOf(Solution))",
 			   "GoalContext", "self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))",
-			   "ASILInheritance", "let directParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet(), \n\t\t\tindirectParents : Set(Goal) = self.supports.conclusion -> select(d | d.oclIsTypeOf(BasicStrategy)).oclAsType(BasicStrategy).supports.conclusion -> select(d | d.oclIsKindOf(Goal)).oclAsType(Goal) -> asSet() \n\t\t\tin indirectParents -> union(directParents) -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)",
-			   "StateValidityInheritance", "self.stateValidity = ValidityValue::Valid implies \n\t\t\tlet directChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(StatefulElement)).oclAsType(StatefulElement) -> asSet(), \n\t\t\t\tindirectChildren : Set(StatefulElement) = self.supportedBy.premise -> select(d | d.oclIsKindOf(Strategy)).oclAsType(Strategy).supportedBy.premise.oclAsType(StatefulElement) -> asSet() \n\t\t\tin indirectChildren -> union(directChildren) -> forAll(g | g.stateValidity = ValidityValue::Valid)"
+			   "ASILInheritance", "\n\t\t\tlet parents : Set(Goal) = self.supports.conclusion -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.supports.conclusion endif) -> selectByKind(Goal) -> asSet()\n\t\t\tin parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)"
 		   });
 		addAnnotation
 		  (strategyEClass,
 		   source,
 		   new String[] {
-			   "StrategySupporter", "self.supportedBy -> forAll(s | s.premise.oclIsKindOf(Goal) or s.premise.oclIsKindOf(Solution))",
+			   "StrategySupporter", "\n\t\t\tlet children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet() \n\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Solution))",
 			   "StrategyContext", "self.inContextOf.context -> forAll(c | c.oclIsKindOf(Context) or c.oclIsKindOf(Assumption) or c.oclIsKindOf(Justification))"
 		   });
 		addAnnotation
 		  (asilDecompositionStrategyEClass,
 		   source,
 		   new String[] {
-			   "ASILDecompositionIndependence", "self.supportedBy.premise -> selectByType(IndependenceGoal) -> size() = 1",
-			   "ASILDecompositionComponents", "self.supportedBy.premise -> selectByType(BasicGoal) -> size() = 2",
-			   "ASILDescendants", "let goalSeq: Sequence(Supporter) = self.supportedBy.premise -> select(p | p.oclIsTypeOf(BasicGoal)), \n\t\t\tg1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif),\n\t\t\tg2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(DecomposableCoreElement) then c.oclAsType(DecomposableCoreElement).supportedBy.premise else null endif) \n\t\t\tin g1Descendants -> intersection(g2Descendants) = Set{}"
+			   "ASILDecompositionIndependence", "\n\t\t\tlet children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)\n\t\t\tin children -> selectByType(IndependenceGoal) -> size() = 1",
+			   "ASILDecompositionComponents", " \n\t\t\tlet children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)\n\t\t\tin children -> selectByType(BasicGoal) -> size() = 2",
+			   "ASILDescendants", "\n\t\t\tlet goalSeq = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif) -> select(p | p.oclIsTypeOf(BasicGoal)), \n\t\t\tg1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif),\n\t\t\tg2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | \n\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif) \n\t\t\tin g1Descendants -> intersection(g2Descendants) = Set{}"
 		   });
 		addAnnotation
 		  (solutionEClass,
@@ -1232,6 +1218,19 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		   new String[] {
 			   "SolutionSupporter", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()",
 			   "SolutionContext", "self.oclAsType(DecomposableCoreElement).oclIsInvalid()"
+		   });
+		addAnnotation
+		  (supportableEClass,
+		   source,
+		   new String[] {
+			   "SupportCycle", "self.supportedBy.premise -> closure(p | if p.oclIsKindOf(Supportable) then \n\t\t\tp.oclAsType(Supportable).supportedBy.premise else \n\t\t\tp.oclAsSet() endif) -> excludes(self)",
+			   "NonSupportableLeaves", "self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)"
+		   });
+		addAnnotation
+		  (supporterEClass,
+		   source,
+		   new String[] {
+			   "GoalRoot", "self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)"
 		   });
 	}
 

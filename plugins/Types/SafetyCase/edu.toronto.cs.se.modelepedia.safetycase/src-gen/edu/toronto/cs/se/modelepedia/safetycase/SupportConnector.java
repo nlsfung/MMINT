@@ -23,5 +23,5 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * @model abstract="true"
  * @generated
  */
-public interface SupportConnector extends Supporter, Supportable {
+public interface SupportConnector extends Supportable {
 } // SupportConnector

@@ -44,13 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class SupportableItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends SupporterItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -186,17 +180,6 @@ public class SupportableItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.SUPPORTABLE__SUPPORTED_BY,
 				 SafetyCaseFactory.eINSTANCE.createSupportedBy()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return SafetyCaseEditPlugin.INSTANCE;
 	}
 
 }
