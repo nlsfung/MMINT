@@ -110,7 +110,21 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="SupportedByEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode']" targetFinderExpression="feature:premise" sourceFinderExpression="feature:eContainer" domainClass="safetycase.SupportedBy" useDomainElement="true">
+        <nodeMappings name="AndSupporterNode" semanticCandidatesExpression="feature:connectors" domainClass="safetycase.AndSupporter">
+          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="And" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="OrSupporterNode" semanticCandidatesExpression="feature:connectors" domainClass="safetycase.OrSupporter">
+          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="Or" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="SupportedByEdge" sourceMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='OrSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AndSupporterNode']" targetMapping="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='SolutionNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='GoalNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='StrategyNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AndSupporterNode'] //@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='OrSupporterNode']" targetFinderExpression="feature:premise" sourceFinderExpression="feature:eContainer" domainClass="safetycase.SupportedBy" useDomainElement="true">
           <style targetArrow="InputFillClosedArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -251,6 +265,24 @@
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="contextOf" valueExpression="var:source"/>
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="context" valueExpression="var:target"/>
                 </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateAndSupporter" label="Create And-supporter" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='AndSupporterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.AndSupporter" referenceName="connectors"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="CreateOrSupporter" label="Create Or-supporter" nodeMappings="//@ownedViewpoints[name='SafetyCaseViewpoint']/@ownedRepresentations[name='SafetyCaseRepresentation']/@defaultLayer/@nodeMappings[name='OrSupporterNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="safetycase.OrSupporter" referenceName="connectors"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
