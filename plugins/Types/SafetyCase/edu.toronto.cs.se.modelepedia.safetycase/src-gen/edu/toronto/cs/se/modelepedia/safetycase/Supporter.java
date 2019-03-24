@@ -31,14 +31,14 @@ import org.eclipse.emf.ecore.EObject;
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupporter()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='GoalRoot'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot GoalRoot='self.supports.conclusion -&gt; isEmpty() implies self.oclIsTypeOf(BasicGoal)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot GoalRoot='self.supports.source -&gt; isEmpty() implies self.oclIsTypeOf(BasicGoal)'"
  * @generated
  */
 public interface Supporter extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Supports</b></em>' reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise <em>Premise</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Supports</em>' reference list isn't clear,
@@ -47,8 +47,8 @@ public interface Supporter extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Supports</em>' reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupporter_Supports()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise
-	 * @model opposite="premise"
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget
+	 * @model opposite="target"
 	 * @generated
 	 */
 	EList<SupportedBy> getSupports();

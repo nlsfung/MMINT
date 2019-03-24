@@ -758,22 +758,22 @@ public interface SafetyCasePackage extends EPackage {
 	int CONTEXTUAL_ELEMENT_OPERATION_COUNT = ARGUMENT_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Conclusion</b></em>' container reference.
+	 * The feature id for the '<em><b>Source</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPORTED_BY__CONCLUSION = 0;
+	int SUPPORTED_BY__SOURCE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Premise</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPORTED_BY__PREMISE = 1;
+	int SUPPORTED_BY__TARGET = 1;
 
 	/**
 	 * The number of structural features of the '<em>Supported By</em>' class.
@@ -2126,26 +2126,26 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getSupportedBy();
 
 	/**
-	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion <em>Conclusion</em>}'.
+	 * Returns the meta object for the container reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Conclusion</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion()
+	 * @return the meta object for the container reference '<em>Source</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getSource()
 	 * @see #getSupportedBy()
 	 * @generated
 	 */
-	EReference getSupportedBy_Conclusion();
+	EReference getSupportedBy_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise <em>Premise</em>}'.
+	 * Returns the meta object for the reference '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Premise</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getPremise()
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getTarget()
 	 * @see #getSupportedBy()
 	 * @generated
 	 */
-	EReference getSupportedBy_Premise();
+	EReference getSupportedBy_Target();
 
 	/**
 	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf <em>In Context Of</em>}'.
@@ -2680,20 +2680,20 @@ public interface SafetyCasePackage extends EPackage {
 		EClass SUPPORTED_BY = eINSTANCE.getSupportedBy();
 
 		/**
-		 * The meta object literal for the '<em><b>Conclusion</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Source</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPORTED_BY__CONCLUSION = eINSTANCE.getSupportedBy_Conclusion();
+		EReference SUPPORTED_BY__SOURCE = eINSTANCE.getSupportedBy_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Premise</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPORTED_BY__PREMISE = eINSTANCE.getSupportedBy_Premise();
+		EReference SUPPORTED_BY__TARGET = eINSTANCE.getSupportedBy_Target();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.InContextOfImpl <em>In Context Of</em>}' class.

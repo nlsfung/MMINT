@@ -31,14 +31,14 @@ import org.eclipse.emf.ecore.EObject;
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupportable()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SupportCycle NonSupportableLeaves'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SupportCycle='self.supportedBy.premise -&gt; closure(p | if p.oclIsKindOf(Supportable) then \n\t\t\tp.oclAsType(Supportable).supportedBy.premise else \n\t\t\tp.oclAsSet() endif) -&gt; excludes(self)' NonSupportableLeaves='self.supportedBy.premise -&gt; size() &gt; 0 and self.supportedBy.premise -&gt; excludes(null)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot SupportCycle='self.supportedBy.target -&gt; closure(p | if p.oclIsKindOf(Supportable) then \n\t\t\tp.oclAsType(Supportable).supportedBy.target else \n\t\t\tp.oclAsSet() endif) -&gt; excludes(self)' NonSupportableLeaves='self.supportedBy.target -&gt; size() &gt; 0 and self.supportedBy.target -&gt; excludes(null)'"
  * @generated
  */
 public interface Supportable extends Supporter {
 	/**
 	 * Returns the value of the '<em><b>Supported By</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy}.
-	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion <em>Conclusion</em>}'.
+	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Supported By</em>' containment reference list isn't clear,
@@ -47,8 +47,8 @@ public interface Supportable extends Supporter {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Supported By</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSupportable_SupportedBy()
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getConclusion
-	 * @model opposite="conclusion" containment="true" required="true"
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SupportedBy#getSource
+	 * @model opposite="source" containment="true" required="true"
 	 * @generated
 	 */
 	EList<SupportedBy> getSupportedBy();

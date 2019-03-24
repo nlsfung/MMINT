@@ -57,8 +57,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//ContextualElement/contextOf"/>
     </genClasses>
     <genClasses ecoreClass="safetycase.ecore#//SupportedBy">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//SupportedBy/conclusion"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//SupportedBy/premise"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference safetycase.ecore#//SupportedBy/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//SupportedBy/target"/>
     </genClasses>
     <genClasses ecoreClass="safetycase.ecore#//InContextOf">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference safetycase.ecore#//InContextOf/context"/>

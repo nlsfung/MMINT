@@ -80,7 +80,7 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
 	 */
 	public EList<SupportedBy> getSupportedBy() {
 		if (supportedBy == null) {
-			supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, SafetyCasePackage.SUPPORTED_BY__CONCLUSION);
+			supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, SafetyCasePackage.SUPPORTED_BY__SOURCE);
 		}
 		return supportedBy;
 	}

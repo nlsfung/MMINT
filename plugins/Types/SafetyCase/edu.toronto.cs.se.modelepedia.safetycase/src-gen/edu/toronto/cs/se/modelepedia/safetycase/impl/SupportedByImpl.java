@@ -36,23 +36,22 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByImpl#getConclusion <em>Conclusion</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByImpl#getPremise <em>Premise</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.SupportedByImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SupportedByImpl extends MinimalEObjectImpl.Container implements SupportedBy {
 	/**
-	 * The cached value of the '{@link #getPremise() <em>Premise</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPremise()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected Supporter premise;
-
+	protected Supporter target;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,8 +76,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Supportable getConclusion() {
-		if (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__CONCLUSION) return null;
+	public Supportable getSource() {
+		if (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__SOURCE) return null;
 		return (Supportable)eInternalContainer();
 	}
 
@@ -87,8 +86,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetConclusion(Supportable newConclusion, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newConclusion, SafetyCasePackage.SUPPORTED_BY__CONCLUSION, msgs);
+	public NotificationChain basicSetSource(Supportable newSource, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSource, SafetyCasePackage.SUPPORTED_BY__SOURCE, msgs);
 		return msgs;
 	}
 
@@ -97,20 +96,20 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConclusion(Supportable newConclusion) {
-		if (newConclusion != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__CONCLUSION && newConclusion != null)) {
-			if (EcoreUtil.isAncestor(this, newConclusion))
+	public void setSource(Supportable newSource) {
+		if (newSource != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__SOURCE && newSource != null)) {
+			if (EcoreUtil.isAncestor(this, newSource))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newConclusion != null)
-				msgs = ((InternalEObject)newConclusion).eInverseAdd(this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, Supportable.class, msgs);
-			msgs = basicSetConclusion(newConclusion, msgs);
+			if (newSource != null)
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, Supportable.class, msgs);
+			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY__CONCLUSION, newConclusion, newConclusion));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY__SOURCE, newSource, newSource));
 	}
 
 	/**
@@ -118,16 +117,16 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Supporter getPremise() {
-		if (premise != null && premise.eIsProxy()) {
-			InternalEObject oldPremise = (InternalEObject)premise;
-			premise = (Supporter)eResolveProxy(oldPremise);
-			if (premise != oldPremise) {
+	public Supporter getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (Supporter)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SafetyCasePackage.SUPPORTED_BY__PREMISE, oldPremise, premise));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SafetyCasePackage.SUPPORTED_BY__TARGET, oldTarget, target));
 			}
 		}
-		return premise;
+		return target;
 	}
 
 	/**
@@ -135,8 +134,8 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Supporter basicGetPremise() {
-		return premise;
+	public Supporter basicGetTarget() {
+		return target;
 	}
 
 	/**
@@ -144,11 +143,11 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPremise(Supporter newPremise, NotificationChain msgs) {
-		Supporter oldPremise = premise;
-		premise = newPremise;
+	public NotificationChain basicSetTarget(Supporter newTarget, NotificationChain msgs) {
+		Supporter oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY__PREMISE, oldPremise, newPremise);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY__TARGET, oldTarget, newTarget);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -159,18 +158,18 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPremise(Supporter newPremise) {
-		if (newPremise != premise) {
+	public void setTarget(Supporter newTarget) {
+		if (newTarget != target) {
 			NotificationChain msgs = null;
-			if (premise != null)
-				msgs = ((InternalEObject)premise).eInverseRemove(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
-			if (newPremise != null)
-				msgs = ((InternalEObject)newPremise).eInverseAdd(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
-			msgs = basicSetPremise(newPremise, msgs);
+			if (target != null)
+				msgs = ((InternalEObject)target).eInverseRemove(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+			if (newTarget != null)
+				msgs = ((InternalEObject)newTarget).eInverseAdd(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY__PREMISE, newPremise, newPremise));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.SUPPORTED_BY__TARGET, newTarget, newTarget));
 	}
 
 	/**
@@ -181,14 +180,14 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
+			case SafetyCasePackage.SUPPORTED_BY__SOURCE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetConclusion((Supportable)otherEnd, msgs);
-			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				if (premise != null)
-					msgs = ((InternalEObject)premise).eInverseRemove(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
-				return basicSetPremise((Supporter)otherEnd, msgs);
+				return basicSetSource((Supportable)otherEnd, msgs);
+			case SafetyCasePackage.SUPPORTED_BY__TARGET:
+				if (target != null)
+					msgs = ((InternalEObject)target).eInverseRemove(this, SafetyCasePackage.SUPPORTER__SUPPORTS, Supporter.class, msgs);
+				return basicSetTarget((Supporter)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -201,10 +200,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				return basicSetConclusion(null, msgs);
-			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				return basicSetPremise(null, msgs);
+			case SafetyCasePackage.SUPPORTED_BY__SOURCE:
+				return basicSetSource(null, msgs);
+			case SafetyCasePackage.SUPPORTED_BY__TARGET:
+				return basicSetTarget(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -217,7 +216,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
+			case SafetyCasePackage.SUPPORTED_BY__SOURCE:
 				return eInternalContainer().eInverseRemove(this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, Supportable.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -231,11 +230,11 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				return getConclusion();
-			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				if (resolve) return getPremise();
-				return basicGetPremise();
+			case SafetyCasePackage.SUPPORTED_BY__SOURCE:
+				return getSource();
+			case SafetyCasePackage.SUPPORTED_BY__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -248,11 +247,11 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				setConclusion((Supportable)newValue);
+			case SafetyCasePackage.SUPPORTED_BY__SOURCE:
+				setSource((Supportable)newValue);
 				return;
-			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				setPremise((Supporter)newValue);
+			case SafetyCasePackage.SUPPORTED_BY__TARGET:
+				setTarget((Supporter)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -266,11 +265,11 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				setConclusion((Supportable)null);
+			case SafetyCasePackage.SUPPORTED_BY__SOURCE:
+				setSource((Supportable)null);
 				return;
-			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				setPremise((Supporter)null);
+			case SafetyCasePackage.SUPPORTED_BY__TARGET:
+				setTarget((Supporter)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -284,10 +283,10 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.SUPPORTED_BY__CONCLUSION:
-				return getConclusion() != null;
-			case SafetyCasePackage.SUPPORTED_BY__PREMISE:
-				return premise != null;
+			case SafetyCasePackage.SUPPORTED_BY__SOURCE:
+				return getSource() != null;
+			case SafetyCasePackage.SUPPORTED_BY__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}

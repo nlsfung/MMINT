@@ -67,48 +67,25 @@ public class SupportedByItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConclusionPropertyDescriptor(object);
-			addPremisePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Conclusion feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConclusionPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SupportedBy_conclusion_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SupportedBy_conclusion_feature", "_UI_SupportedBy_type"),
-				 SafetyCasePackage.Literals.SUPPORTED_BY__CONCLUSION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Premise feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPremisePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SupportedBy_premise_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SupportedBy_premise_feature", "_UI_SupportedBy_type"),
-				 SafetyCasePackage.Literals.SUPPORTED_BY__PREMISE,
+				 getString("_UI_SupportedBy_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SupportedBy_target_feature", "_UI_SupportedBy_type"),
+				 SafetyCasePackage.Literals.SUPPORTED_BY__TARGET,
 				 true,
 				 false,
 				 true,

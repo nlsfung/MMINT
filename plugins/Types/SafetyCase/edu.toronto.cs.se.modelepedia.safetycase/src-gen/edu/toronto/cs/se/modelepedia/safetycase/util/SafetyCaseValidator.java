@@ -185,7 +185,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String SAFETY_CASE__SINGLE_ROOT__EEXPRESSION = "Supporter.allInstances() -> \n" +
-		"\t\t\tselect(d | d.supports.conclusion -> isEmpty()) -> size() = 1";
+		"\t\t\tselect(d | d.supports.source -> isEmpty()) -> size() = 1";
 
 	/**
 	 * Validates the SingleRoot constraint of '<em>Safety Case</em>'.
@@ -402,7 +402,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String GOAL__GOAL_SUPPORTER__EEXPRESSION = "\n" +
-		"\t\t\tlet children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet()\n" +
+		"\t\t\tlet children : Set(Supporter) = self.supportedBy.target -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.target endif) -> asSet()\n" +
 		"\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Strategy) or s.oclIsKindOf(Solution))";
 
 	/**
@@ -462,7 +462,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String GOAL__ASIL_INHERITANCE__EEXPRESSION = "\n" +
-		"\t\t\tlet parents : Set(Goal) = self.supports.conclusion -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.supports.conclusion endif) -> selectByKind(Goal) -> asSet()\n" +
+		"\t\t\tlet parents : Set(Goal) = self.supports.source -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.supports.source endif) -> selectByKind(Goal) -> asSet()\n" +
 		"\t\t\tin parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)";
 
 	/**
@@ -564,7 +564,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String STRATEGY__STRATEGY_SUPPORTER__EEXPRESSION = "\n" +
-		"\t\t\tlet children : Set(Supporter) = self.supportedBy.premise -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.premise endif) -> asSet() \n" +
+		"\t\t\tlet children : Set(Supporter) = self.supportedBy.target -> closure(p | if p.oclIsKindOf(CoreElement) then p.oclAsSet() else p.oclAsType(Supportable).supportedBy.target endif) -> asSet() \n" +
 		"\t\t\tin children -> selectByKind(CoreElement) -> forAll(s | s.oclIsKindOf(Goal) or s.oclIsKindOf(Solution))";
 
 	/**
@@ -673,7 +673,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_INDEPENDENCE__EEXPRESSION = "\n" +
-		"\t\t\tlet children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)\n" +
+		"\t\t\tlet children = self.supportedBy.target -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.target else s.oclAsSet() endif)\n" +
 		"\t\t\tin children -> selectByType(IndependenceGoal) -> size() = 1";
 
 	/**
@@ -704,7 +704,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DECOMPOSITION_COMPONENTS__EEXPRESSION = " \n" +
-		"\t\t\tlet children = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif)\n" +
+		"\t\t\tlet children = self.supportedBy.target -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.target else s.oclAsSet() endif)\n" +
 		"\t\t\tin children -> selectByType(BasicGoal) -> size() = 2";
 
 	/**
@@ -735,11 +735,11 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String ASIL_DECOMPOSITION_STRATEGY__ASIL_DESCENDANTS__EEXPRESSION = "\n" +
-		"\t\t\tlet goalSeq = self.supportedBy.premise -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.premise else s.oclAsSet() endif) -> select(p | p.oclIsTypeOf(BasicGoal)), \n" +
+		"\t\t\tlet goalSeq = self.supportedBy.target -> closure(s | if s.oclIsKindOf(SupportConnector) then s.oclAsType(SupportConnector).supportedBy.target else s.oclAsSet() endif) -> select(p | p.oclIsTypeOf(BasicGoal)), \n" +
 		"\t\t\tg1Descendants : Set(Supporter) = goalSeq -> at(1) -> closure(c | \n" +
-		"\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif),\n" +
+		"\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.target else null endif),\n" +
 		"\t\t\tg2Descendants : Set(Supporter) = goalSeq -> at(2) -> closure(c | \n" +
-		"\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.premise else null endif) \n" +
+		"\t\t\t\t\tif c.oclIsKindOf(Supportable) then c.oclAsType(Supportable).supportedBy.target else null endif) \n" +
 		"\t\t\tin g1Descendants -> intersection(g2Descendants) = Set{}";
 
 	/**
@@ -947,8 +947,8 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SUPPORTABLE__SUPPORT_CYCLE__EEXPRESSION = "self.supportedBy.premise -> closure(p | if p.oclIsKindOf(Supportable) then \n" +
-		"\t\t\tp.oclAsType(Supportable).supportedBy.premise else \n" +
+	protected static final String SUPPORTABLE__SUPPORT_CYCLE__EEXPRESSION = "self.supportedBy.target -> closure(p | if p.oclIsKindOf(Supportable) then \n" +
+		"\t\t\tp.oclAsType(Supportable).supportedBy.target else \n" +
 		"\t\t\tp.oclAsSet() endif) -> excludes(self)";
 
 	/**
@@ -978,7 +978,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SUPPORTABLE__NON_SUPPORTABLE_LEAVES__EEXPRESSION = "self.supportedBy.premise -> size() > 0 and self.supportedBy.premise -> excludes(null)";
+	protected static final String SUPPORTABLE__NON_SUPPORTABLE_LEAVES__EEXPRESSION = "self.supportedBy.target -> size() > 0 and self.supportedBy.target -> excludes(null)";
 
 	/**
 	 * Validates the NonSupportableLeaves constraint of '<em>Supportable</em>'.
@@ -1026,7 +1026,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SUPPORTER__GOAL_ROOT__EEXPRESSION = "self.supports.conclusion -> isEmpty() implies self.oclIsTypeOf(BasicGoal)";
+	protected static final String SUPPORTER__GOAL_ROOT__EEXPRESSION = "self.supports.source -> isEmpty() implies self.oclIsTypeOf(BasicGoal)";
 
 	/**
 	 * Validates the GoalRoot constraint of '<em>Supporter</em>'.
