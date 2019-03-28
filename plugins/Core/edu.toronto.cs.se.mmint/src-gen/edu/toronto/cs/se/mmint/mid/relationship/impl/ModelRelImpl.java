@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -35,7 +35,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import edu.toronto.cs.se.mmint.MIDTypeHierarchy;
 import edu.toronto.cs.se.mmint.MIDTypeRegistry;
-import edu.toronto.cs.se.mmint.MMINT;
+import edu.toronto.cs.se.mmint.MMINTConstants;
 import edu.toronto.cs.se.mmint.MMINTException;
 import edu.toronto.cs.se.mmint.mid.ExtendibleElement;
 import edu.toronto.cs.se.mmint.mid.MID;
@@ -80,370 +80,374 @@ import edu.toronto.cs.se.mmint.mid.utils.MIDTypeFactory;
  */
 public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
-     * The cached value of the '{@link #getModelEndpoints() <em>Model Endpoints</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelEndpoints() <em>Model Endpoints</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModelEndpoints()
-     * @generated
-     * @ordered
-     */
+   * @see #getModelEndpoints()
+   * @generated
+   * @ordered
+   */
     protected EList<ModelEndpoint> modelEndpoints;
 
     /**
-     * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMappings()
-     * @generated
-     * @ordered
-     */
+   * @see #getMappings()
+   * @generated
+   * @ordered
+   */
     protected EList<Mapping> mappings;
 
     /**
-     * The cached value of the '{@link #getModelEndpointRefs() <em>Model Endpoint Refs</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModelEndpointRefs() <em>Model Endpoint Refs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModelEndpointRefs()
-     * @generated
-     * @ordered
-     */
+   * @see #getModelEndpointRefs()
+   * @generated
+   * @ordered
+   */
     protected EList<ModelEndpointReference> modelEndpointRefs;
 
     /**
-     * The cached value of the '{@link #getMappingRefs() <em>Mapping Refs</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getMappingRefs() <em>Mapping Refs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMappingRefs()
-     * @generated
-     * @ordered
-     */
+   * @see #getMappingRefs()
+   * @generated
+   * @ordered
+   */
     protected EList<MappingReference> mappingRefs;
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     protected ModelRelImpl() {
-        super();
-    }
+    super();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-        return RelationshipPackage.Literals.MODEL_REL;
-    }
+    return RelationshipPackage.Literals.MODEL_REL;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<ModelEndpoint> getModelEndpoints() {
-        if (this.modelEndpoints == null) {
-            this.modelEndpoints = new EObjectContainmentEList<>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
-        }
-        return this.modelEndpoints;
+    if (modelEndpoints == null) {
+      modelEndpoints = new EObjectContainmentEList<ModelEndpoint>(ModelEndpoint.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS);
     }
+    return modelEndpoints;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<Mapping> getMappings() {
-        if (this.mappings == null) {
-            this.mappings = new EObjectContainmentEList<>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
-        }
-        return this.mappings;
+    if (mappings == null) {
+      mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, RelationshipPackage.MODEL_REL__MAPPINGS);
     }
+    return mappings;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<ModelEndpointReference> getModelEndpointRefs() {
-        if (this.modelEndpointRefs == null) {
-            this.modelEndpointRefs = new EObjectContainmentEList<>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
-        }
-        return this.modelEndpointRefs;
+    if (modelEndpointRefs == null) {
+      modelEndpointRefs = new EObjectContainmentEList<ModelEndpointReference>(ModelEndpointReference.class, this, RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS);
     }
+    return modelEndpointRefs;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
+    @Override
     public EList<MappingReference> getMappingRefs() {
-        if (this.mappingRefs == null) {
-            this.mappingRefs = new EObjectContainmentEList<>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
-        }
-        return this.mappingRefs;
+    if (mappingRefs == null) {
+      mappingRefs = new EObjectContainmentEList<MappingReference>(MappingReference.class, this, RelationshipPackage.MODEL_REL__MAPPING_REFS);
     }
+    return mappingRefs;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public ModelRel getMetatype() {
-        ExtendibleElement metatype = super.getMetatype();
-        return (metatype == null) ? null : (ModelRel) metatype;
-    }
+    ExtendibleElement metatype = super.getMetatype();
+    return (metatype == null) ? null : (ModelRel) metatype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Model getSupertype() {
-        ExtendibleElement supertype = super.getSupertype();
-        return (supertype == null) ? null : (Model) supertype;
-    }
+    ExtendibleElement supertype = super.getSupertype();
+    return (supertype == null) ? null : (Model) supertype;
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public MID getMIDContainer() {
-        return (MID) this.eContainer();
-    }
+    return (MID) this.eContainer();
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-                return ((InternalEList<?>)getModelEndpoints()).basicRemove(otherEnd, msgs);
-            case RelationshipPackage.MODEL_REL__MAPPINGS:
-                return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-                return ((InternalEList<?>)getModelEndpointRefs()).basicRemove(otherEnd, msgs);
-            case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-                return ((InternalEList<?>)getMappingRefs()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
+        return ((InternalEList<?>)getModelEndpoints()).basicRemove(otherEnd, msgs);
+      case RelationshipPackage.MODEL_REL__MAPPINGS:
+        return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
+        return ((InternalEList<?>)getModelEndpointRefs()).basicRemove(otherEnd, msgs);
+      case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+        return ((InternalEList<?>)getMappingRefs()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-                return getModelEndpoints();
-            case RelationshipPackage.MODEL_REL__MAPPINGS:
-                return getMappings();
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-                return getModelEndpointRefs();
-            case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-                return getMappingRefs();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
+        return getModelEndpoints();
+      case RelationshipPackage.MODEL_REL__MAPPINGS:
+        return getMappings();
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
+        return getModelEndpointRefs();
+      case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+        return getMappingRefs();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-                getModelEndpoints().clear();
-                getModelEndpoints().addAll((Collection<? extends ModelEndpoint>)newValue);
-                return;
-            case RelationshipPackage.MODEL_REL__MAPPINGS:
-                getMappings().clear();
-                getMappings().addAll((Collection<? extends Mapping>)newValue);
-                return;
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-                getModelEndpointRefs().clear();
-                getModelEndpointRefs().addAll((Collection<? extends ModelEndpointReference>)newValue);
-                return;
-            case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-                getMappingRefs().clear();
-                getMappingRefs().addAll((Collection<? extends MappingReference>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
+        getModelEndpoints().clear();
+        getModelEndpoints().addAll((Collection<? extends ModelEndpoint>)newValue);
+        return;
+      case RelationshipPackage.MODEL_REL__MAPPINGS:
+        getMappings().clear();
+        getMappings().addAll((Collection<? extends Mapping>)newValue);
+        return;
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
+        getModelEndpointRefs().clear();
+        getModelEndpointRefs().addAll((Collection<? extends ModelEndpointReference>)newValue);
+        return;
+      case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+        getMappingRefs().clear();
+        getMappingRefs().addAll((Collection<? extends MappingReference>)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-                getModelEndpoints().clear();
-                return;
-            case RelationshipPackage.MODEL_REL__MAPPINGS:
-                getMappings().clear();
-                return;
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-                getModelEndpointRefs().clear();
-                return;
-            case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-                getMappingRefs().clear();
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
+        getModelEndpoints().clear();
+        return;
+      case RelationshipPackage.MODEL_REL__MAPPINGS:
+        getMappings().clear();
+        return;
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
+        getModelEndpointRefs().clear();
+        return;
+      case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+        getMappingRefs().clear();
+        return;
     }
+    super.eUnset(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
-                return this.modelEndpoints != null && !this.modelEndpoints.isEmpty();
-            case RelationshipPackage.MODEL_REL__MAPPINGS:
-                return this.mappings != null && !this.mappings.isEmpty();
-            case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
-                return this.modelEndpointRefs != null && !this.modelEndpointRefs.isEmpty();
-            case RelationshipPackage.MODEL_REL__MAPPING_REFS:
-                return this.mappingRefs != null && !this.mappingRefs.isEmpty();
-        }
-        return super.eIsSet(featureID);
+    switch (featureID) {
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINTS:
+        return modelEndpoints != null && !modelEndpoints.isEmpty();
+      case RelationshipPackage.MODEL_REL__MAPPINGS:
+        return mappings != null && !mappings.isEmpty();
+      case RelationshipPackage.MODEL_REL__MODEL_ENDPOINT_REFS:
+        return modelEndpointRefs != null && !modelEndpointRefs.isEmpty();
+      case RelationshipPackage.MODEL_REL__MAPPING_REFS:
+        return mappingRefs != null && !mappingRefs.isEmpty();
     }
+    return super.eIsSet(featureID);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == ExtendibleElement.class) {
-            switch (baseOperationID) {
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
-                case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        if (baseClass == Model.class) {
-            switch (baseOperationID) {
-                case MIDPackage.MODEL___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
-                case MIDPackage.MODEL___GET_SUPERTYPE: return RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
-                case MIDPackage.MODEL___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
-                default: return super.eDerivedOperationID(baseOperationID, baseClass);
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
+    if (baseClass == ExtendibleElement.class) {
+      switch (baseOperationID) {
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
+        case MIDPackage.EXTENDIBLE_ELEMENT___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
     }
+    if (baseClass == Model.class) {
+      switch (baseOperationID) {
+        case MIDPackage.MODEL___GET_METATYPE: return RelationshipPackage.MODEL_REL___GET_METATYPE;
+        case MIDPackage.MODEL___GET_SUPERTYPE: return RelationshipPackage.MODEL_REL___GET_SUPERTYPE;
+        case MIDPackage.MODEL___GET_MID_CONTAINER: return RelationshipPackage.MODEL_REL___GET_MID_CONTAINER;
+        default: return super.eDerivedOperationID(baseOperationID, baseClass);
+      }
+    }
+    return super.eDerivedOperationID(baseOperationID, baseClass);
+  }
 
     /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
     @Override
     @SuppressWarnings("unchecked")
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case RelationshipPackage.MODEL_REL___GET_METATYPE:
-                return getMetatype();
-            case RelationshipPackage.MODEL_REL___GET_SUPERTYPE:
-                return getSupertype();
-            case RelationshipPackage.MODEL_REL___GET_MID_CONTAINER:
-                return getMIDContainer();
-            case RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN:
-                try {
-                    return createBinarySubtype((String)arguments.get(0), (Boolean)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___COPY_SUBTYPE__MODELREL:
-                try {
-                    return copySubtype((ModelRel)arguments.get(0));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_TYPES:
-                try {
-                    return getOutlineResourceTypes();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID:
-                try {
-                    return createInstanceAndEndpoints((EObject)arguments.get(0), (String)arguments.get(1), (EList<Model>)arguments.get(2), (MID)arguments.get(3));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID:
-                try {
-                    return createBinaryInstance((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID:
-                try {
-                    return createBinaryInstanceAndEndpoints((EObject)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (Model)arguments.get(3), (MID)arguments.get(4));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES:
-                try {
-                    return getOutlineResourceInstances();
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID:
-                try {
-                    return createWorkflowInstanceAndEndpoints((String)arguments.get(0), (EList<Model>)arguments.get(1), (MID)arguments.get(2));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID:
-                try {
-                    return createWorkflowBinaryInstance((String)arguments.get(0), (MID)arguments.get(1));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
-            case RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID:
-                try {
-                    return createWorkflowBinaryInstanceAndEndpoints((String)arguments.get(0), (Model)arguments.get(1), (Model)arguments.get(2), (MID)arguments.get(3));
-                }
-                catch (Throwable throwable) {
-                    throw new InvocationTargetException(throwable);
-                }
+    switch (operationID) {
+      case RelationshipPackage.MODEL_REL___GET_METATYPE:
+        return getMetatype();
+      case RelationshipPackage.MODEL_REL___GET_SUPERTYPE:
+        return getSupertype();
+      case RelationshipPackage.MODEL_REL___GET_MID_CONTAINER:
+        return getMIDContainer();
+      case RelationshipPackage.MODEL_REL___CREATE_BINARY_SUBTYPE__STRING_BOOLEAN:
+        try {
+          return createBinarySubtype((String)arguments.get(0), (Boolean)arguments.get(1));
         }
-        return super.eInvoke(operationID, arguments);
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___COPY_SUBTYPE__MODELREL:
+        try {
+          return copySubtype((ModelRel)arguments.get(0));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_TYPES:
+        try {
+          return getOutlineResourceTypes();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___CREATE_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_ELIST_MID:
+        try {
+          return createInstanceAndEndpoints((EObject)arguments.get(0), (String)arguments.get(1), (EList<Model>)arguments.get(2), (MID)arguments.get(3));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE__EOBJECT_STRING_MID:
+        try {
+          return createBinaryInstance((EObject)arguments.get(0), (String)arguments.get(1), (MID)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___CREATE_BINARY_INSTANCE_AND_ENDPOINTS__EOBJECT_STRING_MODEL_MODEL_MID:
+        try {
+          return createBinaryInstanceAndEndpoints((EObject)arguments.get(0), (String)arguments.get(1), (Model)arguments.get(2), (Model)arguments.get(3), (MID)arguments.get(4));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___GET_OUTLINE_RESOURCE_INSTANCES:
+        try {
+          return getOutlineResourceInstances();
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_INSTANCE_AND_ENDPOINTS__STRING_ELIST_MID:
+        try {
+          return createWorkflowInstanceAndEndpoints((String)arguments.get(0), (EList<Model>)arguments.get(1), (MID)arguments.get(2));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE__STRING_MID:
+        try {
+          return createWorkflowBinaryInstance((String)arguments.get(0), (MID)arguments.get(1));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
+      case RelationshipPackage.MODEL_REL___CREATE_WORKFLOW_BINARY_INSTANCE_AND_ENDPOINTS__STRING_MODEL_MODEL_MID:
+        try {
+          return createWorkflowBinaryInstanceAndEndpoints((String)arguments.get(0), (Model)arguments.get(1), (Model)arguments.get(2), (MID)arguments.get(3));
+        }
+        catch (Throwable throwable) {
+          throw new InvocationTargetException(throwable);
+        }
     }
+    return super.eInvoke(operationID, arguments);
+  }
 
     /**
      * Adds a subtype of this model relationship type to the Type MID.
@@ -469,6 +473,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createBinarySubtype(String newModelRelTypeName, boolean isMetamodelExtension) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -482,6 +487,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ModelRel copySubtype(ModelRel origModelRelType) throws MMINTException {
 
         ModelRel newModelRelType = (origModelRelType instanceof BinaryModelRel) ?
@@ -603,6 +609,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ResourceSet getOutlineResourceTypes() throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -695,13 +702,16 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
      *            An Instance MID. Can be null if the model relationship is not going to be contained in one.
      * @return The created model relationship.
      * @throws MMINTException
-     *             If this is not a model relationship type.
+     *             If this is not a model relationship type, or if this model relationship type is abstract.
      * @generated NOT
      */
     @Override
     public Model createInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
+        if (this.isAbstract()) {
+            throw new MMINTException("Can't instanciate an abstract model relationship type");
+        }
 
         //TODO MMINT[EDITOR] Add editor for modelrel too and relative api?
         ModelRel newModelRel = super.createThisEClass();
@@ -731,6 +741,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     protected void addInstanceEndpoints(ModelRel modelRel, EList<Model> endpointModels) throws MMINTException {
 
         for (Model endpointModel : endpointModels) {
+            //TODO MMINT[TYPES] Should either select the most specific through inverse type hierarchy, or ask for a choice
             String modelTypeEndpointId = MIDConstraintChecker.getAllowedModelEndpoints(modelRel, null, endpointModel).get(0);
             ModelEndpoint modelTypeEndpoint = MIDTypeRegistry.getType(modelTypeEndpointId);
             modelTypeEndpoint.createInstance(endpointModel, modelRel);
@@ -740,6 +751,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ModelRel createInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, EList<Model> endpointModels, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -756,9 +768,13 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createBinaryInstance(EObject rootModelRelObj, String newModelRelName, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
+        if (this.isAbstract()) {
+            throw new MMINTException("Can't instanciate an abstract model relationship type");
+        }
 
         BinaryModelRel newModelRel = super.createThisBinaryEClass();
         this.addInstance(
@@ -776,6 +792,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createBinaryInstanceAndEndpoints(EObject rootModelRelObj, String newModelRelName, Model endpointSourceModel, Model endpointTargetModel, MID instanceMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -899,6 +916,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ResourceSet getOutlineResourceInstances() throws MMINTException {
 
         MMINTException.mustBeInstance(this);
@@ -936,7 +954,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             newModelRelId,
             newModelRelId,
             ModelOrigin.CREATED,
-            MMINT.EMPTY_MODEL_FILE_EXTENSION,
+            MMINTConstants.EMPTY_MODEL_FILE_EXTENSION,
             MIDLevel.WORKFLOWS,
             workflowMID);
 
@@ -946,6 +964,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public ModelRel createWorkflowInstanceAndEndpoints(String newModelRelId, EList<Model> endpointModels, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -968,6 +987,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createWorkflowBinaryInstance(String newModelRelId, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);
@@ -978,7 +998,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
             newModelRelId,
             newModelRelId,
             ModelOrigin.CREATED,
-            MMINT.EMPTY_MODEL_FILE_EXTENSION,
+            MMINTConstants.EMPTY_MODEL_FILE_EXTENSION,
             MIDLevel.WORKFLOWS,
             workflowMID);
 
@@ -988,6 +1008,7 @@ public class ModelRelImpl extends ModelImpl implements ModelRel {
     /**
      * @generated NOT
      */
+    @Override
     public BinaryModelRel createWorkflowBinaryInstanceAndEndpoints(String newModelRelId, Model endpointSourceModel, Model endpointTargetModel, MID workflowMID) throws MMINTException {
 
         MMINTException.mustBeType(this);

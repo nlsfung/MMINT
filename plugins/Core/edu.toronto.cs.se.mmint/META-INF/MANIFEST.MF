@@ -2,11 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: edu.toronto.cs.se.mmint;singleton:=true
+Automatic-Module-Name: edu.toronto.cs.se.mmint
 Bundle-Version: 2.2.99.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-RequiredExecutionEnvironment: JavaSE-12
 Export-Package: edu.toronto.cs.se.mmint,
  edu.toronto.cs.se.mmint.extensions,
  edu.toronto.cs.se.mmint.mid,
@@ -36,7 +37,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.common,
  org.eclipse.emf.ecore.editor,
  org.eclipse.uml2.uml,
- org.eclipse.jdt.annotation;resolution:=optional,
- org.eclipse.sirius.ui
+ org.eclipse.sirius.ui,
+ org.eclipse.jdt.annotation;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: edu.toronto.cs.se.mmint.MMINTActivator
