@@ -30,6 +30,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.ImpactType;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.IndependenceGoal;
 import edu.toronto.cs.se.modelepedia.safetycase.Justification;
+import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.OrSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCase;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCaseFactory;
@@ -43,6 +44,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
 
+import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.util.SafetyCaseValidator;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -242,6 +244,20 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * @generated
 	 */
 	private EClass orSupporterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass xorSupporterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mofNSupporterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -807,6 +823,42 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getXorSupporter() {
+		return xorSupporterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMofNSupporter() {
+		return mofNSupporterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMofNSupporter_Numerator() {
+		return (EAttribute)mofNSupporterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMofNSupporter_Denominator() {
+		return (EAttribute)mofNSupporterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getASILLevel() {
 		return asilLevelEEnum;
 	}
@@ -935,6 +987,12 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 
 		orSupporterEClass = createEClass(OR_SUPPORTER);
 
+		xorSupporterEClass = createEClass(XOR_SUPPORTER);
+
+		mofNSupporterEClass = createEClass(MOF_NSUPPORTER);
+		createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__NUMERATOR);
+		createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__DENOMINATOR);
+
 		// Create enums
 		asilLevelEEnum = createEEnum(ASIL_LEVEL);
 		validityValueEEnum = createEEnum(VALIDITY_VALUE);
@@ -991,6 +1049,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		supportConnectorEClass.getESuperTypes().add(this.getSupportable());
 		andSupporterEClass.getESuperTypes().add(this.getSupportConnector());
 		orSupporterEClass.getESuperTypes().add(this.getSupportConnector());
+		xorSupporterEClass.getESuperTypes().add(this.getSupportConnector());
+		mofNSupporterEClass.getESuperTypes().add(this.getSupportConnector());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(safetyCaseEClass, SafetyCase.class, "SafetyCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1070,6 +1130,12 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEClass(andSupporterEClass, AndSupporter.class, "AndSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(orSupporterEClass, OrSupporter.class, "OrSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(xorSupporterEClass, XorSupporter.class, "XorSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mofNSupporterEClass, MofNSupporter.class, "MofNSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMofNSupporter_Numerator(), ecorePackage.getELong(), "numerator", "1", 1, 1, MofNSupporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMofNSupporter_Denominator(), ecorePackage.getELong(), "denominator", "1", 1, 1, MofNSupporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(asilLevelEEnum, ASILLevel.class, "ASILLevel");

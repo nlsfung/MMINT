@@ -298,6 +298,24 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SafetyCasePackage.XOR_SUPPORTER: {
+				XorSupporter xorSupporter = (XorSupporter)theEObject;
+				T result = caseXorSupporter(xorSupporter);
+				if (result == null) result = caseSupportConnector(xorSupporter);
+				if (result == null) result = caseSupportable(xorSupporter);
+				if (result == null) result = caseSupporter(xorSupporter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SafetyCasePackage.MOF_NSUPPORTER: {
+				MofNSupporter mofNSupporter = (MofNSupporter)theEObject;
+				T result = caseMofNSupporter(mofNSupporter);
+				if (result == null) result = caseSupportConnector(mofNSupporter);
+				if (result == null) result = caseSupportable(mofNSupporter);
+				if (result == null) result = caseSupporter(mofNSupporter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -689,6 +707,36 @@ public class SafetyCaseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOrSupporter(OrSupporter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Xor Supporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Xor Supporter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXorSupporter(XorSupporter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mof NSupporter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mof NSupporter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMofNSupporter(MofNSupporter object) {
 		return null;
 	}
 

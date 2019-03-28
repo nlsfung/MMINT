@@ -219,6 +219,16 @@ public class SafetyCaseItemProvider
 			(createChildParameter
 				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
 				 SafetyCaseFactory.eINSTANCE.createOrSupporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
+				 SafetyCaseFactory.eINSTANCE.createXorSupporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SafetyCasePackage.Literals.SAFETY_CASE__CONNECTORS,
+				 SafetyCaseFactory.eINSTANCE.createMofNSupporter()));
 	}
 
 	/**

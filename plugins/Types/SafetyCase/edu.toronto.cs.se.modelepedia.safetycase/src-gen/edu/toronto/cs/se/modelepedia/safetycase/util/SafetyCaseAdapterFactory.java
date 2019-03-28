@@ -182,6 +182,14 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 				return createOrSupporterAdapter();
 			}
 			@Override
+			public Adapter caseXorSupporter(XorSupporter object) {
+				return createXorSupporterAdapter();
+			}
+			@Override
+			public Adapter caseMofNSupporter(MofNSupporter object) {
+				return createMofNSupporterAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -562,6 +570,34 @@ public class SafetyCaseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOrSupporterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.XorSupporter <em>Xor Supporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.XorSupporter
+	 * @generated
+	 */
+	public Adapter createXorSupporterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter <em>Mof NSupporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter
+	 * @generated
+	 */
+	public Adapter createMofNSupporterAdapter() {
 		return null;
 	}
 

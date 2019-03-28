@@ -427,6 +427,52 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.XorSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected XorSupporterItemProvider xorSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.XorSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createXorSupporterAdapter() {
+		if (xorSupporterItemProvider == null) {
+			xorSupporterItemProvider = new XorSupporterItemProvider(this);
+		}
+
+		return xorSupporterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MofNSupporterItemProvider mofNSupporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMofNSupporterAdapter() {
+		if (mofNSupporterItemProvider == null) {
+			mofNSupporterItemProvider = new MofNSupporterItemProvider(this);
+		}
+
+		return mofNSupporterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -540,6 +586,8 @@ public class SafetyCaseItemProviderAdapterFactory extends SafetyCaseAdapterFacto
 		if (impactAnnotationItemProvider != null) impactAnnotationItemProvider.dispose();
 		if (andSupporterItemProvider != null) andSupporterItemProvider.dispose();
 		if (orSupporterItemProvider != null) orSupporterItemProvider.dispose();
+		if (xorSupporterItemProvider != null) xorSupporterItemProvider.dispose();
+		if (mofNSupporterItemProvider != null) mofNSupporterItemProvider.dispose();
 	}
 
 }

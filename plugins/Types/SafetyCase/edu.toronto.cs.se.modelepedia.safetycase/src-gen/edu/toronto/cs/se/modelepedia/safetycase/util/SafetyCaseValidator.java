@@ -148,6 +148,10 @@ public class SafetyCaseValidator extends EObjectValidator {
 				return validateAndSupporter((AndSupporter)value, diagnostics, context);
 			case SafetyCasePackage.OR_SUPPORTER:
 				return validateOrSupporter((OrSupporter)value, diagnostics, context);
+			case SafetyCasePackage.XOR_SUPPORTER:
+				return validateXorSupporter((XorSupporter)value, diagnostics, context);
+			case SafetyCasePackage.MOF_NSUPPORTER:
+				return validateMofNSupporter((MofNSupporter)value, diagnostics, context);
 			case SafetyCasePackage.ASIL_LEVEL:
 				return validateASILLevel((ASILLevel)value, diagnostics, context);
 			case SafetyCasePackage.VALIDITY_VALUE:
@@ -1109,6 +1113,48 @@ public class SafetyCaseValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(orSupporter, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(orSupporter, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(orSupporter, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateXorSupporter(XorSupporter xorSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(xorSupporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(xorSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(xorSupporter, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMofNSupporter(MofNSupporter mofNSupporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(mofNSupporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupporter_GoalRoot(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_SupportCycle(mofNSupporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSupportable_NonSupportableLeaves(mofNSupporter, diagnostics, context);
 		return result;
 	}
 

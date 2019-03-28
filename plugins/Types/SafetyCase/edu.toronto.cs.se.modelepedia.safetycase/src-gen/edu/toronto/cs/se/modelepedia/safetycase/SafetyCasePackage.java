@@ -1850,6 +1850,116 @@ public interface SafetyCasePackage extends EPackage {
 	int OR_SUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.XorSupporterImpl <em>Xor Supporter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.XorSupporterImpl
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getXorSupporter()
+	 * @generated
+	 */
+	int XOR_SUPPORTER = 26;
+
+	/**
+	 * The feature id for the '<em><b>Supports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XOR_SUPPORTER__SUPPORTS = SUPPORT_CONNECTOR__SUPPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XOR_SUPPORTER__SUPPORTED_BY = SUPPORT_CONNECTOR__SUPPORTED_BY;
+
+	/**
+	 * The number of structural features of the '<em>Xor Supporter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XOR_SUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Xor Supporter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XOR_SUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.MofNSupporterImpl <em>Mof NSupporter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.MofNSupporterImpl
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getMofNSupporter()
+	 * @generated
+	 */
+	int MOF_NSUPPORTER = 27;
+
+	/**
+	 * The feature id for the '<em><b>Supports</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOF_NSUPPORTER__SUPPORTS = SUPPORT_CONNECTOR__SUPPORTS;
+
+	/**
+	 * The feature id for the '<em><b>Supported By</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOF_NSUPPORTER__SUPPORTED_BY = SUPPORT_CONNECTOR__SUPPORTED_BY;
+
+	/**
+	 * The feature id for the '<em><b>Numerator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOF_NSUPPORTER__NUMERATOR = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Denominator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOF_NSUPPORTER__DENOMINATOR = SUPPORT_CONNECTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Mof NSupporter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOF_NSUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Mof NSupporter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOF_NSUPPORTER_OPERATION_COUNT = SUPPORT_CONNECTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1857,7 +1967,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getASILLevel()
 	 * @generated
 	 */
-	int ASIL_LEVEL = 26;
+	int ASIL_LEVEL = 28;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ValidityValue <em>Validity Value</em>}' enum.
@@ -1867,7 +1977,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getValidityValue()
 	 * @generated
 	 */
-	int VALIDITY_VALUE = 27;
+	int VALIDITY_VALUE = 29;
 
 	/**
 	 * The meta object id for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ImpactType <em>Impact Type</em>}' enum.
@@ -1877,7 +1987,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getImpactType()
 	 * @generated
 	 */
-	int IMPACT_TYPE = 28;
+	int IMPACT_TYPE = 30;
 
 
 	/**
@@ -2427,6 +2537,48 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getOrSupporter();
 
 	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.XorSupporter <em>Xor Supporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Xor Supporter</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.XorSupporter
+	 * @generated
+	 */
+	EClass getXorSupporter();
+
+	/**
+	 * Returns the meta object for class '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter <em>Mof NSupporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mof NSupporter</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter
+	 * @generated
+	 */
+	EClass getMofNSupporter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getNumerator <em>Numerator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Numerator</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getNumerator()
+	 * @see #getMofNSupporter()
+	 * @generated
+	 */
+	EAttribute getMofNSupporter_Numerator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getDenominator <em>Denominator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Denominator</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getDenominator()
+	 * @see #getMofNSupporter()
+	 * @generated
+	 */
+	EAttribute getMofNSupporter_Denominator();
+
+	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2946,6 +3098,42 @@ public interface SafetyCasePackage extends EPackage {
 		 * @generated
 		 */
 		EClass OR_SUPPORTER = eINSTANCE.getOrSupporter();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.XorSupporterImpl <em>Xor Supporter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.XorSupporterImpl
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getXorSupporter()
+		 * @generated
+		 */
+		EClass XOR_SUPPORTER = eINSTANCE.getXorSupporter();
+
+		/**
+		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.impl.MofNSupporterImpl <em>Mof NSupporter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.MofNSupporterImpl
+		 * @see edu.toronto.cs.se.modelepedia.safetycase.impl.SafetyCasePackageImpl#getMofNSupporter()
+		 * @generated
+		 */
+		EClass MOF_NSUPPORTER = eINSTANCE.getMofNSupporter();
+
+		/**
+		 * The meta object literal for the '<em><b>Numerator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MOF_NSUPPORTER__NUMERATOR = eINSTANCE.getMofNSupporter_Numerator();
+
+		/**
+		 * The meta object literal for the '<em><b>Denominator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MOF_NSUPPORTER__DENOMINATOR = eINSTANCE.getMofNSupporter_Denominator();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.
