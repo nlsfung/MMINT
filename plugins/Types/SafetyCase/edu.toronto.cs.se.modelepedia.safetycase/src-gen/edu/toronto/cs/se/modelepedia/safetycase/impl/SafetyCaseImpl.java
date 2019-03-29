@@ -150,6 +150,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Goal> getGoals() {
 		if (goals == null) {
 			goals = new EObjectContainmentEList<Goal>(Goal.class, this, SafetyCasePackage.SAFETY_CASE__GOALS);
@@ -162,6 +163,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Strategy> getStrategies() {
 		if (strategies == null) {
 			strategies = new EObjectContainmentEList<Strategy>(Strategy.class, this, SafetyCasePackage.SAFETY_CASE__STRATEGIES);
@@ -174,6 +176,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Solution> getSolutions() {
 		if (solutions == null) {
 			solutions = new EObjectContainmentEList<Solution>(Solution.class, this, SafetyCasePackage.SAFETY_CASE__SOLUTIONS);
@@ -186,6 +189,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Context> getContexts() {
 		if (contexts == null) {
 			contexts = new EObjectContainmentEList<Context>(Context.class, this, SafetyCasePackage.SAFETY_CASE__CONTEXTS);
@@ -198,6 +202,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Justification> getJustifications() {
 		if (justifications == null) {
 			justifications = new EObjectContainmentEList<Justification>(Justification.class, this, SafetyCasePackage.SAFETY_CASE__JUSTIFICATIONS);
@@ -210,6 +215,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Assumption> getAssumptions() {
 		if (assumptions == null) {
 			assumptions = new EObjectContainmentEList<Assumption>(Assumption.class, this, SafetyCasePackage.SAFETY_CASE__ASSUMPTIONS);
@@ -222,6 +228,7 @@ public class SafetyCaseImpl extends MinimalEObjectImpl.Container implements Safe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SupportConnector> getConnectors() {
 		if (connectors == null) {
 			connectors = new EObjectContainmentEList<SupportConnector>(SupportConnector.class, this, SafetyCasePackage.SAFETY_CASE__CONNECTORS);

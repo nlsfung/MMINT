@@ -78,6 +78,7 @@ public abstract class SupporterImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SupportedBy> getSupports() {
 		if (supports == null) {
 			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.SUPPORTER__SUPPORTS, SafetyCasePackage.SUPPORTED_BY__TARGET);

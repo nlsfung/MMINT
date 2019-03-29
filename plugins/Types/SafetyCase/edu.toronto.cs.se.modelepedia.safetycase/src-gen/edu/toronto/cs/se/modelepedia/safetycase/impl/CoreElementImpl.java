@@ -77,6 +77,7 @@ public abstract class CoreElementImpl extends ArgumentElementImpl implements Cor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SupportedBy> getSupports() {
 		if (supports == null) {
 			supports = new EObjectWithInverseResolvingEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.CORE_ELEMENT__SUPPORTS, SafetyCasePackage.SUPPORTED_BY__TARGET);

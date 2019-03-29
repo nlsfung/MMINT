@@ -78,6 +78,7 @@ public abstract class SupportableImpl extends SupporterImpl implements Supportab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SupportedBy> getSupportedBy() {
 		if (supportedBy == null) {
 			supportedBy = new EObjectContainmentWithInverseEList<SupportedBy>(SupportedBy.class, this, SafetyCasePackage.SUPPORTABLE__SUPPORTED_BY, SafetyCasePackage.SUPPORTED_BY__SOURCE);

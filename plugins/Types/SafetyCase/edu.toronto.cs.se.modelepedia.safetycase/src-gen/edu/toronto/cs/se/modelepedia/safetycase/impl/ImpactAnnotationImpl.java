@@ -102,6 +102,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ImpactType getType() {
 		return type;
 	}
@@ -111,6 +112,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(ImpactType newType) {
 		ImpactType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
@@ -123,6 +125,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSource() {
 		return source;
 	}
@@ -132,6 +135,7 @@ public class ImpactAnnotationImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(String newSource) {
 		String oldSource = source;
 		source = newSource;

@@ -132,7 +132,7 @@
           </style>
         </nodeMappings>
         <nodeMappings name="MofNSupporterNode" semanticCandidatesExpression="feature:connectors" domainClass="safetycase.MofNSupporter">
-          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.numerator + ' of ' + self.denominator" labelPosition="node" resizeKind="NSEW">
+          <style xsi:type="style:LozengeNodeDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:let denominator = self.supportedBy -> size() in self.target + ' of ' + denominator" labelPosition="node" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>

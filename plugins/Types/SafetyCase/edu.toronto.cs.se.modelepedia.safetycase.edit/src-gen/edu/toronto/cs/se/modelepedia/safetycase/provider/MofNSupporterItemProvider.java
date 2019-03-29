@@ -54,48 +54,25 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNumeratorPropertyDescriptor(object);
-			addDenominatorPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Numerator feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNumeratorPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MofNSupporter_numerator_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MofNSupporter_numerator_feature", "_UI_MofNSupporter_type"),
-				 SafetyCasePackage.Literals.MOF_NSUPPORTER__NUMERATOR,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Denominator feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDenominatorPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MofNSupporter_denominator_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MofNSupporter_denominator_feature", "_UI_MofNSupporter_type"),
-				 SafetyCasePackage.Literals.MOF_NSUPPORTER__DENOMINATOR,
+				 getString("_UI_MofNSupporter_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MofNSupporter_target_feature", "_UI_MofNSupporter_type"),
+				 SafetyCasePackage.Literals.MOF_NSUPPORTER__TARGET,
 				 true,
 				 false,
 				 false,
@@ -124,7 +101,7 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
 	@Override
 	public String getText(Object object) {
 		MofNSupporter mofNSupporter = (MofNSupporter)object;
-		return getString("_UI_MofNSupporter_type") + " " + mofNSupporter.getNumerator();
+		return getString("_UI_MofNSupporter_type") + " " + mofNSupporter.getTarget();
 	}
 
 
@@ -140,8 +117,7 @@ public class MofNSupporterItemProvider extends SupportConnectorItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MofNSupporter.class)) {
-			case SafetyCasePackage.MOF_NSUPPORTER__NUMERATOR:
-			case SafetyCasePackage.MOF_NSUPPORTER__DENOMINATOR:
+			case SafetyCasePackage.MOF_NSUPPORTER__TARGET:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

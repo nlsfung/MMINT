@@ -337,6 +337,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		EValidator.Registry.INSTANCE.put
 			(theSafetyCasePackage,
 			 new EValidator.Descriptor() {
+				 @Override
 				 public EValidator getEValidator() {
 					 return SafetyCaseValidator.INSTANCE;
 				 }
@@ -355,6 +356,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSafetyCase() {
 		return safetyCaseEClass;
 	}
@@ -364,6 +366,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSafetyCase_Goals() {
 		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(0);
 	}
@@ -373,6 +376,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSafetyCase_Strategies() {
 		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(1);
 	}
@@ -382,6 +386,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSafetyCase_Solutions() {
 		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(2);
 	}
@@ -391,6 +396,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSafetyCase_Contexts() {
 		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(3);
 	}
@@ -400,6 +406,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSafetyCase_Justifications() {
 		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(4);
 	}
@@ -409,6 +416,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSafetyCase_Assumptions() {
 		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(5);
 	}
@@ -418,6 +426,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSafetyCase_Connectors() {
 		return (EReference)safetyCaseEClass.getEStructuralFeatures().get(6);
 	}
@@ -427,6 +436,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArgumentElement() {
 		return argumentElementEClass;
 	}
@@ -436,6 +446,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArgumentElement_Id() {
 		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -445,6 +456,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArgumentElement_Description() {
 		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -454,6 +466,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArgumentElement_ContentValidity() {
 		return (EAttribute)argumentElementEClass.getEStructuralFeatures().get(2);
 	}
@@ -463,6 +476,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArgumentElement_Status() {
 		return (EReference)argumentElementEClass.getEStructuralFeatures().get(3);
 	}
@@ -472,6 +486,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStatefulElement() {
 		return statefulElementEClass;
 	}
@@ -481,6 +496,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStatefulElement_StateValidity() {
 		return (EAttribute)statefulElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -490,6 +506,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getASILfulElement() {
 		return asiLfulElementEClass;
 	}
@@ -499,6 +516,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getASILfulElement_Asil() {
 		return (EReference)asiLfulElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -508,6 +526,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCoreElement() {
 		return coreElementEClass;
 	}
@@ -517,6 +536,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDecomposableCoreElement() {
 		return decomposableCoreElementEClass;
 	}
@@ -526,6 +546,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDecomposableCoreElement_InContextOf() {
 		return (EReference)decomposableCoreElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -535,6 +556,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContextualElement() {
 		return contextualElementEClass;
 	}
@@ -544,6 +566,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getContextualElement_ContextOf() {
 		return (EReference)contextualElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -553,6 +576,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSupportedBy() {
 		return supportedByEClass;
 	}
@@ -562,6 +586,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSupportedBy_Source() {
 		return (EReference)supportedByEClass.getEStructuralFeatures().get(0);
 	}
@@ -571,6 +596,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSupportedBy_Target() {
 		return (EReference)supportedByEClass.getEStructuralFeatures().get(1);
 	}
@@ -580,6 +606,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInContextOf() {
 		return inContextOfEClass;
 	}
@@ -589,6 +616,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInContextOf_Context() {
 		return (EReference)inContextOfEClass.getEStructuralFeatures().get(0);
 	}
@@ -598,6 +626,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInContextOf_ContextOf() {
 		return (EReference)inContextOfEClass.getEStructuralFeatures().get(1);
 	}
@@ -607,6 +636,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGoal() {
 		return goalEClass;
 	}
@@ -616,6 +646,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBasicGoal() {
 		return basicGoalEClass;
 	}
@@ -625,6 +656,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIndependenceGoal() {
 		return independenceGoalEClass;
 	}
@@ -634,6 +666,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStrategy() {
 		return strategyEClass;
 	}
@@ -643,6 +676,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBasicStrategy() {
 		return basicStrategyEClass;
 	}
@@ -652,6 +686,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getASILDecompositionStrategy() {
 		return asilDecompositionStrategyEClass;
 	}
@@ -661,6 +696,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSolution() {
 		return solutionEClass;
 	}
@@ -670,6 +706,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContext() {
 		return contextEClass;
 	}
@@ -679,6 +716,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getJustification() {
 		return justificationEClass;
 	}
@@ -688,6 +726,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssumption() {
 		return assumptionEClass;
 	}
@@ -697,6 +736,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getASIL() {
 		return asilEClass;
 	}
@@ -706,6 +746,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getASIL_Value() {
 		return (EAttribute)asilEClass.getEStructuralFeatures().get(0);
 	}
@@ -715,6 +756,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getASIL_Target() {
 		return (EReference)asilEClass.getEStructuralFeatures().get(1);
 	}
@@ -724,6 +766,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getASIL_Status() {
 		return (EReference)asilEClass.getEStructuralFeatures().get(2);
 	}
@@ -733,6 +776,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getImpactAnnotation() {
 		return impactAnnotationEClass;
 	}
@@ -742,6 +786,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getImpactAnnotation_Type() {
 		return (EAttribute)impactAnnotationEClass.getEStructuralFeatures().get(0);
 	}
@@ -751,6 +796,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getImpactAnnotation_Source() {
 		return (EAttribute)impactAnnotationEClass.getEStructuralFeatures().get(1);
 	}
@@ -760,6 +806,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSupportable() {
 		return supportableEClass;
 	}
@@ -769,6 +816,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSupportable_SupportedBy() {
 		return (EReference)supportableEClass.getEStructuralFeatures().get(0);
 	}
@@ -778,6 +826,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSupporter() {
 		return supporterEClass;
 	}
@@ -787,6 +836,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSupporter_Supports() {
 		return (EReference)supporterEClass.getEStructuralFeatures().get(0);
 	}
@@ -796,6 +846,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSupportConnector() {
 		return supportConnectorEClass;
 	}
@@ -805,6 +856,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAndSupporter() {
 		return andSupporterEClass;
 	}
@@ -814,6 +866,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrSupporter() {
 		return orSupporterEClass;
 	}
@@ -823,6 +876,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getXorSupporter() {
 		return xorSupporterEClass;
 	}
@@ -832,6 +886,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMofNSupporter() {
 		return mofNSupporterEClass;
 	}
@@ -841,7 +896,8 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMofNSupporter_Numerator() {
+	@Override
+	public EAttribute getMofNSupporter_Target() {
 		return (EAttribute)mofNSupporterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -850,15 +906,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMofNSupporter_Denominator() {
-		return (EAttribute)mofNSupporterEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public EEnum getASILLevel() {
 		return asilLevelEEnum;
 	}
@@ -868,6 +916,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getValidityValue() {
 		return validityValueEEnum;
 	}
@@ -877,6 +926,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getImpactType() {
 		return impactTypeEEnum;
 	}
@@ -886,6 +936,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SafetyCaseFactory getSafetyCaseFactory() {
 		return (SafetyCaseFactory)getEFactoryInstance();
 	}
@@ -990,8 +1041,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		xorSupporterEClass = createEClass(XOR_SUPPORTER);
 
 		mofNSupporterEClass = createEClass(MOF_NSUPPORTER);
-		createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__NUMERATOR);
-		createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__DENOMINATOR);
+		createEAttribute(mofNSupporterEClass, MOF_NSUPPORTER__TARGET);
 
 		// Create enums
 		asilLevelEEnum = createEEnum(ASIL_LEVEL);
@@ -1134,8 +1184,7 @@ public class SafetyCasePackageImpl extends EPackageImpl implements SafetyCasePac
 		initEClass(xorSupporterEClass, XorSupporter.class, "XorSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mofNSupporterEClass, MofNSupporter.class, "MofNSupporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMofNSupporter_Numerator(), ecorePackage.getELong(), "numerator", "1", 1, 1, MofNSupporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMofNSupporter_Denominator(), ecorePackage.getELong(), "denominator", "1", 1, 1, MofNSupporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMofNSupporter_Target(), ecorePackage.getELong(), "target", "1", 1, 1, MofNSupporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(asilLevelEEnum, ASILLevel.class, "ASILLevel");

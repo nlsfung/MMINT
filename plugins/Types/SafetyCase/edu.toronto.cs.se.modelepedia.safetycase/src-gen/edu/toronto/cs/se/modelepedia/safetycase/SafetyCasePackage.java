@@ -1924,22 +1924,13 @@ public interface SafetyCasePackage extends EPackage {
 	int MOF_NSUPPORTER__SUPPORTED_BY = SUPPORT_CONNECTOR__SUPPORTED_BY;
 
 	/**
-	 * The feature id for the '<em><b>Numerator</b></em>' attribute.
+	 * The feature id for the '<em><b>Target</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MOF_NSUPPORTER__NUMERATOR = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Denominator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MOF_NSUPPORTER__DENOMINATOR = SUPPORT_CONNECTOR_FEATURE_COUNT + 1;
+	int MOF_NSUPPORTER__TARGET = SUPPORT_CONNECTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Mof NSupporter</em>' class.
@@ -1948,7 +1939,7 @@ public interface SafetyCasePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MOF_NSUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 2;
+	int MOF_NSUPPORTER_FEATURE_COUNT = SUPPORT_CONNECTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Mof NSupporter</em>' class.
@@ -2557,26 +2548,15 @@ public interface SafetyCasePackage extends EPackage {
 	EClass getMofNSupporter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getNumerator <em>Numerator</em>}'.
+	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Numerator</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getNumerator()
+	 * @return the meta object for the attribute '<em>Target</em>'.
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getTarget()
 	 * @see #getMofNSupporter()
 	 * @generated
 	 */
-	EAttribute getMofNSupporter_Numerator();
-
-	/**
-	 * Returns the meta object for the attribute '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getDenominator <em>Denominator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Denominator</em>'.
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getDenominator()
-	 * @see #getMofNSupporter()
-	 * @generated
-	 */
-	EAttribute getMofNSupporter_Denominator();
+	EAttribute getMofNSupporter_Target();
 
 	/**
 	 * Returns the meta object for enum '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}'.
@@ -3120,20 +3100,12 @@ public interface SafetyCasePackage extends EPackage {
 		EClass MOF_NSUPPORTER = eINSTANCE.getMofNSupporter();
 
 		/**
-		 * The meta object literal for the '<em><b>Numerator</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MOF_NSUPPORTER__NUMERATOR = eINSTANCE.getMofNSupporter_Numerator();
-
-		/**
-		 * The meta object literal for the '<em><b>Denominator</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MOF_NSUPPORTER__DENOMINATOR = eINSTANCE.getMofNSupporter_Denominator();
+		EAttribute MOF_NSUPPORTER__TARGET = eINSTANCE.getMofNSupporter_Target();
 
 		/**
 		 * The meta object literal for the '{@link edu.toronto.cs.se.modelepedia.safetycase.ASILLevel <em>ASIL Level</em>}' enum.

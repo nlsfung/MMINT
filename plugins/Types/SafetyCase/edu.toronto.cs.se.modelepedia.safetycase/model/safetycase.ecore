@@ -175,9 +175,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="OrSupporter" eSuperTypes="#//SupportConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="XorSupporter" eSuperTypes="#//SupportConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="MofNSupporter" eSuperTypes="#//SupportConnector">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numerator" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="denominator" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong" defaultValueLiteral="1"/>
   </eClassifiers>
 </ecore:EPackage>

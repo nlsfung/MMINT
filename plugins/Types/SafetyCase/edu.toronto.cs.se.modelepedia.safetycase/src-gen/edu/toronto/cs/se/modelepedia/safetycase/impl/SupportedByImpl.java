@@ -76,6 +76,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Supportable getSource() {
 		if (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__SOURCE) return null;
 		return (Supportable)eInternalContainer();
@@ -96,6 +97,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSource(Supportable newSource) {
 		if (newSource != eInternalContainer() || (eContainerFeatureID() != SafetyCasePackage.SUPPORTED_BY__SOURCE && newSource != null)) {
 			if (EcoreUtil.isAncestor(this, newSource))
@@ -117,6 +119,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Supporter getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
@@ -158,6 +161,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(Supporter newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;

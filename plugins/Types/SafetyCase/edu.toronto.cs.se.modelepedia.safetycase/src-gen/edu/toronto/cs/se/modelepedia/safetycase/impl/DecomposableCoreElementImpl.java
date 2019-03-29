@@ -158,6 +158,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -167,6 +168,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -179,6 +181,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -188,6 +191,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -200,6 +204,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValidityValue getContentValidity() {
 		return contentValidity;
 	}
@@ -209,6 +214,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContentValidity(ValidityValue newContentValidity) {
 		ValidityValue oldContentValidity = contentValidity;
 		contentValidity = newContentValidity == null ? CONTENT_VALIDITY_EDEFAULT : newContentValidity;
@@ -221,6 +227,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ImpactAnnotation getStatus() {
 		return status;
 	}
@@ -245,6 +252,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatus(ImpactAnnotation newStatus) {
 		if (newStatus != status) {
 			NotificationChain msgs = null;
@@ -264,6 +272,7 @@ public abstract class DecomposableCoreElementImpl extends SupportableImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<InContextOf> getInContextOf() {
 		if (inContextOf == null) {
 			inContextOf = new EObjectContainmentWithInverseEList<InContextOf>(InContextOf.class, this, SafetyCasePackage.DECOMPOSABLE_CORE_ELEMENT__IN_CONTEXT_OF, SafetyCasePackage.IN_CONTEXT_OF__CONTEXT_OF);

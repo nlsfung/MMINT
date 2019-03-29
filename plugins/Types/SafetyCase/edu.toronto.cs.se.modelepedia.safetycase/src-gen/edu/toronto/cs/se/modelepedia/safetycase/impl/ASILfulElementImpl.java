@@ -73,6 +73,7 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ASIL getAsil() {
 		return asil;
 	}
@@ -97,6 +98,7 @@ public abstract class ASILfulElementImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAsil(ASIL newAsil) {
 		if (newAsil != asil) {
 			NotificationChain msgs = null;

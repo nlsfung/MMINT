@@ -22,8 +22,7 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getNumerator <em>Numerator</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getDenominator <em>Denominator</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getMofNSupporter()
@@ -33,56 +32,25 @@ package edu.toronto.cs.se.modelepedia.safetycase;
 public interface MofNSupporter extends SupportConnector {
 
 	/**
-	 * Returns the value of the '<em><b>Numerator</b></em>' attribute.
+	 * Returns the value of the '<em><b>Target</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Numerator</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Numerator</em>' attribute.
-	 * @see #setNumerator(long)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getMofNSupporter_Numerator()
+	 * @return the value of the '<em>Target</em>' attribute.
+	 * @see #setTarget(long)
+	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getMofNSupporter_Target()
 	 * @model default="1" required="true"
 	 * @generated
 	 */
-	long getNumerator();
+	long getTarget();
 
 	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getNumerator <em>Numerator</em>}' attribute.
+	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getTarget <em>Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Numerator</em>' attribute.
-	 * @see #getNumerator()
+	 * @param value the new value of the '<em>Target</em>' attribute.
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setNumerator(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Denominator</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Denominator</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Denominator</em>' attribute.
-	 * @see #setDenominator(long)
-	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getMofNSupporter_Denominator()
-	 * @model default="1" required="true"
-	 * @generated
-	 */
-	long getDenominator();
-
-	/**
-	 * Sets the value of the '{@link edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter#getDenominator <em>Denominator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Denominator</em>' attribute.
-	 * @see #getDenominator()
-	 * @generated
-	 */
-	void setDenominator(long value);
+	void setTarget(long value);
 } // MofNSupporter

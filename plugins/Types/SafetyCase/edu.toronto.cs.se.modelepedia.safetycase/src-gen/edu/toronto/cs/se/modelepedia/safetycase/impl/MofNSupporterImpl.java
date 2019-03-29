@@ -27,50 +27,30 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.MofNSupporterImpl#getNumerator <em>Numerator</em>}</li>
- *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.MofNSupporterImpl#getDenominator <em>Denominator</em>}</li>
+ *   <li>{@link edu.toronto.cs.se.modelepedia.safetycase.impl.MofNSupporterImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSupporter {
 	/**
-	 * The default value of the '{@link #getNumerator() <em>Numerator</em>}' attribute.
+	 * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNumerator()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long NUMERATOR_EDEFAULT = 1L;
+	protected static final long TARGET_EDEFAULT = 1L;
 	/**
-	 * The cached value of the '{@link #getNumerator() <em>Numerator</em>}' attribute.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNumerator()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected long numerator = NUMERATOR_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getDenominator() <em>Denominator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDenominator()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final long DENOMINATOR_EDEFAULT = 1L;
-	/**
-	 * The cached value of the '{@link #getDenominator() <em>Denominator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDenominator()
-	 * @generated
-	 * @ordered
-	 */
-	protected long denominator = DENOMINATOR_EDEFAULT;
-
+	protected long target = TARGET_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,8 +75,9 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getNumerator() {
-		return numerator;
+	@Override
+	public long getTarget() {
+		return target;
 	}
 
 	/**
@@ -104,32 +85,12 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumerator(long newNumerator) {
-		long oldNumerator = numerator;
-		numerator = newNumerator;
+	@Override
+	public void setTarget(long newTarget) {
+		long oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.MOF_NSUPPORTER__NUMERATOR, oldNumerator, numerator));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public long getDenominator() {
-		return denominator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDenominator(long newDenominator) {
-		long oldDenominator = denominator;
-		denominator = newDenominator;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.MOF_NSUPPORTER__DENOMINATOR, oldDenominator, denominator));
+			eNotify(new ENotificationImpl(this, Notification.SET, SafetyCasePackage.MOF_NSUPPORTER__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -140,10 +101,8 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SafetyCasePackage.MOF_NSUPPORTER__NUMERATOR:
-				return getNumerator();
-			case SafetyCasePackage.MOF_NSUPPORTER__DENOMINATOR:
-				return getDenominator();
+			case SafetyCasePackage.MOF_NSUPPORTER__TARGET:
+				return getTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,11 +115,8 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SafetyCasePackage.MOF_NSUPPORTER__NUMERATOR:
-				setNumerator((Long)newValue);
-				return;
-			case SafetyCasePackage.MOF_NSUPPORTER__DENOMINATOR:
-				setDenominator((Long)newValue);
+			case SafetyCasePackage.MOF_NSUPPORTER__TARGET:
+				setTarget((Long)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,11 +130,8 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.MOF_NSUPPORTER__NUMERATOR:
-				setNumerator(NUMERATOR_EDEFAULT);
-				return;
-			case SafetyCasePackage.MOF_NSUPPORTER__DENOMINATOR:
-				setDenominator(DENOMINATOR_EDEFAULT);
+			case SafetyCasePackage.MOF_NSUPPORTER__TARGET:
+				setTarget(TARGET_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -192,10 +145,8 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SafetyCasePackage.MOF_NSUPPORTER__NUMERATOR:
-				return numerator != NUMERATOR_EDEFAULT;
-			case SafetyCasePackage.MOF_NSUPPORTER__DENOMINATOR:
-				return denominator != DENOMINATOR_EDEFAULT;
+			case SafetyCasePackage.MOF_NSUPPORTER__TARGET:
+				return target != TARGET_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -210,10 +161,8 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (numerator: ");
-		result.append(numerator);
-		result.append(", denominator: ");
-		result.append(denominator);
+		result.append(" (target: ");
+		result.append(target);
 		result.append(')');
 		return result.toString();
 	}

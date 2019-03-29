@@ -94,8 +94,7 @@
     <genClasses ecoreClass="safetycase.ecore#//OrSupporter"/>
     <genClasses ecoreClass="safetycase.ecore#//XorSupporter"/>
     <genClasses ecoreClass="safetycase.ecore#//MofNSupporter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//MofNSupporter/numerator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//MofNSupporter/denominator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute safetycase.ecore#//MofNSupporter/target"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

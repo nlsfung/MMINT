@@ -132,6 +132,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SafetyCase createSafetyCase() {
 		SafetyCaseImpl safetyCase = new SafetyCaseImpl();
 		return safetyCase;
@@ -142,6 +143,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SupportedBy createSupportedBy() {
 		SupportedByImpl supportedBy = new SupportedByImpl();
 		return supportedBy;
@@ -152,6 +154,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InContextOf createInContextOf() {
 		InContextOfImpl inContextOf = new InContextOfImpl();
 		return inContextOf;
@@ -162,6 +165,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BasicGoal createBasicGoal() {
 		BasicGoalImpl basicGoal = new BasicGoalImpl();
 		return basicGoal;
@@ -172,6 +176,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IndependenceGoal createIndependenceGoal() {
 		IndependenceGoalImpl independenceGoal = new IndependenceGoalImpl();
 		return independenceGoal;
@@ -182,6 +187,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BasicStrategy createBasicStrategy() {
 		BasicStrategyImpl basicStrategy = new BasicStrategyImpl();
 		return basicStrategy;
@@ -192,6 +198,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ASILDecompositionStrategy createASILDecompositionStrategy() {
 		ASILDecompositionStrategyImpl asilDecompositionStrategy = new ASILDecompositionStrategyImpl();
 		return asilDecompositionStrategy;
@@ -202,6 +209,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Solution createSolution() {
 		SolutionImpl solution = new SolutionImpl();
 		return solution;
@@ -212,6 +220,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Context createContext() {
 		ContextImpl context = new ContextImpl();
 		return context;
@@ -222,6 +231,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Justification createJustification() {
 		JustificationImpl justification = new JustificationImpl();
 		return justification;
@@ -232,6 +242,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Assumption createAssumption() {
 		AssumptionImpl assumption = new AssumptionImpl();
 		return assumption;
@@ -242,6 +253,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ASIL createASIL() {
 		ASILImpl asil = new ASILImpl();
 		return asil;
@@ -252,6 +264,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ImpactAnnotation createImpactAnnotation() {
 		ImpactAnnotationImpl impactAnnotation = new ImpactAnnotationImpl();
 		return impactAnnotation;
@@ -262,6 +275,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AndSupporter createAndSupporter() {
 		AndSupporterImpl andSupporter = new AndSupporterImpl();
 		return andSupporter;
@@ -272,6 +286,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OrSupporter createOrSupporter() {
 		OrSupporterImpl orSupporter = new OrSupporterImpl();
 		return orSupporter;
@@ -282,6 +297,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public XorSupporter createXorSupporter() {
 		XorSupporterImpl xorSupporter = new XorSupporterImpl();
 		return xorSupporter;
@@ -292,6 +308,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MofNSupporter createMofNSupporter() {
 		MofNSupporterImpl mofNSupporter = new MofNSupporterImpl();
 		return mofNSupporter;
@@ -362,6 +379,7 @@ public class SafetyCaseFactoryImpl extends EFactoryImpl implements SafetyCaseFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SafetyCasePackage getSafetyCasePackage() {
 		return (SafetyCasePackage)getEPackage();
 	}
