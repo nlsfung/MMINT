@@ -12,7 +12,9 @@
  */
 package edu.toronto.cs.se.modelepedia.safetycase.operator;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -22,8 +24,8 @@ import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
-public class GSNSliceRevise2State extends GSNSliceRevise {
-
+public class GSNSliceRevise2State extends GSNSlice {
+	
 	// Get impacted model elements directly reachable from the input element.
 	@Override
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
@@ -35,9 +37,7 @@ public class GSNSliceRevise2State extends GSNSliceRevise {
 		if (modelObj instanceof Strategy) {
 			Strategy s = (Strategy) modelObj;
 
-			for (Goal g : getAncestorGoals(s)) {
-				impacted.add(g);
-			}
+			impacted.addAll(getAncestorGoals(s, alreadyImpacted));
 		}
 
 		impacted.removeAll(alreadyImpacted);
@@ -45,48 +45,5 @@ public class GSNSliceRevise2State extends GSNSliceRevise {
 		return impacted;
 	}
 
-	// Returns all ancestor goals of the input strategy.
-	public Set<Goal> getAncestorGoals(Strategy elem) {
-		Set<DecomposableCoreElement> ancestorsAll = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsCur = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsNext = new HashSet<>();
 
-		// Iterate through the current set of newly added ancestors
-		// to identify the next generation of ancestors.
-		for (SupportedBy rel : elem.getSupports()) {
-			ancestorsNext.add(rel.getConclusion());
-		}
-
-		ancestorsAll.addAll(ancestorsNext);
-		ancestorsCur.addAll(ancestorsNext);
-		ancestorsNext.clear();
-
-		while (!ancestorsCur.isEmpty()) {
-			for (DecomposableCoreElement curElem : ancestorsCur) {
-				for (SupportedBy rel : curElem.getSupports()) {
-					ancestorsNext.add(rel.getConclusion());
-				}
-			}
-
-			ancestorsCur.clear();
-			for (DecomposableCoreElement newElem : ancestorsNext) {
-				if (!ancestorsAll.contains(newElem)) {
-					ancestorsAll.add(newElem);
-					ancestorsCur.add(newElem);
-				}
-			}
-
-			ancestorsNext.clear();
-		}
-
-		// Return the ancestors that are goals.
-		Set<Goal> goalAncestors = new HashSet<>();
-		for (DecomposableCoreElement newElem : ancestorsAll) {
-			if (newElem instanceof Goal) {
-				goalAncestors.add((Goal) newElem);
-			}
-		}
-
-		return goalAncestors;
-	}
 }

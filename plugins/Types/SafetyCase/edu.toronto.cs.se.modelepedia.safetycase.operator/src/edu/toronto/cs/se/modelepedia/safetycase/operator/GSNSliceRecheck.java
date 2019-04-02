@@ -24,7 +24,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
-public class GSNSliceRecheck extends Slice {
+public class GSNSliceRecheck extends GSNSlice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
@@ -35,66 +35,17 @@ public class GSNSliceRecheck extends Slice {
 		// If input is a goal, then the state validity of all ancestor goals should be rechecked.
 		if (modelObj instanceof Goal) {
 			Goal g = (Goal) modelObj;
-			for (Goal gNew : getAncestorGoals(g)) {
-				impacted.add(gNew);
-			}
+			impacted.addAll(getAncestorGoals(g, alreadyImpacted));
 			
-			// If input is a solution, then the state validity of all ancestor goals should be rechecked.
+		// If input is a solution, then the state validity of all ancestor goals should be rechecked.
 		} else if (modelObj instanceof Solution) {
 			Solution s = (Solution) modelObj;
-			for (Goal gNew : getAncestorGoals(s)) {
-				impacted.add(gNew);
-			}
+			impacted.addAll(getAncestorGoals(s, alreadyImpacted));
 		}
 
 		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
-	}
-
-	// Returns all ancestor goals of the input argument element.
-	public Set<Goal> getAncestorGoals(CoreElement elem) {
-		Set<DecomposableCoreElement> ancestorsAll = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsCur = new HashSet<>();
-		Set<DecomposableCoreElement> ancestorsNext = new HashSet<>();
-
-		// Iterate through the current set of newly added ancestors
-		// to identify the next generation of ancestors.
-		for (SupportedBy rel : elem.getSupports()) {
-			ancestorsNext.add(rel.getConclusion());
-		}
-		
-		ancestorsAll.addAll(ancestorsNext);
-		ancestorsCur.addAll(ancestorsNext);
-		ancestorsNext.clear();		
-		
-		while (!ancestorsCur.isEmpty()) {
-			for (DecomposableCoreElement curElem : ancestorsCur) {
-				for (SupportedBy rel : curElem.getSupports()) {
-					ancestorsNext.add(rel.getConclusion());
-				}
-			}
-
-			ancestorsCur.clear();
-			for (DecomposableCoreElement newElem : ancestorsNext) {
-				if (!ancestorsAll.contains(newElem)) {
-					ancestorsAll.add(newElem);
-					ancestorsCur.add(newElem);
-				}
-			}
-
-			ancestorsNext.clear();
-		}
-		
-		// Return the ancestors that are goals.
-		Set<Goal> goalAncestors = new HashSet<>();
-		for (DecomposableCoreElement newElem : ancestorsAll) {
-			if (newElem instanceof Goal) {
-				goalAncestors.add((Goal) newElem);
-			}
-		}
-
-		return goalAncestors;
 	}
 
 }
