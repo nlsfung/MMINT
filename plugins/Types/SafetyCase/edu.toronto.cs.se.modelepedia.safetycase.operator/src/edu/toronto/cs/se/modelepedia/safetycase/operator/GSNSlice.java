@@ -176,8 +176,16 @@ public class GSNSlice extends Slice {
 		
 		for (SupportedBy rel: elem.getSupportedBy()) {
 			totalCount += 1;
+			
 			if (alreadyImpacted.contains(rel.getTarget())) {
 				impactCount += 1;
+				continue;
+				
+			} else if (rel.getTarget() instanceof SupportConnector) {
+				if (isImpactPropagatedUp((SupportConnector) rel.getTarget(), alreadyImpacted)) {
+					impactCount += 1;
+					continue;					
+				}
 			}
 		}
 		
