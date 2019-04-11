@@ -35,22 +35,6 @@ import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
 
 // Contains useful functions for slicing safety cases.
 public class GSNSlice extends Slice {
-
-    @Override
-    protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
-
-        Map<EObject, Set<EObject>> impacted = new HashMap<>();
-        alreadyImpacted.add(critModelObj);
-
-        // Iterate through the input set of revised elements to identify
-        // all model elements that require re-checking.
-        Set<EObject> impactedModelObjs = getDirectlyImpactedElements(critModelObj, alreadyImpacted);
-        alreadyImpacted.addAll(impactedModelObjs);
-        impactedModelObjs.add(critModelObj);
-        impacted.put(critModelObj, impactedModelObjs);
-
-        return impacted;
-    }
 	
 	// Returns all child core elements of the input decomposable core element.
 	public Set<CoreElement> getChildCoreElements(DecomposableCoreElement inputElem) {
@@ -95,14 +79,15 @@ public class GSNSlice extends Slice {
 		Set<Supportable> supportablesNext = new HashSet<>();
 		Set<Supportable> supportablesAll = new HashSet<>();
 		
-		supportablesCur.addAll(connectors);		
+		supportablesCur.addAll(connectors);
+		supportablesAll.addAll(connectors);
         while (!supportablesCur.isEmpty()) {
+    		Set<EObject> impactedAll = new HashSet<>();
+    		impactedAll.addAll(alreadyImpacted);
+    		impactedAll.addAll(supportablesAll);
+        	
         	for (Supportable elem: supportablesCur) {
-
         		// Add parents to impacted set if necessary.
-        		Set<EObject> impactedAll = new HashSet<>();
-        		impactedAll.addAll(alreadyImpacted);
-        		impactedAll.addAll(supportablesAll);
         		if (isImpactPropagatedUp(elem, impactedAll)) {
     				for (SupportedBy rel: elem.getSupports()) {
     					supportablesNext.add(rel.getSource());
@@ -146,14 +131,16 @@ public class GSNSlice extends Slice {
 		}
 
 		ancestorsCur.addAll(ancestorsNext);
+		ancestorsAll.addAll(ancestorsNext);
 		ancestorsNext.clear();
 
 		while (!ancestorsCur.isEmpty()) {
+			Set<EObject> impactedAll = new HashSet<>();
+			impactedAll.addAll(alreadyImpacted);
+			impactedAll.addAll(ancestorsAll);
+			
 			for (Supportable curElem : ancestorsCur) {
-				Set<EObject> impactedSet = new HashSet<>();
-				impactedSet.addAll(alreadyImpacted);
-				impactedSet.addAll(ancestorsAll);
-				if (isImpactPropagatedUp(curElem, alreadyImpacted)) {
+				if (isImpactPropagatedUp(curElem, impactedAll)) {
 					for (SupportedBy rel : curElem.getSupports()) {
 						ancestorsNext.add(rel.getSource());
 					}
@@ -174,8 +161,7 @@ public class GSNSlice extends Slice {
 
 			ancestorsNext.clear();
 		}
-		
-		System.out.println(goalAncestors.size());
+				
 		return goalAncestors;
 	}
 	
@@ -201,7 +187,7 @@ public class GSNSlice extends Slice {
 		
 		// If an AND-connector is impacted, then its parents are 
 		// impacted if any of its children are impacted.
-		} else if (elem instanceof AndSupporter) {        			
+		} else if (elem instanceof AndSupporter) {
 			if (impactCount >= 1) {
 				isImpactPropagated = true;
 			}

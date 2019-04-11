@@ -75,7 +75,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
         	}
         }
         
-        impactedModelObjs.addAll(connectorDependants);        
+        impactedModelObjs.addAll(connectorDependants);  
         
         // If an ASIL decomposition strategy is impacted, then its independence 
         // goal is also impacted.
