@@ -466,7 +466,7 @@ public class SafetyCaseValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String GOAL__ASIL_INHERITANCE__EEXPRESSION = "\n" +
-		"\t\t\tlet parents : Set(Goal) = self.supports.source -> closure(c | if c.oclIsKindOf(Goal) then c.oclAsSet() else c.supports.source endif) -> selectByKind(Goal) -> asSet()\n" +
+		"\t\t\tlet parents : Set(Goal) = self.supports.source -> closure(c | if c.oclIsKindOf(Goal) or c.oclIsKindOf(ASILDecompositionStrategy) then c.oclAsSet() else c.supports.source endif) -> selectByKind(Goal) -> asSet()\n" +
 		"\t\t\tin parents -> forAll(g | if g.asil = null then true else if self.asil = null then false else g.asil.value = ASILLevel::QM or (g.asil.value.toString() <= self.asil.value.toString() and self.asil.value <> ASILLevel::QM) endif endif)";
 
 	/**
