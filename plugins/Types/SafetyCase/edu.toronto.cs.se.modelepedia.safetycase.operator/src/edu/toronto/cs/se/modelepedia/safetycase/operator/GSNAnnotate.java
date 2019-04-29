@@ -105,7 +105,7 @@ public class GSNAnnotate extends OperatorImpl {
         }
     }
 
-    private Model annotate(@NonNull Model scModel, @NonNull ModelRel reviseRel, @NonNull ModelRel recheckContentRel,
+    protected Model annotate(@NonNull Model scModel, @NonNull ModelRel reviseRel, @NonNull ModelRel recheckContentRel,
                            @NonNull ModelRel recheckStateRel, @Nullable MID outputMID) throws Exception {
 
         SafetyCase scRoot = (SafetyCase) scModel.getEMFInstanceRoot();
