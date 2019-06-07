@@ -156,7 +156,7 @@ public class ASILItemProvider
 			getString("_UI_ASIL_type") :
 			getString("_UI_ASIL_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

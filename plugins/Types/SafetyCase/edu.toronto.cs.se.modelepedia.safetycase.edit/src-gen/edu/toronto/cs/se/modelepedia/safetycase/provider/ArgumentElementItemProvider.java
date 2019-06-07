@@ -179,7 +179,7 @@ public class ArgumentElementItemProvider
 			getString("_UI_ArgumentElement_type") :
 			getString("_UI_ArgumentElement_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

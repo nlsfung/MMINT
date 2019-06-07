@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -16,7 +16,9 @@ import edu.toronto.cs.se.modelepedia.safetycase.MofNSupporter;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -42,6 +44,7 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	 * @ordered
 	 */
 	protected static final long TARGET_EDEFAULT = 1L;
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,6 +54,7 @@ public class MofNSupporterImpl extends SupportConnectorImpl implements MofNSuppo
 	 * @ordered
 	 */
 	protected long target = TARGET_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

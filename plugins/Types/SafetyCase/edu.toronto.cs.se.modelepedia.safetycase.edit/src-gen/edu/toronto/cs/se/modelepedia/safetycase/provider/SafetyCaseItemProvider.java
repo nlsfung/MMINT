@@ -132,7 +132,7 @@ public class SafetyCaseItemProvider
 	public String getText(Object object) {
 		return getString("_UI_SafetyCase_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

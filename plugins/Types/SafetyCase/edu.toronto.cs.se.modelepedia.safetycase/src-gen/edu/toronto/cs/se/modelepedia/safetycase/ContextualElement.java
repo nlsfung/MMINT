@@ -38,10 +38,6 @@ public interface ContextualElement extends ArgumentElement {
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf}.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Context Of</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Context Of</em>' reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getContextualElement_ContextOf()

@@ -52,6 +52,7 @@ public class SupportedByImpl extends MinimalEObjectImpl.Container implements Sup
 	 * @ordered
 	 */
 	protected Supporter target;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

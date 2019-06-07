@@ -139,7 +139,7 @@ public class GoalItemProvider extends DecomposableCoreElementItemProvider {
 			getString("_UI_Goal_type") :
 			getString("_UI_Goal_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

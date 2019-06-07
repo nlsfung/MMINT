@@ -79,7 +79,7 @@ public class ContextItemProvider extends ContextualElementItemProvider {
 			getString("_UI_Context_type") :
 			getString("_UI_Context_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

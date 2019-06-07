@@ -93,7 +93,7 @@ public class CoreElementItemProvider extends ArgumentElementItemProvider {
 			getString("_UI_CoreElement_type") :
 			getString("_UI_CoreElement_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

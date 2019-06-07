@@ -43,8 +43,8 @@ import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
-
 import edu.toronto.cs.se.modelepedia.safetycase.XorSupporter;
+
 import edu.toronto.cs.se.modelepedia.safetycase.util.SafetyCaseValidator;
 
 import org.eclipse.emf.ecore.EAttribute;

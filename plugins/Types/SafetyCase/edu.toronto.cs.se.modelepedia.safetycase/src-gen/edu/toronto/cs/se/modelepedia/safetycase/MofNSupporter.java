@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2018 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
+ * Copyright (c) 2012-2019 Marsha Chechik, Alessio Di Sandro, Michalis Famelis,
  * Rick Salay, Nick Fung.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -30,7 +30,6 @@ package edu.toronto.cs.se.modelepedia.safetycase;
  * @generated
  */
 public interface MofNSupporter extends SupportConnector {
-
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
@@ -53,4 +52,5 @@ public interface MofNSupporter extends SupportConnector {
 	 * @generated
 	 */
 	void setTarget(long value);
+
 } // MofNSupporter

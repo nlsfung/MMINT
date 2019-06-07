@@ -61,10 +61,6 @@ public enum ValidityValue implements Enumerator {
 	/**
 	 * The '<em><b>Invalid</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Invalid</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #INVALID
 	 * @model name="Invalid"
@@ -76,10 +72,6 @@ public enum ValidityValue implements Enumerator {
 	/**
 	 * The '<em><b>Valid</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Valid</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #VALID
 	 * @model name="Valid"
@@ -91,10 +83,6 @@ public enum ValidityValue implements Enumerator {
 	/**
 	 * The '<em><b>Undetermined</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Undetermined</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #UNDETERMINED
 	 * @model name="Undetermined"

@@ -71,10 +71,6 @@ public enum ImpactType implements Enumerator {
 	/**
 	 * The '<em><b>Revise</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Revise</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #REVISE
 	 * @model name="Revise"
@@ -86,10 +82,6 @@ public enum ImpactType implements Enumerator {
 	/**
 	 * The '<em><b>Recheck Content</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Recheck Content</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RECHECK_CONTENT
 	 * @model name="RecheckContent"
@@ -101,10 +93,6 @@ public enum ImpactType implements Enumerator {
 	/**
 	 * The '<em><b>Recheck State</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Recheck State</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #RECHECK_STATE
 	 * @model name="RecheckState"
@@ -116,10 +104,6 @@ public enum ImpactType implements Enumerator {
 	/**
 	 * The '<em><b>Reuse</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Reuse</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #REUSE
 	 * @model name="Reuse"

@@ -81,10 +81,6 @@ public enum ASILLevel implements Enumerator {
 	/**
 	 * The '<em><b>D</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>D</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #D
 	 * @model
@@ -96,10 +92,6 @@ public enum ASILLevel implements Enumerator {
 	/**
 	 * The '<em><b>C</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>C</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #C
 	 * @model
@@ -111,10 +103,6 @@ public enum ASILLevel implements Enumerator {
 	/**
 	 * The '<em><b>B</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>B</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #B
 	 * @model
@@ -126,10 +114,6 @@ public enum ASILLevel implements Enumerator {
 	/**
 	 * The '<em><b>A</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>A</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #A
 	 * @model
@@ -141,10 +125,6 @@ public enum ASILLevel implements Enumerator {
 	/**
 	 * The '<em><b>QM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>QM</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #QM
 	 * @model

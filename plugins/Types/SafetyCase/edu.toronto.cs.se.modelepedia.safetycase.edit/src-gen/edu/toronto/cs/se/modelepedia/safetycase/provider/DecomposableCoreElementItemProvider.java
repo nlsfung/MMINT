@@ -197,7 +197,7 @@ public class DecomposableCoreElementItemProvider extends SupportableItemProvider
 			getString("_UI_DecomposableCoreElement_type") :
 			getString("_UI_DecomposableCoreElement_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

@@ -18,10 +18,8 @@ import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.ImpactAnnotation;
 import edu.toronto.cs.se.modelepedia.safetycase.InContextOf;
 import edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage;
-import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
-import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
-
 import edu.toronto.cs.se.modelepedia.safetycase.ValidityValue;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -33,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

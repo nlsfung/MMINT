@@ -44,10 +44,6 @@ public interface SafetyCase extends EObject {
 	 * Returns the value of the '<em><b>Goals</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Goal}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Goals</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Goals</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Goals()
@@ -60,10 +56,6 @@ public interface SafetyCase extends EObject {
 	 * Returns the value of the '<em><b>Strategies</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Strategy}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Strategies</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Strategies</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Strategies()
@@ -76,10 +68,6 @@ public interface SafetyCase extends EObject {
 	 * Returns the value of the '<em><b>Solutions</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Solution}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Solutions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Solutions</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Solutions()
@@ -92,10 +80,6 @@ public interface SafetyCase extends EObject {
 	 * Returns the value of the '<em><b>Contexts</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Context}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Contexts</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contexts</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Contexts()
@@ -108,10 +92,6 @@ public interface SafetyCase extends EObject {
 	 * Returns the value of the '<em><b>Justifications</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Justification}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Justifications</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Justifications</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Justifications()
@@ -124,10 +104,6 @@ public interface SafetyCase extends EObject {
 	 * Returns the value of the '<em><b>Assumptions</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.Assumption}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Assumptions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assumptions</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Assumptions()
@@ -140,10 +116,6 @@ public interface SafetyCase extends EObject {
 	 * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.SupportConnector}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Connectors</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connectors</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getSafetyCase_Connectors()

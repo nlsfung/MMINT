@@ -36,10 +36,6 @@ public interface DecomposableCoreElement extends Supportable, CoreElement {
 	 * The list contents are of type {@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf}.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.InContextOf#getContextOf <em>Context Of</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>In Context Of</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Context Of</em>' containment reference list.
 	 * @see edu.toronto.cs.se.modelepedia.safetycase.SafetyCasePackage#getDecomposableCoreElement_InContextOf()

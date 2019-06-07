@@ -36,10 +36,6 @@ public interface SupportedBy extends EObject {
 	 * Returns the value of the '<em><b>Source</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.Supportable#getSupportedBy <em>Supported By</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' container reference.
 	 * @see #setSource(Supportable)
@@ -64,10 +60,6 @@ public interface SupportedBy extends EObject {
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link edu.toronto.cs.se.modelepedia.safetycase.Supporter#getSupports <em>Supports</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Supporter)
