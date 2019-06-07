@@ -198,8 +198,19 @@ public class ModelRelMerge extends OperatorImpl {
             }
             else {
                 // warning: this will merge mappings with same endpoints even from a single rel
-                String mergedName = mergedMappingRef.getObject().getName() + MERGE_SEPARATOR +
-                                    origMappingRef.getObject().getName();
+            	// quick fix: remove duplicate names (useful for slicers).
+            	String mergedName;
+            	String origMappingName = origMappingRef.getObject().getName();
+            	String mergedMappingName = mergedMappingRef.getObject().getName();
+            	if (mergedMappingName.contains(origMappingName)) {
+            		mergedName = mergedMappingName;
+            	} else if (origMappingName.contains(mergedMappingName)) {
+            		mergedName = origMappingName;
+            	} else {
+            		mergedName = mergedMappingRef.getObject().getName() + MERGE_SEPARATOR +
+            				origMappingRef.getObject().getName();
+            	}
+            	
                 mergedMappingRef.getObject().setName(mergedName);
             }
         }
