@@ -114,8 +114,6 @@ public class SDSlice extends Slice {
 			
 		}
 
-		impacted.removeAll(alreadyImpacted);
-
 		return impacted;
 	}
 	

@@ -74,8 +74,6 @@ public class SMSlice extends Slice {
 
 	    }
 
-		impacted.removeAll(alreadyImpacted);
-
 		return impacted;
 	}
 

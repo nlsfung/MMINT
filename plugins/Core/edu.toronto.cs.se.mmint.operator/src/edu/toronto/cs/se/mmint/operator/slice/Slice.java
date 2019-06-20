@@ -130,9 +130,7 @@ public class Slice extends OperatorImpl {
     // By default, the contained elements are assumed to be impacted.
     protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
-        return modelObj.eContents().stream()
-            .filter(modelObj2 -> !alreadyImpacted.contains(modelObj2))
-            .collect(Collectors.toSet());
+        return modelObj.eContents().stream().collect(Collectors.toSet());
     }
 
     // Returns the complete set of model elements that may be impacted
@@ -152,6 +150,7 @@ public class Slice extends OperatorImpl {
                 // Get all model elements directly impacted by the current
                 // one without adding duplicates.
                 Set<EObject> impactedModelObjs = getDirectlyImpactedElements(modelObj, alreadyImpacted);
+                impactedModelObjs.removeAll(alreadyImpacted);
                 impactedNext.addAll(impactedModelObjs);
                 alreadyImpacted.addAll(impactedModelObjs);
                 impacted.put(modelObj, impactedModelObjs);

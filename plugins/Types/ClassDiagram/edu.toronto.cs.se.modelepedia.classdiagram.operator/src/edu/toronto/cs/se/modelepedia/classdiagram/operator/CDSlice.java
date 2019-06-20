@@ -142,9 +142,6 @@ public class CDSlice extends Slice {
 				impacted.add(c.getComposite());
 			}
 		}
-		
-		
-		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
 	}
