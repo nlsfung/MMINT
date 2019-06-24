@@ -31,9 +31,13 @@ public class CDSlice extends Slice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
+	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj) {
 
 	    Set<EObject> impacted = new HashSet<>();
+	    
+	    // By default, the input element is also impacted.
+	    impacted.add(modelObj);	    
+	    
 		// If input is a class diagram, then the following are also impacted:
 		// 1) Owned classes, associations, dependencies, data types and compositions.
 		if (modelObj instanceof ClassDiagram) {
