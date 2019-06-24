@@ -31,7 +31,7 @@ public class CDSlice extends Slice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj) {
+	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
 	    Set<EObject> impacted = new HashSet<>();
 	    

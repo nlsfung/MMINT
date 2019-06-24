@@ -128,14 +128,15 @@ public class Slice extends OperatorImpl {
     // Returns the set of model elements that may be directly impacted
     // by the input model element.
     // By default, the contained elements are assumed to be impacted.
-    protected Set<EObject> getDirectlyImpactedElements(EObject modelObj) {
-
+    // In some cases, the impacted elements also depend on what else is impacted.
+    protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
         return modelObj.eContents().stream().collect(Collectors.toSet());
     }
 
     // Returns the complete set of model elements that may be impacted
     // by the input model element.
-    protected Set<EObject> getAllImpactedElements(EObject critModelObj) {
+    // In some cases, the impacted elements also depend on what else is impacted.
+    protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
 
         Set<EObject> impactedAll = new HashSet<>();
         Set<EObject> impactedCur = new HashSet<>();
@@ -148,10 +149,11 @@ public class Slice extends OperatorImpl {
             for (EObject modelObj : impactedCur) {
                 // Get all model elements directly impacted by the current
                 // one without adding duplicates (to ensure termination).
-                Set<EObject> impactedModelObjs = getDirectlyImpactedElements(modelObj);
+                Set<EObject> impactedModelObjs = getDirectlyImpactedElements(modelObj, alreadyImpacted);
                 impactedModelObjs.removeAll(impactedAll);
                 impactedNext.addAll(impactedModelObjs);
                 impactedAll.addAll(impactedModelObjs);
+                alreadyImpacted.addAll(impactedModelObjs);
             }
             
             // Prepare for next iteration.
@@ -177,6 +179,7 @@ public class Slice extends OperatorImpl {
         // loop through the model objects in the input criterion
         // initialise map for storing the impacted elements and their impact source(s)
         // initialise map for tracking whether an impact source refers to other source(s)
+        Set<EObject> alreadyImpacted = new HashSet<>();
         Map<EObject, Set<EObject>> impactedFromCrit = new HashMap<>();        
         Map<EObject, String> prevImpacterMap = new HashMap<>();
         for (ModelElementReference critModelElemRef : critModelEndpointRef.getModelElemRefs()) {
@@ -192,9 +195,10 @@ public class Slice extends OperatorImpl {
                 }
                 
                 // add impacted elements to the impact map
-                Set<EObject> impacted = getAllImpactedElements(critModelObj);
+                Set<EObject> impacted = getAllImpactedElements(critModelObj, alreadyImpacted);
                 for (EObject elem : impacted) {
                 	if (!impactedFromCrit.containsKey(elem)) {
+                		alreadyImpacted.add(elem);
                 		impactedFromCrit.put(elem, new HashSet<>());
                 	}
                 	

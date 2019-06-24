@@ -30,7 +30,7 @@ public class SMSlice extends Slice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj) {
+	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 	    Set<EObject> impacted = new HashSet<>();
 	    
 	    // By default, the input element is also impacted.
