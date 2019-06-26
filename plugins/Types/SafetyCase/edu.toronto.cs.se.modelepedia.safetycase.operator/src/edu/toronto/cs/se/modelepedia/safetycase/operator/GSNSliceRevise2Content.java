@@ -48,21 +48,19 @@ public class GSNSliceRevise2Content extends GSNSlice {
     // Get all model elements in a safety case that needs to be re-checked for 
 	// content validity given the input element that requires revision.
     @Override
-    protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
+    protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
 
-        Map<EObject, Set<EObject>> impacted = new HashMap<>();
-        alreadyImpacted.add(critModelObj);
+        Set<EObject> impactedModelObjs = new HashSet<>();
 
         // Identify all elements (including supported-by connectors) that are 
         // dependent on the revised element.
-        Set<EObject> impactedModelObjs = getDirectlyImpactedElements(critModelObj, alreadyImpacted);
+        impactedModelObjs.addAll(getDirectlyImpactedElements(critModelObj, alreadyImpacted));
         alreadyImpacted.addAll(impactedModelObjs);
         
         // Iterate through newly impacted supported-by connectors and check 
-        // whether their sources are impacted as well. Repeat the process 
-        // until a fixed point is reached.
+        // whether their sources are impacted as well.
         Set<SupportConnector> connectors = new HashSet<>();
-        for (EObject elem: alreadyImpacted) {
+        for (EObject elem: impactedModelObjs) {
         	if (elem instanceof SupportConnector) {
         		connectors.add((SupportConnector) elem);
         	}
@@ -75,7 +73,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
         	}
         }
         
-        impactedModelObjs.addAll(connectorDependants);  
+        impactedModelObjs.addAll(connectorDependants);
         
         // If an ASIL decomposition strategy is impacted, then its independence 
         // goal is also impacted.
@@ -94,12 +92,8 @@ public class GSNSliceRevise2Content extends GSNSlice {
         
         // Remove supported-by connectors from the impacted elements.
         impactedModelObjs.removeIf(elem -> elem instanceof SupportConnector);
-        
-        // Return the impacted elements (excluding supported-by connectors).
-        impactedModelObjs.add(critModelObj);
-        impacted.put(critModelObj, impactedModelObjs);
 
-        return impacted;
+        return impactedModelObjs;
     }
 	
 	// Get impacted model elements directly reachable from the input element.
@@ -107,6 +101,9 @@ public class GSNSliceRevise2Content extends GSNSlice {
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
 	    Set<EObject> impacted = new HashSet<>();
+	    
+	    // By default, the input model element is impacted.
+	    impacted.add(modelObj);
 
 		// If input is a goal, then the following are potentially impacted:
 		// 1) Any parent supportable (including supported-by connectors)

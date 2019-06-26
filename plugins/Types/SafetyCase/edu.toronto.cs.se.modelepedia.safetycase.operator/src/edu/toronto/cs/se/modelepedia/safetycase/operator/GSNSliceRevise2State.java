@@ -34,41 +34,31 @@ public class GSNSliceRevise2State extends GSNSlice {
     // Get all model elements in a safety case that needs to be re-checked for 
 	// state validity given the input element that requires revision.
     @Override
-    protected Map<EObject, Set<EObject>> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
+    protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
 
-        Map<EObject, Set<EObject>> impacted = new HashMap<>();
         Set<EObject> impactedModelObjs = new HashSet<>();
-        impactedModelObjs.add(critModelObj);
-        alreadyImpacted.add(critModelObj);
         
         // Slice all elements iteratively until a fixed point is reached.
         Set<EObject> impactedCur = new HashSet<>();
         Set<EObject> impactedNext = new HashSet<>();
         
-        impactedCur.addAll(alreadyImpacted);
+        impactedCur.add(critModelObj);
         while (!impactedCur.isEmpty()) {
-        	for (EObject elem: alreadyImpacted) {
+        	for (EObject elem: impactedCur) {
         		impactedNext.addAll(getDirectlyImpactedElements(elem, alreadyImpacted));
         	}
         	
-        	boolean isRepeat = false;
+        	// Check if fixed point has been reached
         	impactedCur.clear();
-        	for (EObject elem: impactedNext) {
-        		if (!alreadyImpacted.contains(elem)) {
-        			isRepeat = true;
-        			alreadyImpacted.add(elem);
-        			impactedModelObjs.add(elem);
-        		}
-        	}
-        	
-        	if (isRepeat) {
-        		impactedCur.addAll(alreadyImpacted);
+        	if (!impactedModelObjs.containsAll(impactedNext)) {
+        		impactedModelObjs.addAll(impactedNext);
+        		alreadyImpacted.addAll(impactedNext);
+        		impactedCur.addAll(impactedModelObjs);
+        		impactedNext.clear();
         	}
         }
-        
-        impacted.put(critModelObj, impactedModelObjs);
 
-        return impacted;
+        return impactedModelObjs;
     }
 	
 	// Get impacted model elements directly reachable from the input element.
@@ -76,16 +66,16 @@ public class GSNSliceRevise2State extends GSNSlice {
 	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
 	    Set<EObject> impacted = new HashSet<>();
+	    
+	    // By default, the input element is impacted
+        impacted.add(modelObj);
 
 		// If input is a strategy, then the state validity should be rechecked for:
 		// 1) All ancestor goals.
 		if (modelObj instanceof Strategy) {
 			Strategy s = (Strategy) modelObj;
-
 			impacted.addAll(getAncestorGoals(s, alreadyImpacted));
 		}
-
-		impacted.removeAll(alreadyImpacted);
 
 		return impacted;
 	}
