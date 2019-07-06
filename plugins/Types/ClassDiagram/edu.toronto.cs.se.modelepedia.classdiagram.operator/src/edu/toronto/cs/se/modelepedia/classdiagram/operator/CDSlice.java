@@ -12,7 +12,9 @@
  */
 package edu.toronto.cs.se.modelepedia.classdiagram.operator;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -31,8 +33,9 @@ public class CDSlice extends Slice {
 
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
+	protected Map<EObject, Set<EObject>> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
+		Map<EObject, Set<EObject>> impactedMap = new HashMap<>();
 	    Set<EObject> impacted = new HashSet<>();
 	    
 	    // By default, the input element is also impacted.
@@ -147,6 +150,7 @@ public class CDSlice extends Slice {
 			}
 		}
 
-		return impacted;
+		impactedMap.put(modelObj, impacted);
+		return impactedMap;
 	}
 }
