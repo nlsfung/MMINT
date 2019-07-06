@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.operator.slice;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -125,42 +126,14 @@ public class Slice extends OperatorImpl {
         this.output = new Output(outputMIDsByName);
     }
 
-    // Returns the set of model elements that may be directly impacted
-    // by the input model element.
+    // Returns a map from the input model element to the set of model elements that may be directly impacted by it. 
     // By default, the contained elements are assumed to be impacted.
     // In some cases, the impacted elements also depend on what else is impacted.
-    protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
-        return modelObj.eContents().stream().collect(Collectors.toSet());
-    }
-
-    // Returns the complete set of model elements that may be impacted
-    // by the input model element.
-    // In some cases, the impacted elements also depend on what else is impacted.
-    protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
-
-        Set<EObject> impactedAll = new HashSet<>();
-        Set<EObject> impactedCur = new HashSet<>();
-        impactedCur.add(critModelObj);
-
-        // Iterate through the current set of newly added model elements
-        // to identify all others that may be potentially impacted.
-        while (!impactedCur.isEmpty()) {
-            Set<EObject> impactedNext = new HashSet<>();
-            for (EObject modelObj : impactedCur) {
-                // Get all model elements directly impacted by the current
-                // one without adding duplicates (to ensure termination).
-                Set<EObject> impactedModelObjs = getDirectlyImpactedElements(modelObj, alreadyImpacted);
-                impactedModelObjs.removeAll(impactedAll);
-                impactedNext.addAll(impactedModelObjs);
-                impactedAll.addAll(impactedModelObjs);
-                alreadyImpacted.addAll(impactedModelObjs);
-            }
-            
-            // Prepare for next iteration.
-            impactedCur = impactedNext;
-        }
-
-        return impactedAll;
+    // In such cases, the map 
+    protected Map<EObject, Set<EObject>> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
+    	Map<EObject, Set<EObject>> impactedMap = new HashMap<>();
+    	impactedMap.put(modelObj, modelObj.eContents().stream().collect(Collectors.toSet()));
+        return impactedMap;
     }
 
     protected void slice() throws MMINTException {
@@ -177,33 +150,24 @@ public class Slice extends OperatorImpl {
         Resource r = rs.getResource(rUri, true);      
         
         // loop through the model objects in the input criterion
-        // initialise map for storing the impacted elements and their impact source(s)
-        // initialise map for tracking whether an impact source refers to other source(s)
-        Set<EObject> alreadyImpacted = new HashSet<>();
-        Map<EObject, Set<EObject>> impactedFromCrit = new HashMap<>();        
-        Map<EObject, String> prevImpacterMap = new HashMap<>();
+        // initialise map for tracking the source of each criterion
+        Map<EObject, String> critNameMap = new HashMap<>();
         for (ModelElementReference critModelElemRef : critModelEndpointRef.getModelElemRefs()) {
-            try {            	
+            try {
+            	String impacterName = "Error Name";
                 EObject critModelObj = critModelElemRef.getObject().getEMFInstanceObject(r);
                 
                 // Check if criterion contains info about previous slice steps
                 if (critModelElemRef.getModelElemEndpointRefs().size() == 1) {
-                    String prevImpacterName = ((MappingReference) critModelElemRef
-                                           .getModelElemEndpointRefs().get(0).eContainer())
-                                               .getObject().getName();
-                    prevImpacterMap.put(critModelObj, prevImpacterName);
+                    impacterName = ((MappingReference) critModelElemRef.getModelElemEndpointRefs()
+                    					.get(0).eContainer()).getObject().getName();
+                } else {
+                	EMFInfo impacterEInfo = MIDRegistry.getModelElementEMFInfo(critModelObj, MIDLevel.INSTANCES);
+					impacterName = this.input.model.getName() + "." + 
+							MIDRegistry.getModelElementName(impacterEInfo, critModelObj, MIDLevel.INSTANCES);
                 }
                 
-                // add impacted elements to the impact map
-                Set<EObject> impacted = getAllImpactedElements(critModelObj, alreadyImpacted);
-                for (EObject elem : impacted) {
-                	if (!impactedFromCrit.containsKey(elem)) {
-                		alreadyImpacted.add(elem);
-                		impactedFromCrit.put(elem, new HashSet<>());
-                	}
-                	
-                	impactedFromCrit.get(elem).add(critModelObj);
-                }
+                critNameMap.put(critModelObj, impacterName);
                 
             } catch (MMINTException e) {
             	MMINTException.print(IStatus.WARNING,
@@ -211,30 +175,89 @@ public class Slice extends OperatorImpl {
             }
         }
         
+        // Retrieve all elements dependent on the input criterion until fixed point is reached.
+        // Useful for cases in which an element depends on multiple other elements.
+        Map<EObject, Set<EObject>> allImpactedDependents = new HashMap<>();
+        Map<EObject, Set<EObject>> nextImpactedDependents = new HashMap<>();
+        
+        boolean isFixedPoint = false;
+        for (EObject elem: critNameMap.keySet()) {
+        	allImpactedDependents.put(elem, new HashSet<>());
+        }
+        
+        while (!isFixedPoint) {
+        	// Identify all elements impacted by the current set of impacted elements.
+        	// Merge with existing impacted map and check if fixed point is reached.
+        	for (EObject elem: allImpactedDependents.keySet()) {
+        		for (Entry<EObject, Set<EObject>> entry: getDirectlyImpactedElements(elem, allImpactedDependents.keySet()).entrySet()) {
+        			if (!nextImpactedDependents.containsKey(entry.getKey())) {
+        				nextImpactedDependents.put(entry.getKey(), new HashSet<>());
+        			}
+        			nextImpactedDependents.get(entry.getKey()).addAll(entry.getValue());
+        		}
+        	}
+        	
+        	// Merge with existing impacted map and check if fixed point is reach.
+        	isFixedPoint = true;
+        	for (Entry<EObject, Set<EObject>> entry: nextImpactedDependents.entrySet()) {
+        		if (!allImpactedDependents.get(entry.getKey()).containsAll(entry.getValue())) {
+        			isFixedPoint = false;
+        			allImpactedDependents.get(entry.getKey()).addAll(entry.getValue());
+        			for (EObject key: entry.getValue()) {
+        				if (!allImpactedDependents.containsKey(key)) {
+        					allImpactedDependents.put(key, new HashSet<>());
+        				}
+        			}
+        		}
+        	}
+        	
+        	// Prepare for next iteration.
+        	nextImpactedDependents.clear();
+        }
+        
+        // Iterate through all impacted elements to identify their root cause
+        Map<EObject, Set<EObject>> allImpactedSource = new HashMap<>();
+        Set<EObject> curImpacters = new HashSet<>();
+        Set<EObject> nextImpacters = new HashSet<>();
+        
+        // Initialise set of impacted elements and their impact source.
+        for (EObject crit: critNameMap.keySet()) {
+        	for (EObject impactee: allImpactedDependents.get(crit)) {
+        		allImpactedSource.put(impactee, new HashSet<>());
+        		allImpactedSource.get(impactee).add(crit);
+        		curImpacters.add(impactee);
+        	}
+        }
+        
+        // Iterate through the rest of the impacted elements.
+        while (!curImpacters.isEmpty()) {
+        	for (EObject impacter: curImpacters) {
+        		for (EObject impactee: allImpactedDependents.get(impacter)) {
+        			if (!allImpactedSource.containsKey(impactee)) {
+        				nextImpacters.add(impactee);     
+        				allImpactedSource.put(impactee, new HashSet<>());
+        			}
+        			
+        			allImpactedSource.get(impactee).addAll(allImpactedSource.get(impacter));
+        		}
+        	}
+        	
+        	curImpacters.clear();
+        	curImpacters.addAll(nextImpacters);
+        	nextImpacters.clear();
+        }
+                
 		// add impacted elements to the output model relation
-		for (Entry<EObject, Set<EObject>> impactedFromCritEntry : impactedFromCrit.entrySet()) {
+		for (Entry<EObject, Set<EObject>> impactedFromCritEntry : allImpactedSource.entrySet()) {
 			String impacteeLabel = "";
 			for (EObject impacter : impactedFromCritEntry.getValue()) {
-				// Use previous impact source as label (if present)
-				String impacterName = "";
-				if (prevImpacterMap.containsKey(impacter)) {
-					impacterName = prevImpacterMap.get(impacter);					
-				} else {
-					EMFInfo impacterEInfo = MIDRegistry.getModelElementEMFInfo(impacter, MIDLevel.INSTANCES);
-					impacterName = this.input.model.getName() + "." + MIDRegistry.getModelElementName(impacterEInfo, impacter, MIDLevel.INSTANCES);
+				if (impacteeLabel.isEmpty()) {
+					impacteeLabel = critNameMap.get(impacter);
+				} else if (!impacteeLabel.contains(critNameMap.get(impacter))) {
+					impacteeLabel = impacteeLabel + "+" + critNameMap.get(impacter);
 				}
-				
-				// Ensure there are no repeats in the label
-				if (!impacteeLabel.contains(impacterName)) {
-					if (impacteeLabel.contentEquals("")) {
-						impacteeLabel = impacterName;
-					} else {
-						impacteeLabel = impacteeLabel + "+" + this.input.model.getName() + "." + impacterName;						
-					}
-				}
-				
 			}
-			
+				
 			EObject impactee = impactedFromCritEntry.getKey();
 			try {
 				ModelElementReference impModelElemRef = sliceModelEndpointRef
