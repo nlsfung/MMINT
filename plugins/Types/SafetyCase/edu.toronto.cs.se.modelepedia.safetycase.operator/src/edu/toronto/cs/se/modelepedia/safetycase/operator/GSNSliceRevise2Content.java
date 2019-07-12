@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -46,106 +47,118 @@ import edu.toronto.cs.se.mmint.operator.slice.Slice;
 public class GSNSliceRevise2Content extends GSNSlice {
 
     // Get all model elements in a safety case that needs to be re-checked for 
-	// content validity given the input element that requires revision.
+	// content validity given the input elements that require revision.
     @Override
-    protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
+    protected Map<EObject, Set<EObject>> getAllImpactedElements(Set<EObject> critSet) {
 
-        Set<EObject> impactedModelObjs = new HashSet<>();
-
+    	Map<EObject, Set<EObject>> impactedMap = new HashMap<>();
+    	
         // Identify all elements (including supported-by connectors) that are 
-        // dependent on the revised element.
-        impactedModelObjs.addAll(getDirectlyImpactedElements(critModelObj, alreadyImpacted));
-        alreadyImpacted.addAll(impactedModelObjs);
-        
-        // Iterate through newly impacted supported-by connectors and check 
-        // whether their sources are impacted as well.
-        Set<SupportConnector> connectors = new HashSet<>();
-        for (EObject elem: impactedModelObjs) {
-        	if (elem instanceof SupportConnector) {
-        		connectors.add((SupportConnector) elem);
-        	}
-        }
-        
-        Set<Supportable> connectorDependants = new HashSet<>(); 
-        for (Supportable dependant: getConnectorDependants(connectors, alreadyImpacted)) {
-        	if (dependant instanceof CoreElement) {
-        		connectorDependants.add(dependant);
-        	}
-        }
-        
-        impactedModelObjs.addAll(connectorDependants);
-        
+        // dependent on the revised element.    	
+    	for (EObject critModelObj: critSet) {
+    		for (Entry<EObject, Set<EObject>> entry: getDirectlyImpactedElements(critModelObj, impactedMap.keySet()).entrySet()) {
+    			for (EObject impacted: entry.getValue()) {
+        			if (!impactedMap.containsKey(impacted)) {
+        				impactedMap.put(impacted, new HashSet<>());
+        			}
+    			}
+    			
+    			if (!impactedMap.containsKey(entry.getKey())) {
+    				impactedMap.put(entry.getKey(), new HashSet<>());
+    			}    			
+
+    			impactedMap.get(entry.getKey()).addAll(entry.getValue());
+    		}
+    	}
+              
         // If an ASIL decomposition strategy is impacted, then its independence 
         // goal is also impacted.
-        Set<IndependenceGoal> independenceGoals = new HashSet<>();
-        for (EObject elem: impactedModelObjs) {
-        	if (elem instanceof ASILDecompositionStrategy) {
-        		for (CoreElement child: getChildCoreElements((ASILDecompositionStrategy) elem)) {
-        			if (child instanceof IndependenceGoal) {
-        				independenceGoals.add((IndependenceGoal) child);
-        			}
-        		}
+    	Map<EObject, Set<EObject>> impactedGoals = new HashMap<>();
+        for (Entry<EObject, Set<EObject>> entry: impactedMap.entrySet()) {
+        	for (EObject impacted: entry.getValue()) {
+            	if (impacted instanceof ASILDecompositionStrategy) {
+            		for (CoreElement child: getChildCoreElements((ASILDecompositionStrategy) impacted)) {
+            			if (child instanceof IndependenceGoal) {
+            				if (!impactedGoals.containsKey(impacted)) {
+            					impactedGoals.put(impacted, new HashSet<>());
+            				}
+            				
+            				if (!impactedGoals.containsKey(child)) {
+            					impactedGoals.put(child, new HashSet<>());
+            				}
+            				
+            				impactedGoals.get(impacted).add(child);
+            			}
+            		}
+            	}       		
         	}
         }
         
-        impactedModelObjs.addAll(independenceGoals);
-        
-        // Remove supported-by connectors from the impacted elements.
-        impactedModelObjs.removeIf(elem -> elem instanceof SupportConnector);
+        for (Entry<EObject, Set<EObject>> entry: impactedGoals.entrySet()) {
+        	if (!impactedMap.containsKey(entry.getKey())) {
+        		impactedMap.put(entry.getKey(), new HashSet<>());
+        	}
+        	
+        	impactedMap.get(entry.getKey()).addAll(entry.getValue());
+        }
 
-        return impactedModelObjs;
+        return impactedMap;
     }
 	
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
+	protected Map<EObject, Set<EObject>> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
-	    Set<EObject> impacted = new HashSet<>();
+		HashMap<EObject, Set<EObject>> impactedMap = new HashMap<>();
+		Set<EObject> impactedAll = new HashSet<>();
+		impactedAll.addAll(alreadyImpacted);
+		impactedAll.add(modelObj);
 	    
 	    // By default, the input model element is impacted.
-	    impacted.add(modelObj);
+		impactedMap.put(modelObj, new HashSet<>());
+	    impactedMap.get(modelObj).add(modelObj);
 
 		// If input is a goal, then the following are potentially impacted:
-		// 1) Any parent supportable (including supported-by connectors)
-		// 2) Any child core element (i.e. goal, strategy or solution).
+		// 1) Any parent core element (i.e. goal, strategy or solution).
+	    // 2) Any child core element.
 		if (modelObj instanceof Goal) {
 			Goal g = (Goal) modelObj;
-			Set<CoreElement> children = getChildCoreElements(g);
+			impactedMap.get(modelObj).addAll(getChildCoreElements(g));
 			
-			Set<Supportable> parents = new HashSet<>();
-			for (SupportedBy rel: g.getSupports()) {
-				parents.add(rel.getSource());
+			for (Entry<EObject, Set<EObject>> entry: getImpactedParents(g, impactedAll).entrySet()) {
+				if (impactedMap.containsKey(entry.getKey())) {
+					impactedMap.get(entry.getKey()).addAll(entry.getValue());
+				} else {
+					impactedMap.put(entry.getKey(), entry.getValue());
+				}
 			}
-			
-			impacted.addAll(children);
-			impacted.addAll(parents);
 
 		// If input is a strategy, then the content validity should be rechecked for:
-		// 2) Any child core element.
-		// 3) Any contexts and justifications connected to it.
+		// 1) Any child core element.
+		// 2) Any contexts and justifications connected to it.
 		} else if (modelObj instanceof Strategy) {
 			Strategy s = (Strategy) modelObj;
-			Set<CoreElement> children = getChildCoreElements(s);
+			impactedMap.get(modelObj).addAll(getChildCoreElements(s));
 			
 			Set<ContextualElement> contexts = new HashSet<>();			
 			for (InContextOf rel : s.getInContextOf()) {
 				contexts.add(rel.getContext());
 			}
 			
-			impacted.addAll(children);
-			impacted.addAll(contexts);
+			impactedMap.get(modelObj).addAll(contexts);
 
 		// If input is a solution, then the content validity should be rechecked for:
 		// 1) Any parent supportable.
 		} else if (modelObj instanceof Solution) {
 			Solution s = (Solution) modelObj;
 
-			Set<Supportable> parents = new HashSet<>();
-			for (SupportedBy rel : s.getSupports()) {
-				parents.add(rel.getSource());
+			for (Entry<EObject, Set<EObject>> entry: getImpactedParents(s, impactedAll).entrySet()) {
+				if (impactedMap.containsKey(entry.getKey())) {
+					impactedMap.get(entry.getKey()).addAll(entry.getValue());
+				} else {
+					impactedMap.put(entry.getKey(), entry.getValue());
+				}
 			}
-			
-			impacted.addAll(parents);
 
 		// If input is a context, then the content validity should be rechecked for:
 		// 1) All argument elements that uses or inherits input context.
@@ -157,7 +170,7 @@ public class GSNSliceRevise2Content extends GSNSlice {
 				inheritors.addAll(getContextInheritors(rel.getContextOf()));
 			}
 			
-			impacted.addAll(inheritors);
+			impactedMap.get(modelObj).addAll(inheritors);
 
 		// If input is a justification, then nothing else requires rechecking.
 		} else if (modelObj instanceof Justification) {
@@ -171,12 +184,10 @@ public class GSNSliceRevise2Content extends GSNSlice {
 				inheritors.addAll(getContextInheritors(rel.getContextOf()));
 			}
 			
-			impacted.addAll(inheritors);
+			impactedMap.get(modelObj).addAll(inheritors);
 		}
 
-		impacted.removeAll(alreadyImpacted);
-
-		return impacted;
+		return impactedMap;
 	}
 
 	// Returns all the descendant argument elements (core and contextual 

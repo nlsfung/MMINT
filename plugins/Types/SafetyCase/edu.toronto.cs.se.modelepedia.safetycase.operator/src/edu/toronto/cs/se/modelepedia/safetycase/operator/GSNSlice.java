@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.operator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -73,121 +74,226 @@ public class GSNSlice extends Slice {
 		return children;
 	}
 	
-	// Returns all parents of support connectors that are impacted.
-	public Set<Supportable> getConnectorDependants(Set<SupportConnector> connectors, Set<EObject> alreadyImpacted) {
-		Set<Supportable> supportablesCur = new HashSet<>();
-		Set<Supportable> supportablesNext = new HashSet<>();
-		Set<Supportable> supportablesAll = new HashSet<>();
+	// Returns all parent decomposable core elements of the input core element.
+	public Set<DecomposableCoreElement> getParentCoreElements(CoreElement inputElem) {
+		Set<DecomposableCoreElement> parents = new HashSet<>();
 		
-		supportablesCur.addAll(connectors);
-		supportablesAll.addAll(connectors);
-        while (!supportablesCur.isEmpty()) {
-    		Set<EObject> impactedAll = new HashSet<>();
-    		impactedAll.addAll(alreadyImpacted);
-    		impactedAll.addAll(supportablesAll);
-        	
-        	for (Supportable elem: supportablesCur) {
-        		// Add parents to impacted set if necessary.
-        		if (isImpactPropagatedUp(elem, impactedAll)) {
-    				for (SupportedBy rel: elem.getSupports()) {
-    					supportablesNext.add(rel.getSource());
-    				}        			
-        		}
-        	}
-        	
-        	// Iterate through impacted elements, adding:
-        	// 1) New support connectors to the next iteration.
-        	supportablesCur.clear();
-        	for (Supportable elem: supportablesNext) {
-        		if (!supportablesAll.contains(elem)) {
-        			supportablesAll.add(elem);
-        				
-        			if (elem instanceof SupportConnector) {
-        				supportablesCur.add(elem);
-        			}
-        		}
-        	}
-        	
-        	supportablesNext.clear();
-        }
-        
-        return supportablesAll;
-	}
-	
-	// Returns all ancestor goals of the input core element, stopping when one is already impacted.
-	public Set<Goal> getAncestorGoals(CoreElement elem, Set<EObject> alreadyImpacted) {
-		Set<Supportable> ancestorsCur = new HashSet<>();
-		Set<Supportable> ancestorsNext = new HashSet<>();
-		Set<Supportable> ancestorsAll = new HashSet<>();
-		Set<Goal> goalAncestors = new HashSet<>();
-
-		// Iterate through the current set of newly added ancestors
-		// to identify the next generation of ancestors.
-		for (SupportedBy rel : elem.getSupports()) {
-			ancestorsNext.add(rel.getSource());
-			if (rel.getSource() instanceof Goal) {
-				goalAncestors.add((Goal) rel.getSource());
-			}
-		}
-
-		ancestorsCur.addAll(ancestorsNext);
-		ancestorsAll.addAll(ancestorsNext);
-		ancestorsNext.clear();
-
-		while (!ancestorsCur.isEmpty()) {
-			Set<EObject> impactedAll = new HashSet<>();
-			impactedAll.addAll(alreadyImpacted);
-			impactedAll.addAll(ancestorsAll);
-			
-			for (Supportable curElem : ancestorsCur) {
-				if (isImpactPropagatedUp(curElem, impactedAll)) {
-					for (SupportedBy rel : curElem.getSupports()) {
-						ancestorsNext.add(rel.getSource());
+		Set<Supporter> supportersCur = new HashSet<>();
+		Set<Supporter> supportersAll = new HashSet<>();
+		Set<Supporter> supportersNext = new HashSet<>();
+		
+		supportersCur.add(inputElem);
+		supportersAll.add(inputElem);
+		while (!supportersCur.isEmpty()) {
+			for (Supporter elem: supportersCur) {
+				for (SupportedBy rel: elem.getSupports()) {
+					Supportable src = rel.getSource();
+					
+					if (src instanceof DecomposableCoreElement) {
+						parents.add((DecomposableCoreElement) src);
+					} else if (src instanceof SupportConnector) {
+						supportersNext.add(src);
 					}
 				}
 			}
-
-			ancestorsCur.clear();
-			for (Supportable newElem : ancestorsNext) {
-				if (!ancestorsAll.contains(newElem)) {
-					ancestorsAll.add(newElem);
-					ancestorsCur.add(newElem);
-				}
-				
-				if (newElem instanceof Goal) {
-					goalAncestors.add((Goal) newElem);
+			
+			supportersCur.clear();
+			for (Supporter elem: supportersNext) {
+				if (!supportersAll.contains(elem)) {
+					supportersCur.add(elem);
+					supportersAll.add(elem);
 				}
 			}
-
-			ancestorsNext.clear();
+			
+			supportersNext.clear();
 		}
-				
-		return goalAncestors;
+		
+		return parents;
 	}
 	
-	// Determines whether a change impact is propagated up or not given the 
-	// source impacted element and a set of other impacted elements.
-	public boolean isImpactPropagatedUp(Supportable elem, Set<EObject> alreadyImpacted) {
-		boolean isImpactPropagated = false;
+	// Returns all ancestor decomposable core elements of the input core element.
+	public Set<DecomposableCoreElement> getAncestorCoreElements(CoreElement inputElem) {
+		Set<DecomposableCoreElement> ancestors = new HashSet<>();
 		
-		// Count the number of children impacted.
-		int impactCount = 0;
-		int totalCount = 0;
+		Set<Supporter> supportersCur = new HashSet<>();
+		Set<Supporter> supportersAll = new HashSet<>();
+		Set<Supporter> supportersNext = new HashSet<>();
 		
-		for (SupportedBy rel: elem.getSupportedBy()) {
-			totalCount += 1;
-			
-			if (alreadyImpacted.contains(rel.getTarget())) {
-				impactCount += 1;
-				continue;
-				
-			} else if (rel.getTarget() instanceof SupportConnector) {
-				if (isImpactPropagatedUp((SupportConnector) rel.getTarget(), alreadyImpacted)) {
-					impactCount += 1;
-					continue;					
+		supportersCur.add(inputElem);
+		supportersAll.add(inputElem);
+		while (!supportersCur.isEmpty()) {
+			for (Supporter elem: supportersCur) {
+				for (SupportedBy rel: elem.getSupports()) {
+					Supportable src = rel.getSource();
+					supportersNext.add(src);
+					
+					if (src instanceof DecomposableCoreElement) {
+						ancestors.add((DecomposableCoreElement) src);
+					}
 				}
 			}
+			
+			supportersCur.clear();
+			for (Supporter elem: supportersNext) {
+				if (!supportersAll.contains(elem)) {
+					supportersCur.add(elem);
+					supportersAll.add(elem);
+				}
+			}
+			
+			supportersNext.clear();
 		}
+		
+		return ancestors;
+	}
+	
+	// Get all parents of the input core element that are impacted by said 
+	// element and/or any of the elements that are already impacted.
+	// Returns a map from the impact source to the impacted parents.
+	Map<EObject, Set<EObject>> getImpactedParents(CoreElement modelObj, Set<EObject> alreadyImpacted) {
+		HashMap<EObject, Set<EObject>> impactedMap = new HashMap<>();
+		Set<EObject> impactedAll = new HashSet<>();
+		impactedAll.addAll(alreadyImpacted);
+		impactedAll.add(modelObj);
+		
+		for (DecomposableCoreElement parent: getParentCoreElements(modelObj)) {
+			for (CoreElement src: getImpactSources(parent, impactedAll)) {
+				if (!impactedMap.containsKey(src)) {
+					impactedMap.put(src, new HashSet<>());
+				}
+				
+				impactedMap.get(src).add(parent);
+			}
+		}	
+		
+		return impactedMap;
+		
+	}
+	
+	// Get all ancestors of the input core element that are impacted by said 
+	// element and/or any of the elements that are already impacted.
+	// Returns a map from the impact source to the impacted ancestors.
+	Map<EObject, Set<EObject>> getImpactedAncestors(CoreElement modelObj, Set<EObject> alreadyImpacted) {
+		HashMap<EObject, Set<EObject>> impactedMap = new HashMap<>();
+		Set<EObject> impactedAll = new HashSet<>();
+		impactedAll.addAll(alreadyImpacted);
+		impactedAll.add(modelObj);
+		
+		for (DecomposableCoreElement ancestor: getAncestorCoreElements(modelObj)) {
+			for (CoreElement src: getImpactSources(ancestor, impactedAll)) {
+				if (!impactedMap.containsKey(src)) {
+					impactedMap.put(src, new HashSet<>());
+				}
+				
+				impactedMap.get(src).add(ancestor);
+			}
+		}	
+		
+		return impactedMap;
+		
+	}
+	
+	// Returns all ancestor goals of the input core element, stopping when one is already impacted.
+//	public Set<Goal> getAncestorGoals(CoreElement elem, Set<EObject> alreadyImpacted) {
+//		Set<Supportable> ancestorsCur = new HashSet<>();
+//		Set<Supportable> ancestorsNext = new HashSet<>();
+//		Set<Supportable> ancestorsAll = new HashSet<>();
+//		Set<Goal> goalAncestors = new HashSet<>();
+//
+//		// Iterate through the current set of newly added ancestors
+//		// to identify the next generation of ancestors.
+//		for (SupportedBy rel : elem.getSupports()) {
+//			ancestorsNext.add(rel.getSource());
+//			if (rel.getSource() instanceof Goal) {
+//				goalAncestors.add((Goal) rel.getSource());
+//			}
+//		}
+//
+//		ancestorsCur.addAll(ancestorsNext);
+//		ancestorsAll.addAll(ancestorsNext);
+//		ancestorsNext.clear();
+//
+//		while (!ancestorsCur.isEmpty()) {
+//			Set<EObject> impactedAll = new HashSet<>();
+//			impactedAll.addAll(alreadyImpacted);
+//			impactedAll.addAll(ancestorsAll);
+//			
+//			for (Supportable curElem : ancestorsCur) {
+//				if (isImpactPropagatedUp(curElem, impactedAll)) {
+//					for (SupportedBy rel : curElem.getSupports()) {
+//						ancestorsNext.add(rel.getSource());
+//					}
+//				}
+//			}
+//
+//			ancestorsCur.clear();
+//			for (Supportable newElem : ancestorsNext) {
+//				if (!ancestorsAll.contains(newElem)) {
+//					ancestorsAll.add(newElem);
+//					ancestorsCur.add(newElem);
+//				}
+//				
+//				if (newElem instanceof Goal) {
+//					goalAncestors.add((Goal) newElem);
+//				}
+//			}
+//
+//			ancestorsNext.clear();
+//		}
+//				
+//		return goalAncestors;
+//	}
+	
+	// Returns the set of impact sources for the input supportable given the set of 
+	// all other impacted elements. Returns an empty set if the input is not impacted.
+	public Set<CoreElement> getImpactSources(Supportable elem, Set<EObject> alreadyImpacted) {
+		
+		// Get all children of the input element and their impact sources.
+		HashMap<Supporter, Set<CoreElement>> impactMap = new HashMap<>();
+		for (SupportedBy rel: elem.getSupportedBy()) {
+			Supporter child = rel.getTarget();
+			Set<CoreElement> childSources = new HashSet<>();
+			
+			// If child is a core element, then its impact source is itself
+			// (Assuming it is already impacted)
+			if (child instanceof CoreElement && alreadyImpacted.contains(child)) {
+				childSources.add((CoreElement) child);
+				
+			// Otherwise, the child is a support connector and its impact sources
+			// must be determined (if any).
+			} else if (child instanceof SupportConnector) {
+				childSources.addAll(getImpactSources((SupportConnector) child, alreadyImpacted)); 
+			}
+			
+			impactMap.put(child, childSources);
+		}
+		
+		// Count the number of children and the number of impacted ones.
+		int impactCount = 0;
+		int totalCount = 0;
+		Set<CoreElement> impactSources = new HashSet<>();
+		for (Entry<Supporter, Set<CoreElement>> entry: impactMap.entrySet()) {
+			totalCount += 1;
+			if (!entry.getValue().isEmpty()) {
+				impactCount += 1;
+				impactSources.addAll(entry.getValue());
+			}
+			
+		}
+		
+		// If element is impacted, return its impact sources.
+		if (!isImpactPropagatedUp(elem, totalCount, impactCount)) {
+			impactSources.clear();
+		}
+
+		return impactSources;
+	}
+	
+	
+	// Determines whether a change impact is propagated up or not given the source element, 
+	// the total number of its children and how	many of those are impacted.
+	public boolean isImpactPropagatedUp(Supportable elem, int totalCount, int impactCount) {
+		boolean isImpactPropagated = false;
 		
 		// If a core element is impacted, then its parents are also impacted.
 		if (elem instanceof CoreElement) {
@@ -222,9 +328,9 @@ public class GSNSlice extends Slice {
 			if (impactCount > totalCount - target) {
 				isImpactPropagated = true;
 			}
-		}
+		}		
 		
 		return isImpactPropagated;
 	}
-
+	
 }

@@ -129,12 +129,60 @@ public class Slice extends OperatorImpl {
     // Returns a map from the input model element to the set of model elements that may be directly impacted by it. 
     // By default, the contained elements are assumed to be impacted.
     // In some cases, the impacted elements also depend on what else is impacted.
-    // In such cases, the map 
+    // In such cases, the map will contain multiple entries, with each key representing one impact source.
     protected Map<EObject, Set<EObject>> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
     	Map<EObject, Set<EObject>> impactedMap = new HashMap<>();
     	impactedMap.put(modelObj, modelObj.eContents().stream().collect(Collectors.toSet()));
         return impactedMap;
     }
+    
+    // Gets all model elements impacted by the input criteria.
+    // Returns a map from the impact source to the impacted elements.
+    // Requires all impacted elements to be a key in the map, even if nothing is impacted by it
+    // (in which case it will be mapped to an empty set).
+    protected Map<EObject, Set<EObject>> getAllImpactedElements(Set<EObject> critSet) {
+    	
+        // Retrieve all elements dependent on the input criterion until fixed point is reached.
+        // Useful for cases in which an element depends on multiple other elements.
+        Map<EObject, Set<EObject>> allImpactedDependents = new HashMap<>();
+        Map<EObject, Set<EObject>> nextImpactedDependents = new HashMap<>();
+        
+        boolean isFixedPoint = false;
+        for (EObject elem: critSet) {
+        	allImpactedDependents.put(elem, new HashSet<>());
+        }
+        
+        while (!isFixedPoint) {
+        	// Identify all elements impacted by the current set of impacted elements.
+        	// Merge with existing impacted map and check if fixed point is reached.
+        	for (EObject elem: allImpactedDependents.keySet()) {
+        		for (Entry<EObject, Set<EObject>> entry: getDirectlyImpactedElements(elem, allImpactedDependents.keySet()).entrySet()) {
+        			if (!nextImpactedDependents.containsKey(entry.getKey())) {
+        				nextImpactedDependents.put(entry.getKey(), new HashSet<>());
+        			}
+        			nextImpactedDependents.get(entry.getKey()).addAll(entry.getValue());
+        		}
+        	}
+        	
+        	// Merge with existing impacted map and check if fixed point is reach.
+        	isFixedPoint = true;
+        	for (Entry<EObject, Set<EObject>> entry: nextImpactedDependents.entrySet()) {
+        		if (!allImpactedDependents.get(entry.getKey()).containsAll(entry.getValue())) {
+        			isFixedPoint = false;
+        			allImpactedDependents.get(entry.getKey()).addAll(entry.getValue());
+        			for (EObject key: entry.getValue()) {
+        				if (!allImpactedDependents.containsKey(key)) {
+        					allImpactedDependents.put(key, new HashSet<>());
+        				}
+        			}
+        		}
+        	}
+        	
+        	// Prepare for next iteration.
+        	nextImpactedDependents.clear();
+        }
+        return allImpactedDependents;
+    }    
 
     protected void slice() throws MMINTException {
 
@@ -175,45 +223,8 @@ public class Slice extends OperatorImpl {
             }
         }
         
-        // Retrieve all elements dependent on the input criterion until fixed point is reached.
-        // Useful for cases in which an element depends on multiple other elements.
-        Map<EObject, Set<EObject>> allImpactedDependents = new HashMap<>();
-        Map<EObject, Set<EObject>> nextImpactedDependents = new HashMap<>();
-        
-        boolean isFixedPoint = false;
-        for (EObject elem: critNameMap.keySet()) {
-        	allImpactedDependents.put(elem, new HashSet<>());
-        }
-        
-        while (!isFixedPoint) {
-        	// Identify all elements impacted by the current set of impacted elements.
-        	// Merge with existing impacted map and check if fixed point is reached.
-        	for (EObject elem: allImpactedDependents.keySet()) {
-        		for (Entry<EObject, Set<EObject>> entry: getDirectlyImpactedElements(elem, allImpactedDependents.keySet()).entrySet()) {
-        			if (!nextImpactedDependents.containsKey(entry.getKey())) {
-        				nextImpactedDependents.put(entry.getKey(), new HashSet<>());
-        			}
-        			nextImpactedDependents.get(entry.getKey()).addAll(entry.getValue());
-        		}
-        	}
-        	
-        	// Merge with existing impacted map and check if fixed point is reach.
-        	isFixedPoint = true;
-        	for (Entry<EObject, Set<EObject>> entry: nextImpactedDependents.entrySet()) {
-        		if (!allImpactedDependents.get(entry.getKey()).containsAll(entry.getValue())) {
-        			isFixedPoint = false;
-        			allImpactedDependents.get(entry.getKey()).addAll(entry.getValue());
-        			for (EObject key: entry.getValue()) {
-        				if (!allImpactedDependents.containsKey(key)) {
-        					allImpactedDependents.put(key, new HashSet<>());
-        				}
-        			}
-        		}
-        	}
-        	
-        	// Prepare for next iteration.
-        	nextImpactedDependents.clear();
-        }
+        // Get all elements impacted by the input criterion.
+        Map<EObject, Set<EObject>> allImpactedDependents = getAllImpactedElements(critNameMap.keySet());
         
         // Iterate through all impacted elements to identify their root cause
         Map<EObject, Set<EObject>> allImpactedSource = new HashMap<>();

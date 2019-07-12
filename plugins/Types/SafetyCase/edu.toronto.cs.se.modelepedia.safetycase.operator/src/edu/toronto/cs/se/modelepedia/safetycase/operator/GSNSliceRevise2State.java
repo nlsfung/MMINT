@@ -15,6 +15,7 @@ package edu.toronto.cs.se.modelepedia.safetycase.operator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -31,54 +32,26 @@ import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
 
 public class GSNSliceRevise2State extends GSNSlice {
 	
-    // Get all model elements in a safety case that needs to be re-checked for 
-	// state validity given the input element that requires revision.
-    @Override
-    protected Set<EObject> getAllImpactedElements(EObject critModelObj, Set<EObject> alreadyImpacted) {
-
-        Set<EObject> impactedModelObjs = new HashSet<>();
-        
-        // Slice all elements iteratively until a fixed point is reached.
-        Set<EObject> impactedCur = new HashSet<>();
-        Set<EObject> impactedNext = new HashSet<>();
-        
-        impactedCur.add(critModelObj);
-        while (!impactedCur.isEmpty()) {
-        	for (EObject elem: impactedCur) {
-        		impactedNext.addAll(getDirectlyImpactedElements(elem, alreadyImpacted));
-        	}
-        	
-        	// Check if fixed point has been reached
-        	impactedCur.clear();
-        	if (!impactedModelObjs.containsAll(impactedNext)) {
-        		impactedModelObjs.addAll(impactedNext);
-        		alreadyImpacted.addAll(impactedNext);
-        		impactedCur.addAll(impactedModelObjs);
-        		impactedNext.clear();
-        	}
-        }
-
-        return impactedModelObjs;
-    }
-	
 	// Get impacted model elements directly reachable from the input element.
 	@Override
-	protected Set<EObject> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
+	protected Map<EObject, Set<EObject>> getDirectlyImpactedElements(EObject modelObj, Set<EObject> alreadyImpacted) {
 
-	    Set<EObject> impacted = new HashSet<>();
-	    
-	    // By default, the input element is impacted
-        impacted.add(modelObj);
+	    Map<EObject, Set<EObject>> impactedMap = new HashMap<>();
 
 		// If input is a strategy, then the state validity should be rechecked for:
 		// 1) All ancestor goals.
 		if (modelObj instanceof Strategy) {
 			Strategy s = (Strategy) modelObj;
-			impacted.addAll(getAncestorGoals(s, alreadyImpacted));
+			impactedMap.putAll(getImpactedAncestors(s, alreadyImpacted));
 		}
 
-		return impacted;
+	    // By default, the input element is impacted
+		if (!impactedMap.containsKey(modelObj)) {
+			impactedMap.put(modelObj, new HashSet<>());
+		}
+        impactedMap.get(modelObj).add(modelObj);
+		
+		return impactedMap;
 	}
-
-
+	
 }
