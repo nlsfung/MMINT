@@ -38,12 +38,12 @@ public class GSNSliceRecheck extends GSNSlice {
 		// If input is a goal, then the state validity of its ancestor goals should be rechecked.
 		if (modelObj instanceof Goal) {
 			Goal g = (Goal) modelObj;
-			impactedMap.putAll(getImpactedAncestors(g, alreadyImpacted));
+			impactedMap.putAll(getImpactedParentGoals(g, alreadyImpacted));
 			
 		// If input is a solution, then the state validity of its ancestor goals should be rechecked.
 		} else if (modelObj instanceof Solution) {
 			Solution s = (Solution) modelObj;
-			impactedMap.putAll(getImpactedAncestors(s, alreadyImpacted));
+			impactedMap.putAll(getImpactedParentGoals(s, alreadyImpacted));
 		}
 		
 		// Remove from the map any impacted elements that are not goals
