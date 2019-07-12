@@ -112,9 +112,9 @@ public class GSNSlice extends Slice {
 		return parents;
 	}
 	
-	// Returns all ancestor decomposable core elements of the input core element.
-	public Set<DecomposableCoreElement> getAncestorCoreElements(CoreElement inputElem) {
-		Set<DecomposableCoreElement> ancestors = new HashSet<>();
+	// Returns all ancestor decomposable goals of the input core element.
+	public Set<Goal> getAncestorGoals(CoreElement inputElem) {
+		Set<Goal> ancestors = new HashSet<>();
 		
 		Set<Supporter> supportersCur = new HashSet<>();
 		Set<Supporter> supportersAll = new HashSet<>();
@@ -128,8 +128,8 @@ public class GSNSlice extends Slice {
 					Supportable src = rel.getSource();
 					supportersNext.add(src);
 					
-					if (src instanceof DecomposableCoreElement) {
-						ancestors.add((DecomposableCoreElement) src);
+					if (src instanceof Goal) {
+						ancestors.add((Goal) src);
 					}
 				}
 			}
@@ -171,16 +171,16 @@ public class GSNSlice extends Slice {
 		
 	}
 	
-	// Get all ancestors of the input core element that are impacted by said 
+	// Get all ancestor goals of the input core element that are impacted by said 
 	// element and/or any of the elements that are already impacted.
 	// Returns a map from the impact source to the impacted ancestors.
-	Map<EObject, Set<EObject>> getImpactedAncestors(CoreElement modelObj, Set<EObject> alreadyImpacted) {
+	Map<EObject, Set<EObject>> getImpactedAncestorGoals(CoreElement modelObj, Set<EObject> alreadyImpacted) {
 		HashMap<EObject, Set<EObject>> impactedMap = new HashMap<>();
 		Set<EObject> impactedAll = new HashSet<>();
 		impactedAll.addAll(alreadyImpacted);
 		impactedAll.add(modelObj);
 		
-		for (DecomposableCoreElement ancestor: getAncestorCoreElements(modelObj)) {
+		for (DecomposableCoreElement ancestor: getAncestorGoals(modelObj)) {
 			for (CoreElement src: getImpactSources(ancestor, impactedAll)) {
 				if (!impactedMap.containsKey(src)) {
 					impactedMap.put(src, new HashSet<>());

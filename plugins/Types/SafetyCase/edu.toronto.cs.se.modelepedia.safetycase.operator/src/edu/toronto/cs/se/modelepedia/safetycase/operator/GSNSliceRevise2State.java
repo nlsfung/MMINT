@@ -42,7 +42,7 @@ public class GSNSliceRevise2State extends GSNSlice {
 		// 1) All ancestor goals.
 		if (modelObj instanceof Strategy) {
 			Strategy s = (Strategy) modelObj;
-			impactedMap.putAll(getImpactedAncestors(s, alreadyImpacted));
+			impactedMap.putAll(getImpactedAncestorGoals(s, alreadyImpacted));
 		}
 
 	    // By default, the input element is impacted
