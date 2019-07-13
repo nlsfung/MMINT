@@ -29,6 +29,7 @@ import edu.toronto.cs.se.modelepedia.safetycase.Strategy;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportConnector;
 import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
 public class GSNSliceRevise2State extends GSNSlice {
 	
@@ -54,4 +55,62 @@ public class GSNSliceRevise2State extends GSNSlice {
 		return impactedMap;
 	}
 	
+	// Returns all ancestor decomposable goals of the input core element.
+	public Set<Goal> getAncestorGoals(CoreElement inputElem) {
+		Set<Goal> ancestors = new HashSet<>();
+		
+		Set<Supporter> supportersCur = new HashSet<>();
+		Set<Supporter> supportersAll = new HashSet<>();
+		Set<Supporter> supportersNext = new HashSet<>();
+		
+		supportersCur.add(inputElem);
+		supportersAll.add(inputElem);
+		while (!supportersCur.isEmpty()) {
+			for (Supporter elem: supportersCur) {
+				for (SupportedBy rel: elem.getSupports()) {
+					Supportable src = rel.getSource();
+					supportersNext.add(src);
+					
+					if (src instanceof Goal) {
+						ancestors.add((Goal) src);
+					}
+				}
+			}
+			
+			supportersCur.clear();
+			for (Supporter elem: supportersNext) {
+				if (!supportersAll.contains(elem)) {
+					supportersCur.add(elem);
+					supportersAll.add(elem);
+				}
+			}
+			
+			supportersNext.clear();
+		}
+		
+		return ancestors;
+	}
+	
+	// Get all ancestor goals of the input core element that are impacted by said 
+	// element and/or any of the elements that are already impacted.
+	// Returns a map from the impact source to the impacted ancestors.
+	Map<EObject, Set<EObject>> getImpactedAncestorGoals(CoreElement modelObj, Set<EObject> alreadyImpacted) {
+		HashMap<EObject, Set<EObject>> impactedMap = new HashMap<>();
+		Set<EObject> impactedAll = new HashSet<>();
+		impactedAll.addAll(alreadyImpacted);
+		impactedAll.add(modelObj);
+		
+		for (DecomposableCoreElement ancestor: getAncestorGoals(modelObj)) {
+			for (CoreElement src: getImpactSources(ancestor, impactedAll, true)) {
+				if (!impactedMap.containsKey(src)) {
+					impactedMap.put(src, new HashSet<>());
+				}
+				
+				impactedMap.get(src).add(ancestor);
+			}
+		}	
+		
+		return impactedMap;
+		
+	}	
 }

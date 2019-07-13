@@ -25,7 +25,9 @@ import edu.toronto.cs.se.modelepedia.safetycase.CoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.DecomposableCoreElement;
 import edu.toronto.cs.se.modelepedia.safetycase.Goal;
 import edu.toronto.cs.se.modelepedia.safetycase.Solution;
+import edu.toronto.cs.se.modelepedia.safetycase.Supportable;
 import edu.toronto.cs.se.modelepedia.safetycase.SupportedBy;
+import edu.toronto.cs.se.modelepedia.safetycase.Supporter;
 
 public class GSNSliceRecheck extends GSNSlice {
 
@@ -62,5 +64,66 @@ public class GSNSliceRecheck extends GSNSlice {
 	    filteredMap.get(modelObj).add(modelObj);
 
 		return filteredMap;
+	}
+	
+	// Returns the first layer of parent goals of the input core element.
+	// The parent goals may be indirectly connected to the input via other elements (viz. strategies).
+	public Set<Goal> getParentGoalLayer(CoreElement inputElem) {
+		Set<Goal> parents = new HashSet<>();
+		
+		Set<Supporter> supportersCur = new HashSet<>();
+		Set<Supporter> supportersAll = new HashSet<>();
+		Set<Supporter> supportersNext = new HashSet<>();
+		
+		supportersCur.add(inputElem);
+		supportersAll.add(inputElem);
+		while (!supportersCur.isEmpty()) {
+			for (Supporter elem: supportersCur) {
+				for (SupportedBy rel: elem.getSupports()) {
+					Supportable src = rel.getSource();
+					
+					if (src instanceof Goal) {
+						parents.add((Goal) src);
+					} else if (src instanceof Supporter) {
+						supportersNext.add(src);
+					}
+				}
+			}
+			
+			supportersCur.clear();
+			for (Supporter elem: supportersNext) {
+				if (!supportersAll.contains(elem)) {
+					supportersCur.add(elem);
+					supportersAll.add(elem);
+				}
+			}
+			
+			supportersNext.clear();
+		}
+		
+		return parents;
+	}
+	
+	// Get all parent goals of the input core element that are impacted by said 
+	// element and/or any of the elements that are already impacted.
+	// Returns a map from the impact source to the impacted parents.
+	Map<EObject, Set<EObject>> getImpactedParentGoals(CoreElement modelObj, Set<EObject> alreadyImpacted) {
+		Map<EObject, Set<EObject>> impactedMap = new HashMap<>();
+		Set<EObject> impactedAll = new HashSet<>();
+		impactedAll.addAll(alreadyImpacted);
+		impactedAll.add(modelObj);
+		
+		for (Goal parent: getParentGoalLayer(modelObj)) {
+			for (CoreElement src: getImpactSources(parent, impactedAll, true)) {
+				if (!impactedMap.containsKey(src)) {
+					impactedMap.put(src, new HashSet<>());
+				}
+				
+				impactedMap.get(src).add(parent);
+			}
+		}	
+		
+		return impactedMap;
+		
 	}
 }

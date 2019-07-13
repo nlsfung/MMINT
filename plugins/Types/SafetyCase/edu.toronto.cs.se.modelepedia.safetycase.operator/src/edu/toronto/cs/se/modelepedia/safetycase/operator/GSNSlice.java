@@ -74,30 +74,29 @@ public class GSNSlice extends Slice {
 		return children;
 	}
 	
-	// Returns the first layer of parent goals of the input core element.
-	// The parent goals may be indirectly connected to the input via other elements (viz. strategies).
-	public Set<Goal> getParentGoalLayer(CoreElement inputElem) {
-		Set<Goal> parents = new HashSet<>();
-		
+	// Returns all parent decomposable core elements of the input core element.
+	public Set<DecomposableCoreElement> getParentCoreElements(CoreElement inputElem) {
+		Set<DecomposableCoreElement> parents = new HashSet<>();
+
 		Set<Supporter> supportersCur = new HashSet<>();
 		Set<Supporter> supportersAll = new HashSet<>();
 		Set<Supporter> supportersNext = new HashSet<>();
-		
+
 		supportersCur.add(inputElem);
 		supportersAll.add(inputElem);
 		while (!supportersCur.isEmpty()) {
 			for (Supporter elem: supportersCur) {
 				for (SupportedBy rel: elem.getSupports()) {
 					Supportable src = rel.getSource();
-					
-					if (src instanceof Goal) {
-						parents.add((Goal) src);
-					} else if (src instanceof Supporter) {
+
+					if (src instanceof DecomposableCoreElement) {
+						parents.add((DecomposableCoreElement) src);
+					} else if (src instanceof SupportConnector) {
 						supportersNext.add(src);
 					}
 				}
 			}
-			
+
 			supportersCur.clear();
 			for (Supporter elem: supportersNext) {
 				if (!supportersAll.contains(elem)) {
@@ -105,100 +104,19 @@ public class GSNSlice extends Slice {
 					supportersAll.add(elem);
 				}
 			}
-			
+
 			supportersNext.clear();
 		}
-		
+
 		return parents;
-	}
+	}	
 	
-	// Returns all ancestor decomposable goals of the input core element.
-	public Set<Goal> getAncestorGoals(CoreElement inputElem) {
-		Set<Goal> ancestors = new HashSet<>();
-		
-		Set<Supporter> supportersCur = new HashSet<>();
-		Set<Supporter> supportersAll = new HashSet<>();
-		Set<Supporter> supportersNext = new HashSet<>();
-		
-		supportersCur.add(inputElem);
-		supportersAll.add(inputElem);
-		while (!supportersCur.isEmpty()) {
-			for (Supporter elem: supportersCur) {
-				for (SupportedBy rel: elem.getSupports()) {
-					Supportable src = rel.getSource();
-					supportersNext.add(src);
-					
-					if (src instanceof Goal) {
-						ancestors.add((Goal) src);
-					}
-				}
-			}
-			
-			supportersCur.clear();
-			for (Supporter elem: supportersNext) {
-				if (!supportersAll.contains(elem)) {
-					supportersCur.add(elem);
-					supportersAll.add(elem);
-				}
-			}
-			
-			supportersNext.clear();
-		}
-		
-		return ancestors;
-	}
-	
-	// Get all parent goals of the input core element that are impacted by said 
-	// element and/or any of the elements that are already impacted.
-	// Returns a map from the impact source to the impacted parents.
-	Map<EObject, Set<EObject>> getImpactedParentGoals(CoreElement modelObj, Set<EObject> alreadyImpacted) {
-		Map<EObject, Set<EObject>> impactedMap = new HashMap<>();
-		Set<EObject> impactedAll = new HashSet<>();
-		impactedAll.addAll(alreadyImpacted);
-		impactedAll.add(modelObj);
-		
-		for (Goal parent: getParentGoalLayer(modelObj)) {
-			for (CoreElement src: getImpactSources(parent, impactedAll)) {
-				if (!impactedMap.containsKey(src)) {
-					impactedMap.put(src, new HashSet<>());
-				}
-				
-				impactedMap.get(src).add(parent);
-			}
-		}	
-		
-		return impactedMap;
-		
-	}
-	
-	// Get all ancestor goals of the input core element that are impacted by said 
-	// element and/or any of the elements that are already impacted.
-	// Returns a map from the impact source to the impacted ancestors.
-	Map<EObject, Set<EObject>> getImpactedAncestorGoals(CoreElement modelObj, Set<EObject> alreadyImpacted) {
-		HashMap<EObject, Set<EObject>> impactedMap = new HashMap<>();
-		Set<EObject> impactedAll = new HashSet<>();
-		impactedAll.addAll(alreadyImpacted);
-		impactedAll.add(modelObj);
-		
-		for (DecomposableCoreElement ancestor: getAncestorGoals(modelObj)) {
-			for (CoreElement src: getImpactSources(ancestor, impactedAll)) {
-				if (!impactedMap.containsKey(src)) {
-					impactedMap.put(src, new HashSet<>());
-				}
-				
-				impactedMap.get(src).add(ancestor);
-			}
-		}	
-		
-		return impactedMap;
-		
-	}
-	
-	// Returns the set of impact sources for the input goal given the set of 
+	// Returns the set of impact sources for the input supportable given the set of 
 	// all other impacted elements. Returns an empty set if the input is not impacted.
-	// Note: According to the slicing rules, change impact is propagated through 
-	// strategies even if they themselves are not impacted.
-	public Set<CoreElement> getImpactSources(Supportable elem, Set<EObject> alreadyImpacted) {
+	// Note: Depending on the specific slicer, the change impact may be propagated 
+	// through strategies even if they themselves are not impacted, in which case the 
+	// flag should be set to true.
+	public Set<CoreElement> getImpactSources(Supportable elem, Set<EObject> alreadyImpacted, boolean skipFlag) {
 		
 		// Get all children of the input element and their impact sources.
 		HashMap<Supporter, Set<CoreElement>> impactMap = new HashMap<>();
@@ -213,10 +131,10 @@ public class GSNSlice extends Slice {
 			// Otherwise, the child is a support connector (or unimpacted strategy) 
 			// and its impact sources must be determined (if any).
 			} else if (child instanceof SupportConnector) {
-				childSources.addAll(getImpactSources((SupportConnector) child, alreadyImpacted)); 
+				childSources.addAll(getImpactSources((SupportConnector) child, alreadyImpacted, skipFlag)); 
 				
-			} else if (child instanceof Strategy && !alreadyImpacted.contains(child)) {
-				childSources.addAll(getImpactSources((Strategy) child, alreadyImpacted));			
+			} else if (skipFlag && child instanceof Strategy && !alreadyImpacted.contains(child)) {
+				childSources.addAll(getImpactSources((Strategy) child, alreadyImpacted, skipFlag));			
 			}
 			
 			impactMap.put(child, childSources);

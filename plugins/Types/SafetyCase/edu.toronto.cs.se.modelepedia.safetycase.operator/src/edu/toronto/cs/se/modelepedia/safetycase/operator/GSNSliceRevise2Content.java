@@ -230,5 +230,26 @@ public class GSNSliceRevise2Content extends GSNSlice {
 
 		return descendantsAll;
 	}
+	
+	// Determine which parents of the input core element are potentially impacted.
+	// Returns a map from the source of the impact to the corresponding set of impacted parents.
+	public Map<EObject, Set<EObject>> getImpactedParents(CoreElement modelObj, Set<EObject> alreadyImpacted) {
+		HashMap<EObject, Set<EObject>> impactedMap = new HashMap<>();
+		Set<EObject> impactedAll = new HashSet<>();
+		impactedAll.addAll(alreadyImpacted);
+		impactedAll.add(modelObj);
+
+		for (DecomposableCoreElement parent: getParentCoreElements(modelObj)) {
+			for (CoreElement src: getImpactSources(parent, impactedAll, false)) {
+				if (!impactedMap.containsKey(src)) {
+					impactedMap.put(src, new HashSet<>());
+				}
+
+				impactedMap.get(src).add(parent);
+			}
+		}
+
+		return impactedMap;
+	}	
 
 }
