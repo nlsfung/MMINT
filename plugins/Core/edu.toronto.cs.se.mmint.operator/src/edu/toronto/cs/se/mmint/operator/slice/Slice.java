@@ -13,6 +13,7 @@
 package edu.toronto.cs.se.mmint.operator.slice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,6 +55,8 @@ public class Slice extends OperatorImpl {
 
     private Input input;
     private Output output;
+    
+    private final static @NonNull String MERGE_SEPARATOR = "+";
 
     private static class Input {
 
@@ -199,7 +202,7 @@ public class Slice extends OperatorImpl {
         
         // loop through the model objects in the input criterion
         // initialise map for tracking the source of each criterion
-        Map<EObject, String> critNameMap = new HashMap<>();
+        Map<EObject, Set<String>> critNameMap = new HashMap<>();
         for (ModelElementReference critModelElemRef : critModelEndpointRef.getModelElemRefs()) {
             try {
             	String impacterName = "Error Name";
@@ -215,7 +218,8 @@ public class Slice extends OperatorImpl {
 							MIDRegistry.getModelElementName(impacterEInfo, critModelObj, MIDLevel.INSTANCES);
                 }
                 
-                critNameMap.put(critModelObj, impacterName);
+                critNameMap.put(critModelObj, new HashSet<>());
+                critNameMap.get(critModelObj).addAll(Arrays.asList(impacterName.split("\\" + MERGE_SEPARATOR)));
                 
             } catch (MMINTException e) {
             	MMINTException.print(IStatus.WARNING,
@@ -260,15 +264,20 @@ public class Slice extends OperatorImpl {
                 
 		// add impacted elements to the output model relation
 		for (Entry<EObject, Set<EObject>> impactedFromCritEntry : allImpactedSource.entrySet()) {
-			String impacteeLabel = "";
-			for (EObject impacter : impactedFromCritEntry.getValue()) {
-				if (impacteeLabel.isEmpty()) {
-					impacteeLabel = critNameMap.get(impacter);
-				} else if (!impacteeLabel.contains(critNameMap.get(impacter))) {
-					impacteeLabel = impacteeLabel + "+" + critNameMap.get(impacter);
-				}
+			Set<String> impacteeLabelSet = new HashSet<>();
+			for (EObject impacter: impactedFromCritEntry.getValue()) {
+				impacteeLabelSet.addAll(critNameMap.get(impacter));
 			}
-				
+			
+			String impacteeLabel = "";
+        	for (String name: impacteeLabelSet) {
+        		if (impacteeLabel.isEmpty()) {
+        			impacteeLabel = name;
+        		} else {
+        			impacteeLabel += MERGE_SEPARATOR + name;
+        		}
+        	}			
+							
 			EObject impactee = impactedFromCritEntry.getKey();
 			try {
 				ModelElementReference impModelElemRef = sliceModelEndpointRef
