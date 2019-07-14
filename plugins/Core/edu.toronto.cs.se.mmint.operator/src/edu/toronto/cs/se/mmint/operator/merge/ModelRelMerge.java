@@ -12,8 +12,10 @@
 package edu.toronto.cs.se.mmint.operator.merge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -199,18 +201,23 @@ public class ModelRelMerge extends OperatorImpl {
             else {
                 // warning: this will merge mappings with same endpoints even from a single rel
             	// quick fix: remove duplicate names (useful for slicers).
-            	String mergedName;
+            	String mergedName = "";
             	String origMappingName = origMappingRef.getObject().getName();
             	String mergedMappingName = mergedMappingRef.getObject().getName();
-            	if (mergedMappingName.contains(origMappingName)) {
-            		mergedName = mergedMappingName;
-            	} else if (origMappingName.contains(mergedMappingName)) {
-            		mergedName = origMappingName;
-            	} else {
-            		mergedName = mergedMappingRef.getObject().getName() + MERGE_SEPARATOR +
-            				origMappingRef.getObject().getName();
-            	}
             	
+            	// Split the name into different parts separated by the merge separator.
+            	Set<String> elemNames = new HashSet<>();
+            	elemNames.addAll(Arrays.asList(origMappingName.split("\\" + MERGE_SEPARATOR)));
+            	elemNames.addAll(Arrays.asList(mergedMappingName.split("\\" + MERGE_SEPARATOR)));
+            	
+            	for (String name: elemNames) {
+            		if (mergedName.isEmpty()) {
+            			mergedName = name;
+            		} else {
+            			mergedName += MERGE_SEPARATOR + name;
+            		}
+            	}
+            	            	
                 mergedMappingRef.getObject().setName(mergedName);
             }
         }
